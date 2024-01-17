@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Models\PublicationType;
 use App\Models\AdvertiseCost;
@@ -16,7 +17,8 @@ use App\Models\BannerSize;
 use App\Models\Advertise;
 use App\Models\AdvertiseNewsPaper;
 use App\Models\FinancialYear;
-use Barryvdh\Snappy\Facades\SnappyPdf;
+use App\Models\Signature;
+use PDF;
 
 class AdvertiseController extends Controller
 {
@@ -137,24 +139,17 @@ class AdvertiseController extends Controller
         // $pdf = PDF::loadView('advertise.pdf', $data);
 
         // return $pdf->stream('document.pdf');
-        $name = encrypt(time());
+        $advertise = Advertise::with(['department', 'printType', 'publicationType', 'bannerSize', 'advertiseNewsPapers.newsPaper'])->where('id', $advertise->id)->first();
 
-        DB::table('advertises')->where('id', $advertise->id)->update(['generate_pdf_url' => 'pdf/'.$name.'.pdf']);
-    }
+        $signature = Signature::value('name');
 
-    public function pdf(Request $request){
-        $html = '<h1>Hello, Snappy!</h1>';
+        $pdf = PDF::loadView('advertise.pdf', compact('advertise', 'signature'));
 
-        // Generate PDF from HTML
-        $pdf = SnappyPdf::loadHTML($html);
+        $name = 'pdf/'.encrypt(time()).'.pdf';
 
-        // Output the PDF to the browser or save it to a file
-        return $pdf->download('document.pdf');
-        // return 'dd';
-        $data = [];
-        // $pdf = PDF::loadView('advertise.pdf', $data);
+        Storage::put($name, $pdf->output());
 
-        // return $pdf->stream('document.pdf');
+        DB::table('advertises')->where('id', $advertise->id)->update(['generate_pdf_url' => $name]);
     }
 
 }

@@ -9,6 +9,8 @@ use App\Models\Signature;
 use App\Models\Advertise;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class SendMailController extends Controller
 {
@@ -42,5 +44,21 @@ class SendMailController extends Controller
 
         return redirect()->route('advertise.index')->with('success', 'Mail send successfully');
 
+    }
+
+    public function cancelMail(Request $request){
+        $advertise = Advertise::find($request->id);
+        Log::info($advertise->generate_pdf_url);
+        if (Storage::exists($advertise->generate_pdf_url)){
+            Storage::delete($advertise->generate_pdf_url);
+        }
+
+        if (Storage::exists($advertise->image)){
+            Storage::delete($advertise->image);
+        }
+
+        $advertise->delete();
+
+        return redirect()->route('advertise.create')->with('success', 'Mail cancel successfully');
     }
 }

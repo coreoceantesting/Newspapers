@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Cost;
 use App\Models\PublicationType;
 use App\Models\Department;
@@ -14,7 +15,7 @@ use App\Models\Billing;
 
 class Advertise extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function cost(){
         return $this->belongsTo(Cost::class, 'cost_id', 'id');
@@ -37,7 +38,7 @@ class Advertise extends Model
     }
 
     public function advertiseNewsPapers(){
-        return $this->belongsTo(AdvertiseNewsPaper::class, 'advertise_id ', 'id');
+        return $this->hasMany(AdvertiseNewsPaper::class, 'advertise_id', 'id');
     }
 
     public function billing(){

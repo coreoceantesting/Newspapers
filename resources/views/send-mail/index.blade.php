@@ -50,10 +50,27 @@
                             <textarea name="description" class="form-control" placeholder="Enter Description" cols="20" rows="10"></textarea>
                         </div>
                         <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('Are you sure do you want to send email')" type="submit">Send Email</button>
-                        <a href="{{ route('advertise.create') }}"><button class="btn btn-dark" type="button">Cancel</button></a>
+                        <button class="btn btn-dark" id="cancelBtn" type="button">Cancel</button>
+
+                    </form>
+                    <form id="cancelMail" action="{{ route('mail.cancel') }}" method="POST" class="d-none">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ Request()->id }}">
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        $('body').on('click', '#cancelBtn', function(event){
+            var result = confirm("Are you sure you want to cancel this advertise");
+            if (result) {
+                event.preventDefault();
+                document.getElementById('cancelMail').submit();
+            }
+        })
+    </script>
+    @endpush
 </x-layout>

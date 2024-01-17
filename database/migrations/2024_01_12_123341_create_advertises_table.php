@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('work_order_number')->nullable();
             $table->string('image')->nullable();
             $table->string('generate_pdf_url')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
