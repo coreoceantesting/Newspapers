@@ -49,7 +49,8 @@
                                 </div>
 
 
-                                <div class="col-12" id="advertiseDataDiv"></div>
+                                <div class="row" id="advertiseDataDiv"></div>
+
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="bill_number">Bill Number <span class="error">*</span></label>
@@ -62,7 +63,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="bank">Bank Name <span class="error">*</span></label>
-                                    <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" placeholder="Bank Name" value="{{ old('bank') }}">
+                                    <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" readonly placeholder="Bank Name" value="{{ old('bank') }}">
                                     @error('bank')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -70,7 +71,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="branch">Branch Name <span class="error">*</span></label>
-                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" type="text" placeholder="Branch Name" value="{{ old('branch') }}">
+                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" readonly type="text" placeholder="Branch Name" value="{{ old('branch') }}">
                                     @error('branch')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -78,7 +79,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="account_number">Account Number <span class="error">*</span></label>
-                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" type="number" placeholder="Account Number" value="{{ old('account_number') }}">
+                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" readonly id="account_number" type="number" placeholder="Account Number" value="{{ old('account_number') }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -86,7 +87,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="ifsc_code">IFSC Code <span class="error">*</span></label>
-                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="ifsc_code" id="ifsc_code" type="text" placeholder="IFSC Code" value="{{ old('ifsc_code') }}">
+                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="ifsc_code" id="ifsc_code" readonly type="text" placeholder="IFSC Code" value="{{ old('ifsc_code') }}">
                                     @error('ifsc_code')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -94,7 +95,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="pan_card">Pan Card No <span class="error">*</span></label>
-                                    <input @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="Pan Card" value="{{ old('pan_card') }}">
+                                    <input @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" readonly placeholder="Pan Card" value="{{ old('pan_card') }}">
                                     @error('pan_card')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -194,6 +195,9 @@
                                         html += `<option value="${val.id}">${val.work_order_number}</option>`;
                                     });
                                     $('#workOrderNumber').html(html)
+                                }else{
+                                    $('#selectDepartment').val('').change();
+                                    $('body').find('#advertiseDataDiv').html('')
                                 }
                             },
                             error: function(xhr) {
@@ -206,6 +210,7 @@
                     }else{
                         $('.workOrderNumberDiv').addClass('d-none')
                         $('#selectDepartment').val('').change();
+                        $('body').find('#advertiseDataDiv').html('')
                     }
                 });
 
@@ -263,14 +268,14 @@
                                     html += `
                                     <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="news_paper_id">Select News Paper <span class="error">*</span></label>
-                                    <select name="news_paper_id" required class="form-select">
+                                    <select name="news_paper_id" id="newsPaperId" required class="form-select">
                                         <option value="">Select news papers</option>`;
                                     $.each(response.advertiseNewsPapers, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;
                                     });
 
                                     html += `</select>
-                                </div>`;
+                                </div><div class="col-md-6 col-lg-6 col-12" id="newsPaperAccountNumber"></div>`;
 
                                     $('#advertiseDataDiv').html(html)
                                 }
@@ -299,7 +304,6 @@
                                 $('.ajax-loader').removeClass('d-none');
                             },
                             success: function(response){
-                                console.log(response)
                                 if(response.status === 200){
                                     $('#bill_number_error').html(`Bill Number ${response.data} Already Assigned`)
                                     $('#bill_number').val('')
@@ -307,6 +311,81 @@
                                 }else{
                                     $('#bill_number_error').html('')
                                     $('#submitForm').prop('disabled', false)
+                                }
+                            },
+                            error: function(xhr) {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                            complete: function() {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                        });
+                    }
+                });
+
+                // fetch newspaper account number
+                $('body').on('change', '#newsPaperId', function(){
+                    let newsPaperId = $(this).val();
+                    if(newsPaperId != ""){
+                        $.ajax({
+                            url: "{{ route('get-news-papers-account-number') }}",
+                            type: "get",
+                            data: {news_paper_id : newsPaperId},
+                            beforeSend: function()
+                            {
+                                $('.ajax-loader').removeClass('d-none');
+                            },
+                            success: function(response){
+                                if(response.status === 200){
+                                    let html = `<label class="form-label" for="account_detail_id">Select Account Details <span class="error">*</span></label>
+                                    <select name="account_detail_id" id="accountDetail" required class="form-select">
+                                        <option value="">Select Account Details</option>`;
+                                    $.each(response.data, function(key, val){
+                                        html += `<option value="${val.id}">${val.account_number}</option>`;
+                                    });
+
+                                    html += `</select>`;
+
+                                    $('body').find('#newsPaperAccountNumber').html(html)
+                                }
+                            },
+                            error: function(xhr) {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                            complete: function() {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                        });
+                    }
+                });
+
+
+                // fetch account number details
+                $('body').on('change', '#accountDetail', function(){
+                    let accountNumber = $(this).val();
+
+                    if(accountNumber != ""){
+                        $.ajax({
+                            url: "{{ route('get-news-papers-account-details') }}",
+                            type: "get",
+                            data: {id : accountNumber},
+                            beforeSend: function()
+                            {
+                                $('.ajax-loader').removeClass('d-none');
+                            },
+                            success: function(response){
+                                if(response.status === 200){
+                                    $('#bank').val(response.data.bank)
+                                    $('#branch').val(response.data.branch)
+                                    $('#account_number').val(response.data.account_number)
+                                    $('#ifsc_code').val(response.data.ifsc_code)
+                                    $('#pan_card').val(response.data.pan_card)
+                                }else{
+                                    $('#bank').val('')
+                                    $('#branch').val('')
+                                    $('#account_number').val('')
+                                    $('#ifsc_code').val('')
+                                    $('#pan_card').val('')
                                 }
                             },
                             error: function(xhr) {

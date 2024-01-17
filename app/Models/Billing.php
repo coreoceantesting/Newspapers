@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\NewsPaper;
 use App\Models\Department;
 use App\Models\Advertise;
+use App\Models\AccountDetail;
 
 class Billing extends Model
 {
@@ -25,5 +26,9 @@ class Billing extends Model
 
     public function advertise(){
         return $this->belongsTo(Advertise::class, 'advertise_id', 'id');
+    }
+
+    public function accountDetails(){
+        return $this->belongsTo(AccountDetail::class, 'account_detail_id', 'id');
     }
 }

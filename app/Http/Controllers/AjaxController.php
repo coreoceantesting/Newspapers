@@ -8,6 +8,7 @@ use App\Models\AdvertiseNewsPaper;
 use App\Models\NewsPaperType;
 use App\Models\Language;
 use App\Models\Advertise;
+use App\Models\AccountDetail;
 
 class AjaxController extends Controller
 {
@@ -20,7 +21,7 @@ class AjaxController extends Controller
                         $lang->select('id', 'name')
                              ->with('newsPapers');
                   });
-            })->get();
+            })->latest()->get();
 
             return response()->json([
                 'status' => 200,
@@ -31,7 +32,7 @@ class AjaxController extends Controller
 
     public function getNotJahirNewsPaperType(Request $request){
 
-        $newsPaperTypes = NewsPaperType::whereIn('id', $request->newsPaperType)->get();
+        $newsPaperTypes = NewsPaperType::whereIn('id', $request->newsPaperType)->latest()->get();
         $data = [];
         foreach( $newsPaperTypes as $newsPaperType ){
             $id = $newsPaperType->id;
@@ -128,6 +129,30 @@ class AjaxController extends Controller
             return response()->json([
                 'status' => 200,
                 'data' => $advertise
+            ]);
+        }
+    }
+
+    // function to get account number of newspaper
+    public function getNewsPaperAccountNumber(Request $request){
+        if($request->ajax()){
+            $accountNumber = AccountDetail::where('news_paper_id', $request->news_paper_id)->get();
+
+            return response()->json([
+                'status' => 200,
+                'data' => $accountNumber
+            ]);
+        }
+    }
+
+    // function to get Account Number details
+    public function getNewsPaperAccountDetails(Request $request){
+        if($request->ajax()){
+            $accountDetails = AccountDetail::where('id', $request->id)->first();
+
+            return response()->json([
+                'status' => 200,
+                'data' => $accountDetails
             ]);
         }
     }

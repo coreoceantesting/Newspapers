@@ -54,7 +54,7 @@
                                 </div>
 
 
-                                <div class="col-12" id="advertiseDataDiv">
+                                <div class="row" id="advertiseDataDiv">
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                         <thead>
@@ -86,6 +86,16 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-md-6 col-lg-6 col-12" id="newsPaperAccountNumber">
+
+                                        <label class="form-label" for="account_detail_id">Select Account Details <span class="error">*</span></label>
+                                        <select name="account_detail_id" id="accountDetail" required class="form-select">
+                                            <option value="">Select Account Details</option>
+                                            @foreach($accountDetails as $accountDetail)
+                                            <option @if($accountDetail->id == $billing->account_detail_id)selected @endif value="{{ $accountDetail->id }}">{{ $accountDetail->account_number }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
@@ -99,7 +109,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="bank">Bank Name <span class="error">*</span></label>
-                                    <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" placeholder="Bank Name" value="{{ $billing->bank }}">
+                                    <input @if ($errors->has('bank')) class="form-control is-invalid" readonly @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" readonly placeholder="Bank Name" value="{{ $billing?->accountDetails?->bank }}">
                                     @error('bank')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -107,7 +117,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="branch">Branch Name <span class="error">*</span></label>
-                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" type="text" placeholder="Branch Name" value="{{ $billing->branch }}">
+                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" readonly  @endif class="form-control"  name="branch" id="branch" type="text" placeholder="Branch Name" value="{{ $billing?->accountDetails?->branch }}">
                                     @error('branch')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -115,7 +125,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="account_number">Account Number <span class="error">*</span></label>
-                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" type="number" placeholder="Account Number" value="{{ $billing->account_number }}">
+                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" readonly type="number" placeholder="Account Number" value="{{ $billing?->accountDetails?->account_number }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -123,7 +133,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="ifsc_code">IFSC Code <span class="error">*</span></label>
-                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="ifsc_code" id="ifsc_code" type="text" placeholder="IFSC Code" value="{{ $billing->ifsc_code }}">
+                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" readonly  @endif class="form-control"  name="ifsc_code" id="ifsc_code" type="text" placeholder="IFSC Code" value="{{ $billing?->accountDetails?->ifsc_code }}">
                                     @error('ifsc_code')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -131,7 +141,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="pan_card">Pan Card No <span class="error">*</span></label>
-                                    <input @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="Pan Card" value="{{ $billing->pan_card }}">
+                                    <input @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" readonly  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="Pan Card" value="{{ $billing?->accountDetails?->pan_card }}">
                                     @error('pan_card')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -300,14 +310,14 @@
                                     html += `
                                     <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="news_paper_id">Select Department <span class="error">*</span></label>
-                                    <select name="news_paper_id" required class="form-select">
+                                    <select name="news_paper_id" id="newsPaperId" required class="form-select">
                                         <option value="">Select news papers</option>`;
                                     $.each(response.advertiseNewsPapers, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;
                                     });
 
                                     html += `</select>
-                                </div>`;
+                                </div><div class="col-md-6 col-lg-6 col-12" id="newsPaperAccountNumber"></div>`;
 
                                     $('#advertiseDataDiv').html(html)
                                 }
@@ -354,7 +364,89 @@
                             },
                         });
                     }
-                })
+                });
+
+
+                // fetch newspaper account number
+                $('body').on('change', '#newsPaperId', function(){
+                    let newsPaperId = $(this).val();
+                    if(newsPaperId != ""){
+                        $.ajax({
+                            url: "{{ route('get-news-papers-account-number') }}",
+                            type: "get",
+                            data: {news_paper_id : newsPaperId},
+                            beforeSend: function()
+                            {
+                                $('.ajax-loader').removeClass('d-none');
+                            },
+                            success: function(response){
+                                if(response.status === 200){
+                                    let html = `<label class="form-label" for="account_detail_id">Select Account Details <span class="error">*</span></label>
+                                    <select name="account_detail_id" id="accountDetail" required class="form-select">
+                                        <option value="">Select Account Details</option>`;
+                                    $.each(response.data, function(key, val){
+                                        html += `<option value="${val.id}">${val.account_number}</option>`;
+                                    });
+
+                                    html += `</select>`;
+
+                                    $('body').find('#newsPaperAccountNumber').html(html)
+                                }
+                            },
+                            error: function(xhr) {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                            complete: function() {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                        });
+                    }
+                });
+
+
+                // fetch account number details
+                $('body').on('change', '#accountDetail', function(){
+                    let accountNumber = $(this).val();
+
+                    if(accountNumber != ""){
+                        $.ajax({
+                            url: "{{ route('get-news-papers-account-details') }}",
+                            type: "get",
+                            data: {id : accountNumber},
+                            beforeSend: function()
+                            {
+                                $('.ajax-loader').removeClass('d-none');
+                            },
+                            success: function(response){
+                                if(response.status === 200){
+                                    $('#bank').val(response.data.bank)
+                                    $('#branch').val(response.data.branch)
+                                    $('#account_number').val(response.data.account_number)
+                                    $('#ifsc_code').val(response.data.ifsc_code)
+                                    $('#pan_card').val(response.data.pan_card)
+                                }else{
+                                    $('#bank').val('')
+                                    $('#branch').val('')
+                                    $('#account_number').val('')
+                                    $('#ifsc_code').val('')
+                                    $('#pan_card').val('')
+                                }
+                            },
+                            error: function(xhr) {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                            complete: function() {
+                                $('.ajax-loader').addClass('d-none');
+                            },
+                        });
+                    }else{
+                        $('#bank').val('')
+                        $('#branch').val('')
+                        $('#account_number').val('')
+                        $('#ifsc_code').val('')
+                        $('#pan_card').val('')
+                    }
+                });
             })
         </script>
     @endpush

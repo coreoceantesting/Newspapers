@@ -21,6 +21,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Master\AccountDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::resource('publication-type', PublicationTypeController::class);
     Route::resource('signature', SignatureController::class);
     Route::resource('cost', CostController::class);
+    Route::resource('account-details', AccountDetailController::class);
     // end of master route
 
 
@@ -86,10 +88,13 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
 
     Route::get('/check-duplicate-work-order-number', [AjaxController::class, 'checkDuplicateWorkOrderNumber'])->name('check-duplicate-work-order-number');
 
-
     Route::get('/get-work-order-by-department', [AjaxController::class, 'getWorkOrderNumberByDepartment'])->name('get-work-order-by-department');
 
     Route::get('/get-news-papers-by-advertise', [AjaxController::class, 'getNewsPaperByAdvertise'])->name('get-news-papers-by-advertise');
+
+    Route::get('/get-news-papers-account-number', [AjaxController::class, 'getNewsPaperAccountNumber'])->name('get-news-papers-account-number');
+
+    Route::get('/get-news-papers-account-details', [AjaxController::class, 'getNewsPaperAccountDetails'])->name('get-news-papers-account-details');
     // end of ajax route
 
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');

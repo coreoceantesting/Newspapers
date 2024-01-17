@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">Bill</li>
+                        <li class="breadcrumb-item active">List News Paper Account Details</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">Bill</h5>
+                                <h5 class="text-white mt-1">List News Paper Account Details</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('billing.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Bill <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('account-details.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add News Paper Account <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -37,41 +37,37 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Sr no.</th>
-                                        <th>Department</th>
+                                        <th>Sr No.</th>
                                         <th>News paper</th>
-                                        <th>Bill No</th>
                                         <th>Bank</th>
                                         <th>Branch</th>
-                                        <th>Account No</th>
+                                        <th>Acc No</th>
                                         <th>IFSC Code</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $billing as $bill )
+                                    @foreach ( $accountDetails as $accountDetail )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $bill?->department?->name }}</td>
-                                        <td>{{ $bill?->newsPaper?->name }}</td>
-                                        <td>{{ $bill->bill_number }}</td>
-                                        <td>{{ $bill?->accountDetails?->bank }}</td>
-                                        <td>{{ $bill?->accountDetails?->branch }}</td>
-                                        <td>{{ $bill?->accountDetails?->account_number }}</td>
-                                        <td>{{ $bill?->accountDetails?->ifsc_code }}</td>
+                                        <td>{{ $accountDetail?->newsPaper?->name }}</td>
+                                        <td>{{ $accountDetail->bank }}</td>
+                                        <td>{{ $accountDetail->branch }}</td>
+                                        <td>{{ $accountDetail->account_number }}</td>
+                                        <td>{{ $accountDetail->ifsc_code }}</td>
                                         <td>
                                             <ul class="action">
-                                                <li class="edit">
-                                                    <a href="{{ route('billing.edit', $bill->id) }}"><button class="btn btn-square btn-primary" type="button">Edit &nbsp;<i class="fa fa-pencil text-white" aria-hidden="true"></i>
+                                                {{-- <li class="edit">
+                                                    <a href="{{ route('account-details.edit', $accountDetail->id) }}"><button class="btn btn-square btn-primary" type="button">Edit &nbsp;<i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                     </button></a>
-                                                </li>
+                                                </li> --}}
                                                 <li class="delete">
 
-                                                    <form action="{{ route('billing.destroy', $bill->id) }}" method="POST">
+                                                    <form action="{{ route('account-details.destroy', $accountDetail->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <input type="hidden" name="id" value="{{ $bill->id }}">
-                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this bill')">Delete &nbsp;<i class="fa fa-trash text-white" aria-hidden="true"></i>
+                                                        <input type="hidden" name="id" value="{{ $accountDetail->id }}">
+                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this news paper account details')">Delete &nbsp;<i class="fa fa-trash text-white" aria-hidden="true"></i>
                                                         </button>
                                                     </form>
                                                 </li>

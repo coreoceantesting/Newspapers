@@ -9,11 +9,12 @@ use App\Models\Advertise;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\BillingRequest;
 use App\Models\AdvertiseNewsPaper;
+use App\Models\AccountDetail;
 
 class BillingController extends Controller
 {
     public function index(){
-        $billing = Billing::with(['department', 'newsPaper'])->select('id', 'department_id', 'news_paper_id', 'bill_number', 'bank', 'branch', 'account_number', 'irfc_code')->get();
+        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->latest()->get();
         // return $billing;
         return view('billing.index')->with([
             'billing' => $billing
@@ -40,11 +41,7 @@ class BillingController extends Controller
             $billing->advertise_id = $request->advertise_id;
             $billing->news_paper_id = $request->news_paper_id;
             $billing->bill_number = $request->bill_number;
-            $billing->bank = $request->bank;
-            $billing->branch = $request->branch;
-            $billing->account_number = $request->account_number;
-            $billing->irfc_code = $request->irfc_code;
-            $billing->pan_card = $request->pan_card;
+            $billing->account_detail_id = $request->account_detail_id;
             $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
             $billing->basic_amount = $request->basic_amount;
             $billing->gst = $request->gst;
@@ -68,11 +65,13 @@ class BillingController extends Controller
 
         $workOrderNumbers = Advertise::select('id', 'work_order_number')->latest()->distinct()->get('work_order_number');
 
-        $billing = Billing::find($id);
+        $billing = Billing::with(['accountDetails'])->where('id', $id)->first();
 
         $advertise = Advertise::with(['publicationType', 'printType', 'bannerSize'])->where('id', $billing->advertise_id)->latest()->first();
 
         $workOrderNumbers = Advertise::where('department_id', $billing->department_id)->select('id', 'work_order_number')->latest()->distinct()->get();
+
+        $accountDetails = AccountDetail::where('news_paper_id', $billing->news_paper_id)->get();
 
         $advertiseNewsPapers = AdvertiseNewsPaper::with('newsPaper')->whereHas('advertise', function($query) use($advertise){
             $query->where('id', $advertise->id);
@@ -84,7 +83,8 @@ class BillingController extends Controller
             'billing' => $billing,
             'advertise' => $advertise,
             'workOrderNumbers' => $workOrderNumbers,
-            'advertiseNewsPapers' => $advertiseNewsPapers
+            'advertiseNewsPapers' => $advertiseNewsPapers,
+            'accountDetails' => $accountDetails
         ]);
     }
 
@@ -97,12 +97,8 @@ class BillingController extends Controller
             $billing->department_id = $request->department_id;
             $billing->advertise_id = $request->advertise_id;
             $billing->news_paper_id = $request->news_paper_id;
+            $billing->account_detail_id = $request->account_detail_id;
             $billing->bill_number = $request->bill_number;
-            $billing->bank = $request->bank;
-            $billing->branch = $request->branch;
-            $billing->account_number = $request->account_number;
-            $billing->irfc_code = $request->irfc_code;
-            $billing->pan_card = $request->pan_card;
             $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
             $billing->basic_amount = $request->basic_amount;
             $billing->gst = $request->gst;

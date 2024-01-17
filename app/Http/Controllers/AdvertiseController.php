@@ -29,7 +29,7 @@ class AdvertiseController extends Controller
     {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
-        ])->get();
+        ])->latest()->get();
 
         return view('advertise.index')->with([
             'advertises' => $advertises
@@ -135,10 +135,6 @@ class AdvertiseController extends Controller
 
 
     public function generatePdf($advertise){
-        // $data = [];
-        // $pdf = PDF::loadView('advertise.pdf', $data);
-
-        // return $pdf->stream('document.pdf');
         $advertise = Advertise::with(['department', 'printType', 'publicationType', 'bannerSize', 'advertiseNewsPapers.newsPaper'])->where('id', $advertise->id)->first();
 
         $signature = Signature::value('name');

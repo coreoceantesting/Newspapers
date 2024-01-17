@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\NewsPaper;
 use App\Models\Billing;
+use App\Models\AccountDetail;
 
 class ReportController extends Controller
 {
@@ -15,17 +16,32 @@ class ReportController extends Controller
         $billing = [];
 
         if(isset($request->search)){
-            $billing = Billing::with(['department', 'advertise.publicationType', 'newsPaper'])->where('department_id', $request->department);
+            // $billing = Billing::with(['department', 'advertise.publicationType', 'newsPaper'])->where('department_id', $request->department);
 
-            if($request->work_order_number != ""){
-                $billing = $billing->where('advertise_id', $request->work_order_number);
-            }
+            // if($request->work_order_number != ""){
+            //     $billing = $billing->where('advertise_id', $request->work_order_number);
+            // }
 
-            if($request->bill_number != ""){
-                $billing = $billing->where('id', $request->bill_number);
-            }
+            // if($request->bill_number != ""){
+            //     $billing = $billing->where('id', $request->bill_number);
+            // }
 
-            $billing = $billing->get();
+            // $billing = $billing->latest()->get();
+
+
+            $billing = AccountDetail::with(['billing.advertise', 'billing.department', 'billing.advertise.publicationType'])->withWhereHas('billing', function($query) use($request){
+                if($request->work_order_number != ""){
+                    $query->where('advertise_id', $request->work_order_number);
+                }
+
+                if($request->bill_number != ""){
+                    $query->where('id', $request->bill_number);
+                }
+
+                if($request->department != ""){
+                    $query->where('department_id', $request->department);
+                }
+            })->get();
 
         }
         // return $billing;

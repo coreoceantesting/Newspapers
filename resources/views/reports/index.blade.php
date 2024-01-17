@@ -94,7 +94,7 @@
                                         </th>
                                         <th style="width: 30%" colspan="4">Account Number : {{ $bill->account_number }}</th>
                                         <th style="width: 25%" colspan="3">Bank Branch IFSC Code :- {{ $bill->ifsc_code }}</th>
-                                        <th style="width: 25%" colspan="3">GST No :- {{ $bill->gst }}<br>Pan No:- {{ $bill->pan_card }}</th>
+                                        <th style="width: 25%" colspan="3">GST No :- {{ $bill->gst_no }}<br>Pan No:- {{ $bill->pan_card }}</th>
                                     </tr>
                                     <tr align="center">
                                         <th>Work Order</th>
@@ -115,17 +115,17 @@
                                         @endfor
                                     </tr>
                                     <tr align="center">
-                                        <td>जा.क्र.पमपा/जनसंपर्क/3123/प्र.क्र.{{ $bill?->advertise?->unique_number }}/443/{{ date('Y', strtotime($bill?->advertise?->publication_date)) }} दिनांक :- {{ date('d/m/Y', strtotime($bill?->advertise?->publication_date)) }}</td>
-                                        <td>{{ $bill->department->name.' | '. $bill->advertise->publicationType->name }}</td>
+                                        <td>जा.क्र.पमपा/जनसंपर्क/3123/प्र.क्र.{{ $bill?->billing?->advertise?->unique_number }}/443/{{ date('Y', strtotime($bill?->billing?->advertise?->publication_date)) }} दिनांक :- {{ date('d/m/Y', strtotime($bill?->billing?->advertise?->publication_date)) }}</td>
+                                        <td>{{ $bill?->billing?->department?->name.' | '. $bill?->billing?->advertise?->publicationType->name }}</td>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $bill->bill_number }}</td>
-                                        <td>{{ $bill->bill_date }}</td>
-                                        <td>{{ $bill->basic_amount }}</td>
+                                        <td>{{ $bill?->billing?->bill_number }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($bill?->billing?->bill_date)) }}</td>
+                                        <td>{{ $bill?->billing?->basic_amount }}</td>
                                         <td>{{ $bill->gst }}</td>
-                                        <td>{{ $bill->gross_amount }}</td>
-                                        <td>{{ $bill->tds }}</td>
-                                        <td>{{ $bill->it }}</td>
-                                        <td>{{ $bill->net_amount }}</td>
+                                        <td>{{ $bill?->billing?->gross_amount }}</td>
+                                        <td>{{ $bill?->billing?->tds }}</td>
+                                        <td>{{ $bill?->billing?->it }}</td>
+                                        <td>{{ $bill?->billing?->net_amount }}</td>
                                     </tr>
                                 </tbody>
                             </table>

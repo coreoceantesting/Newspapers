@@ -24,35 +24,36 @@
                             </li>
                             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span >Master</span></a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="{{ route('advertise-cost.index') }}">Advertise Cost</a></li>
-                                    <li><a href="{{ route('banner-size.index') }}">Banner Size</a></li>
-                                    <li><a href="{{ route('budget-provision.index') }}">Budget Provision</a></li>
-                                    <li><a href="{{ route('cost.index') }}">Cost</a></li>
                                     <li><a href="{{ route('department.index') }}">Department</a></li>
-                                    <li><a href="{{ route('financial-year.index') }}">Financial Year</a></li>
                                     <li><a href="{{ route('language.index') }}">Language</a></li>
-                                    <li><a href="{{ route('news-paper.index') }}">News Paper</a></li>
                                     <li><a href="{{ route('news-paper-type.index') }}">News Paper Type</a></li>
-                                    <li><a href="{{ route('print-type.index') }}">Print Type</a></li>
+                                    <li><a href="{{ route('cost.index') }}">Cost</a></li>
+                                    <li><a href="{{ route('advertise-cost.index') }}">Advertise Cost</a></li>
                                     <li><a href="{{ route('publication-type.index') }}">Publication Type</a></li>
+                                    <li><a href="{{ route('financial-year.index') }}">Financial Year</a></li>
+                                    <li><a href="{{ route('banner-size.index') }}">Banner Size</a></li>
+                                    <li><a href="{{ route('print-type.index') }}">Print Type</a></li>
+                                    <li><a href="{{ route('budget-provision.index') }}">Budget Provision</a></li>
+                                    <li><a href="{{ route('news-paper.index') }}">News Paper</a></li>
                                     <li><a href="{{ route('signature.index') }}">Signature</a></li>
+                                    <li><a href="{{ route('account-details.index') }}">Account Details</a></li>
                                 </ul>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('advertise.index') }}">
-                                    <i data-feather="home"> </i>
+                                    <i data-feather="feather"> </i>
                                     <span>Advertise</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('billing.index') }}">
-                                    <i data-feather="home"> </i>
+                                    <i data-feather="file-text"> </i>
                                     <span>Bill</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('report.index') }}">
-                                    <i data-feather="home"> </i>
+                                    <i data-feather="alert-circle"> </i>
                                     <span>Report</span>
                                 </a>
                             </li>

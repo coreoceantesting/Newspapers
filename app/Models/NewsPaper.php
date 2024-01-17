@@ -10,6 +10,7 @@ use App\Models\NewsPaperType;
 use App\Models\AdvertiseNewsPaper;
 use App\Models\Language;
 use App\Models\Billing;
+use App\Models\AccountDetail;
 
 class NewsPaper extends BaseModel
 {
@@ -31,6 +32,10 @@ class NewsPaper extends BaseModel
 
     public function advertiseNewsPaper(){
         return $this->hasOne(AdvertiseNewsPaper::class, 'news_paper_id', 'id');
+    }
+
+    public function accountDetails(){
+        return $this->hasMany(AccountDetail::class, 'news_paper_id', 'id');
     }
 
     public static function booted()
