@@ -26,7 +26,7 @@
                                 <h5 class="text-white mt-1">Advertise</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('advertise.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Advertise <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('advertise.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">जाहिरात जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -37,14 +37,14 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Sr no.</th>
-                                        <th>Unique No</th>
-                                        <th>Work order No</th>
-                                        <th>Publication</th>
-                                        <th>Cost</th>
-                                        <th>Department</th>
-                                        <th>Print Type</th>
-                                        <th>Banner Size</th>
+                                        <th>अ.क्र.</th>
+                                        <th>युनिक क्र</th>
+                                        <th>वर्क ऑर्डर क्र</th>
+                                        <th>प्रकाशन</th>
+                                        <th>खर्च</th>
+                                        <th>विभाग</th>
+                                        <th>मुद्रण प्रकार</th>
+                                        <th>बॅनर आकार</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +57,7 @@
                                         <td>{{ $advertise?->cost?->name }}</td>
                                         <td>{{ $advertise?->department?->name }}</td>
                                         <td>{{ $advertise?->printType?->name }}</td>
-                                        <td>{{ $advertise?->bannerSize?->size }}</td> 
+                                        <td>{{ $advertise?->bannerSize?->size }}</td>
                                     </tr>
                                     @endforeach
 

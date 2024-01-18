@@ -28,7 +28,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">Reports</li>
+                        <li class="breadcrumb-item active">अहवाल</li>
                     </ol>
                 </div>
             </div>
@@ -47,9 +47,9 @@
                             <input type="hidden" name="search" value="search">
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectDepartment">Select Department</label>
+                                    <label class="form-label" for="selectDepartment">विभाग निवडा</label>
                                     <select name="department" id="selectDepartment" class="form-select">
-                                        <option value="">Select Department</option>
+                                        <option value="">विभाग निवडा</option>
                                         @foreach ( $departments as $department )
                                             <option @if(isset(Request()->department) && $department->id == Request()->department)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
                                         @endforeach
@@ -57,23 +57,23 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectWorkOrderNumber">Select Work Order Number</label>
+                                    <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर नंबर निवडा</label>
                                     <select name="work_order_number" id="selectWorkOrderNumber" class="form-select">
-                                        <option value="">Select Work Order Number</option>
+                                        <option value="">वर्क ऑर्डर नंबर निवडा</option>
 
                                     </select>
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectNewsPaper">Select News Paper</label>
+                                    <label class="form-label" for="selectNewsPaper">वृत्तपत्र निवडा</label>
                                     <select name="news_paper" id="selectNewsPaper" class="form-select">
-                                        <option value="">Select News Paper</option>
+                                        <option value="">वृत्तपत्र निवडा</option>
 
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <div class="form-label">&nbsp;</div>
-                                    <button class="btn btn-primary">Search</button>
+                                    <button class="btn btn-primary">शोधा</button>
                                 </div>
                             </div>
                         </form>
@@ -89,25 +89,25 @@
                                     </tr>
                                     <tr align="center">
                                         <th style="width: 20%">
-                                            Bank Name :- {{ $bill->bank }}<br>
-                                            Branch :- {{ $bill->branch }}
+                                            बँकेचे नाव :- {{ $bill->bank }}<br>
+                                            शाखा :- {{ $bill->branch }}
                                         </th>
-                                        <th style="width: 30%" colspan="4">Account Number : {{ $bill->account_number }}</th>
-                                        <th style="width: 25%" colspan="3">Bank Branch IFSC Code :- {{ $bill->ifsc_code }}</th>
+                                        <th style="width: 30%" colspan="4">खाते क्रमांक : {{ $bill->account_number }}</th>
+                                        <th style="width: 25%" colspan="3">बँक शाखा IFSC कोड :- {{ $bill->ifsc_code }}</th>
                                         <th style="width: 25%" colspan="3">GST No :- {{ $bill->gst_no }}<br>Pan No:- {{ $bill->pan_card }}</th>
                                     </tr>
                                     <tr align="center">
-                                        <th>Work Order</th>
-                                        <th><b>विभागाचे नाव व जाहिरातीचा प्रकार</b></th>
-                                        <th>Sr. No.</th>
-                                        <th>Bill No.</th>
-                                        <th>Date</th>
-                                        <th>Basic Amount</th>
+                                        <th>काम पुर्ण करण्यचा क्रम</th>
+                                        <th>विभागाचे नाव व जाहिरातीचा प्रकार</th>
+                                        <th>क्र.</th>
+                                        <th>बिल क्र.</th>
+                                        <th>तारीख</th>
+                                        <th>मूळ रक्कम</th>
                                         <th>5% GST/SGST</th>
-                                        <th>Gross Amount</th>
+                                        <th>एकूण रक्कम</th>
                                         <th>2% TDS</th>
                                         <th>2% IT</th>
-                                        <th>Net Amount</th>
+                                        <th>निव्वळ रक्कम</th>
                                     </tr>
                                     <tr align="center">
                                         @for($i=1; $i <= 11; $i++)
@@ -169,7 +169,7 @@
                         },
                         success: function(response){
                             if(response.status === 200){
-                                let html = `<option value="">Select Work Order Number</option>`;
+                                let html = `<option value="">वर्क ऑर्डर नंबर निवडा</option>`;
                                 $.each(response.data, function(key, val){
                                     html += `<option value="${val.id}">${val.work_order_number}</option>`;
                                 });
@@ -201,7 +201,7 @@
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    let html = `<option value="">Select News paper</option>`;
+                                    let html = `<option value="">वृत्तपत्र निवडा</option>`;
                                     console.log(response.data)
                                     $.each(response.data, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;

@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}"> Advertise </a></li>
-                        <li class="breadcrumb-item active">Add Advertise</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}"> जाहिरात करा </a></li>
+                        <li class="breadcrumb-item active">जाहिरात जोडा</li>
                     </ol>
                 </div>
             </div>
@@ -21,16 +21,16 @@
                         @csrf
                         <div class="card">
                             <div class="card-header border-bottom pb-2 bg-primary">
-                                <h5 class="text-white item-center mb-2">Add Advertise</h5>
+                                <h5 class="text-white item-center mb-2">जाहिरात जोडा</h5>
                             </div>
 
                             <div class="card-body">
                                 <div class="row g-3 pb-3">
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="publication_type_id">Select Publication <span class="error">*</span></label>
+                                        <label class="form-label" for="publication_type_id">प्रकाशन निवडा <span class="error">*</span></label>
                                         <select name="publication_type_id" id="selectPublication" required class="form-select">
-                                            <option value="">Select Publication</option>
+                                            <option value="">प्रकाशन निवडा</option>
                                             @foreach ( $publicationTypes as $publicationType )
                                                 <option value="{{ $publicationType->id }}">{{ $publicationType->name }}</option>
                                             @endforeach
@@ -42,7 +42,7 @@
 
                                     {{-- not part of jahir nivida --}}
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida d-none">
-                                        <label class="form-label" for="not_jahir_news_paper_type_id">Select news paper type <span class="error">*</span></label>
+                                        <label class="form-label" for="not_jahir_news_paper_type_id">वृत्तपत्र प्रकार निवडा <span class="error">*</span></label>
                                         <select name="not_jahir_news_paper_type_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectNewsPaperType"  multiple="multiple">
                                             @foreach ( $newsPaperTypes as $newsPaperType )
                                                 <option value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida d-none">
-                                        <label class="form-label" for="not_jahir_language_id">Select language <span class="error">*</span></label>
+                                        <label class="form-label" for="not_jahir_language_id">भाषा निवडा <span class="error">*</span></label>
                                         <select name="not_jahir_language_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectLanguage" multiple="multiple">
                                             @foreach ( $languages as $language )
                                                 <option value="{{ $language->id }}">{{ $language->name }}</option>
@@ -74,9 +74,9 @@
 
                                     {{-- start jahirNivida --}}
                                     <div class="col-md-6 col-lg-6 col-12 jahirNivida d-none">
-                                        <label class="form-label" for="cost_id">Select Cost <span class="error">*</span></label>
+                                        <label class="form-label" for="cost_id">खर्च निवडा <span class="error">*</span></label>
                                         <select name="cost_id" id="selectCosts" required class="form-select">
-                                            <option value="">Select Cost</option>
+                                            <option value="">खर्च निवडा</option>
                                             @foreach ( $costs as $cost )
                                                 <option value="{{ $cost->id }}">{{ $cost->name }}</option>
                                             @endforeach
@@ -94,9 +94,9 @@
                                     <hr class="m-0">
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="department_id">Select Department <span class="error">*</span></label>
+                                        <label class="form-label" for="department_id">विभाग निवडा <span class="error">*</span></label>
                                         <select name="department_id" id="selectDepartment" required class="form-select">
-                                            <option value="">Select Department</option>
+                                            <option value="">विभाग निवडा</option>
                                             @foreach ( $departments as $department )
                                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
                                             @endforeach
@@ -107,8 +107,8 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="work_order_number">Work Order Number <span class="error">*</span></label>
-                                        <input @if ($errors->has('work_order_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="work_order_number" id="work_order_number" type="number" placeholder="Work Order Number" value="{{ old('work_order_number') }}">
+                                        <label class="form-label" for="work_order_number">वर्क ऑर्डर क्रमांक <span class="error">*</span></label>
+                                        <input @if ($errors->has('work_order_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="work_order_number" id="work_order_number" type="number" placeholder="वर्क ऑर्डर क्रमांक" value="{{ old('work_order_number') }}">
                                         @error('work_order_number')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
@@ -116,9 +116,9 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="print_type_id">Type of Print <span class="error">*</span></label>
+                                        <label class="form-label" for="print_type_id">प्रिंटचा प्रकार <span class="error">*</span></label>
                                         <select name="print_type_id" id="selectTypeOfPrint" required class="form-select">
-                                            <option value="">Type of Print</option>
+                                            <option value="">प्रिंटचा प्रकार</option>
                                             @foreach ( $printTypes as $printType )
                                                 <option value="{{ $printType->id }}">{{ $printType->name }}</option>
                                             @endforeach
@@ -129,8 +129,8 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="publication_date">Publication Date <span class="error">*</span></label>
-                                        <input @if ($errors->has('publication_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="publication_date" id="publication_date" type="date" placeholder="Publication Date" value="{{ old('publication_date') }}">
+                                        <label class="form-label" for="publication_date">प्रकाशन तारीख <span class="error">*</span></label>
+                                        <input @if ($errors->has('publication_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="publication_date" id="publication_date" type="date" placeholder="प्रकाशन तारीख" value="{{ old('publication_date') }}">
                                         @error('publication_date')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
@@ -138,9 +138,9 @@
 
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="banner_size_id">Select Banner Size <span class="error">*</span></label>
+                                        <label class="form-label" for="banner_size_id">बॅनर आकार निवडा <span class="error">*</span></label>
                                         <select name="banner_size_id" id="selectDepartment" required class="form-select">
-                                            <option value="">Select Banner Size</option>
+                                            <option value="">बॅनर आकार निवडा</option>
                                             @foreach ( $bannerSizes as $bannerSize )
                                                 <option value="{{ $bannerSize->id }}">{{ $bannerSize->size }}</option>
                                             @endforeach
@@ -151,7 +151,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="image">Upload Image <span class="error">*</span></label>
+                                        <label class="form-label" for="image">प्रतिमा अपलोड करा <span class="error">*</span></label>
                                         <input @if ($errors->has('image')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="image" id="image" type="file" accept="image/*" required placeholder="Publication Date" value="{{ old('image') }}">
                                         @error('image')
                                             <span class="error">{{ $message }}</span>
@@ -163,8 +163,8 @@
                                 </div>
 
                                 <div class="text-end" >
-                                    <button class="btn btn-square btn-success-gradien" type="submit" id="submitForm">Save & Preview</button>
-                                    <a href="{{ route('advertise.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel</button></a>
+                                    <button class="btn btn-square btn-success-gradien" type="submit" id="submitForm">जतन करा आणि पूर्वावलोकन करा</button>
+                                    <a href="{{ route('advertise.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा</button></a>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 $.each(response.data, function(key, val){
                                     html += `<div class="col-md-6 col-lg-6">
                                         <div class="mb-2">
-                                            <div class="col-form-label">Select ${val.name} news paper</div>
+                                            <div class="col-form-label">${val.name} वृत्तपत्र निवडा</div>
                                             <select multiple="" class="js-example-basic-single col-12 selectOptionNewspaper" required name="jahir_news_paper_type_id[]" tabindex="-1" aria-hidden="true">`;
 
                                     $.each(val.advertise_cost, function(dataKey, dataVal){
@@ -275,7 +275,7 @@
                                     $.each(response.data, function(key, val){
                                         html += `<div class="col-md-6 col-lg-6">
                                             <div class="mb-2">
-                                                <div class="col-form-label">Select ${val.name} news paper</div>
+                                                <div class="col-form-label">${val.name} वृत्तपत्र निवडा</div>
                                                 <select multiple="" class="js-example-basic-single col-12" required name="not_jahir_news_paper_id[]">`;
 
 
