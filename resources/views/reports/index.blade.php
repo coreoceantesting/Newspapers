@@ -114,19 +114,21 @@
                                         <th>{{ $i }}</th>
                                         @endfor
                                     </tr>
+                                    @foreach($bill->billing as $bills)
                                     <tr align="center">
-                                        <td>जा.क्र.पमपा/जनसंपर्क/3123/प्र.क्र.{{ $bill?->billing?->advertise?->unique_number }}/443/{{ date('Y', strtotime($bill?->billing?->advertise?->publication_date)) }} दिनांक :- {{ date('d/m/Y', strtotime($bill?->billing?->advertise?->publication_date)) }}</td>
-                                        <td>{{ $bill?->billing?->department?->name.' | '. $bill?->billing?->advertise?->publicationType->name }}</td>
+                                        <td>जा.क्र.पमपा/जनसंपर्क/3123/प्र.क्र.{{ $bills?->advertise?->unique_number }}/443/{{ date('Y', strtotime($bills?->advertise?->publication_date)) }} दिनांक :- {{ date('d/m/Y', strtotime($bills?->advertise?->publication_date)) }}</td>
+                                        <td>{{ $bills?->department?->name.' | '. $bills?->advertise?->publicationType->name }}</td>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $bill?->billing?->bill_number }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($bill?->billing?->bill_date)) }}</td>
-                                        <td>{{ $bill?->billing?->basic_amount }}</td>
+                                        <td>{{ $bills?->bill_number }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($bills?->bill_date)) }}</td>
+                                        <td>{{ $bills?->basic_amount }}</td>
                                         <td>{{ $bill->gst }}</td>
-                                        <td>{{ $bill?->billing?->gross_amount }}</td>
-                                        <td>{{ $bill?->billing?->tds }}</td>
-                                        <td>{{ $bill?->billing?->it }}</td>
-                                        <td>{{ $bill?->billing?->net_amount }}</td>
+                                        <td>{{ $bills?->gross_amount }}</td>
+                                        <td>{{ $bills?->tds }}</td>
+                                        <td>{{ $bills?->it }}</td>
+                                        <td>{{ $bills?->net_amount }}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <br>
