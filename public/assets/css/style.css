@@ -13634,9 +13634,7 @@ p.data-attributes svg {
   margin-bottom: unset;
   font-size: 22px;
 }
-.investment-sec:hover {
-  background-color: #3e5fce;
-}
+
 .investment-sec:hover .icon {
   background-color: #fff;
 }
@@ -15016,7 +15014,7 @@ span.twitter-typeahead .tt-suggestion.active, span.twitter-typeahead .tt-suggest
     height: 16px;
   }
   .investment-sec h3 {
-    font-size: 18px;
+    font-size: 20px;
   }
   .investment-sec p {
     margin-bottom: 5px;

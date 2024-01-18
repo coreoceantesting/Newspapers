@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 </head>
 
-<body>
+<body style="background-color: #d9e8ff;">
     <!-- Loader starts-->
     <div class="loader-wrapper">
         <div class="loader"></div>
@@ -46,7 +46,7 @@
         <div class="row m-0">
             <div class="col-xl-7"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/2.jpg') }}" alt="loginpage"></div>
             <div class="col-xl-5 p-0">
-                <div class="login-card">
+                <div class="login-card p-2">
                     <div>
                         <div>
 
@@ -57,8 +57,9 @@
                             </a>
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <h4 class="text-center">वृत्तपत्रातील जाहिरात</h4>
-                                <h4 class="text-center">खात्यात साइन इन करा</h4>
+                                <h4 class="text-center">पनवेल महानगरपालिका</h4>
+                                {{-- <h4 class="text-center">वृत्तपत्रातील जाहिरात</h4> --}}
+                                <h5 class="text-center">खात्यात साइन इन करा</h5>
                                 <p class="text-center">लॉगिन करण्यासाठी तुमचा ईमेल आणि पासवर्ड टाका</p>
                                 <div class="form-group">
                                     <label class="col-form-label">ईमेल पत्ता</label>
