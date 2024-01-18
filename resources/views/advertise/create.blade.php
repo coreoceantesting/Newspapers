@@ -1,4 +1,9 @@
 <x-layout>
+    <style>
+        .select2-container--bgform .select2-selection--multiple .select2-selection__choice {
+    clear: both;
+}
+    </style>
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">

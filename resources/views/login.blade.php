@@ -57,7 +57,7 @@
                             </a>
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <h4 class="text-center">पनवेल महानगरपालिका</h4>
+                                <h4 class="text-center" style="font-size: 26px;color: #0707ff;">पनवेल महानगरपालिका</h4>
                                 {{-- <h4 class="text-center">वृत्तपत्रातील जाहिरात</h4> --}}
                                 <h5 class="text-center">खात्यात साइन इन करा</h5>
                                 <p class="text-center">लॉगिन करण्यासाठी तुमचा ईमेल आणि पासवर्ड टाका</p>
@@ -68,7 +68,7 @@
                                         <strong>{{ $message }}</strong>
                                     </div>
                                     @enderror
-                                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input class="form-control" style="border:1px solid" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label">पासवर्ड</label>
@@ -78,7 +78,7 @@
                                     </div>
                                     @enderror
                                     <div class="form-input position-relative">
-                                        <input class="form-control" type="password" name="password" required placeholder="*********">
+                                        <input class="form-control" style="border:1px solid" type="password" name="password" required placeholder="*********">
                                         <div class="show-hide"><span class="show"> </span></div>
                                     </div>
                                 </div>

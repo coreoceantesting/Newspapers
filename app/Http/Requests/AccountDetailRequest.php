@@ -43,4 +43,11 @@ class AccountDetailRequest extends FormRequest
             ];
         }
     }
+
+    public function messages()
+    {
+        return [
+
+        ];
+    }
 }
