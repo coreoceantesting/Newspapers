@@ -44,7 +44,7 @@
     <!-- login page start-->
     <div class="container-fluid p-0">
         <div class="row m-0">
-            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/2.jpg') }}" alt="loginpage"></div>
+            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/3.jpg') }}" alt="loginpage"></div>
             <div class="col-xl-5 p-0">
                 <div class="login-card p-2">
                     <div>
