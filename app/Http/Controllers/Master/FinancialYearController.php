@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\FinancialYearRequest;
 use App\Models\FinancialYear;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class FinancialYearController extends Controller
@@ -39,7 +38,7 @@ class FinancialYearController extends Controller
             DB::beginTransaction();
             DB::table('financial_years')->update(['is_active' => 0]);
             $financialYear = new FinancialYear;
-            $financialYear->year = date('Y', strtotime($request->year));
+            $financialYear->year = $request->year;
             $financialYear->from_date = date('Y-m-d', strtotime($request->from_date));
             $financialYear->to_date = date('Y-m-d', strtotime($request->to_date));
             $financialYear->is_active = 1;
@@ -70,11 +69,12 @@ class FinancialYearController extends Controller
      */
     public function update(FinancialYearRequest $request)
     {
+        // dd($request);
         try
         {
             DB::beginTransaction();
             $financialYear = FinancialYear::find($request->id);
-            $financialYear->year = date('Y', strtotime($request->year));
+            $financialYear->year = $request->year;
             $financialYear->from_date = date('Y-m-d', strtotime($request->from_date));
             $financialYear->to_date = date('Y-m-d', strtotime($request->to_date));
             $financialYear->sequence = $request->sequence;
