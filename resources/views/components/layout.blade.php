@@ -59,6 +59,10 @@
             left: 40%;
             top: 40%;
         }
+        .activeUrl {
+            background-color: #6781d8;
+            border-left: 3px solid #ffce00 !important;
+        }
     </style>
     @stack('styles')
 </head>

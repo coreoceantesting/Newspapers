@@ -17,12 +17,19 @@
                     <li class="menu-box">
                         <ul>
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav" href="{{ route('dashboard') }}">
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('dashboard'))activeUrl @endif" href="{{ route('dashboard') }}">
                                     <i data-feather="home"> </i>
                                     <span>डॅशबोर्ड</span>
                                 </a>
                             </li>
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span >मास्टर</span></a>
+
+                            @php
+                            $active = "";
+                            if(Request::is('department') || Request::is('language') || Request::is('news-paper-type') || Request::is('cost') || Request::is('advertise-cost') || Request::is('publication-type') || Request::is('financial-year') || Request::is('banner-size') || Request::is('print-type') || Request::is('budget-provision') || Request::is('news-paper') || Request::is('signature') || Request::is('account-details') || Request::is('department/*') || Request::is('language/*') || Request::is('news-paper-type/*') || Request::is('cost/*') || Request::is('advertise-cost/*') || Request::is('publication-type/*') || Request::is('financial-year/*') || Request::is('banner-size/*') || Request::is('print-type/*') || Request::is('budget-provision/*') || Request::is('news-paper/*') || Request::is('signature/*') || Request::is('account-details/*')){
+                                $active = "activeUrl";
+                            }
+                            @endphp
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="airplay"></i><span >मास्टर</span></a>
                                 <ul class="sidebar-submenu">
                                     <li><a href="{{ route('department.index') }}">विभाग</a></li>
                                     <li><a href="{{ route('language.index') }}">भाषा</a></li>
@@ -41,19 +48,19 @@
                                 </ul>
                             </li>
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav" href="{{ route('advertise.index') }}">
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('advertise') || Request::is('advertise/*'))activeUrl @endif" href="{{ route('advertise.index') }}">
                                     <i data-feather="feather"> </i>
                                     <span>जाहिरात करा</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav" href="{{ route('billing.index') }}">
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('billing') || Request::is('billing/*'))activeUrl @endif" href="{{ route('billing.index') }}">
                                     <i data-feather="file-text"> </i>
                                     <span>बिल</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav" href="{{ route('report.index') }}">
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('report'))activeUrl @endif" href="{{ route('report.index') }}">
                                     <i data-feather="alert-circle"> </i>
                                     <span>अहवाल द्या</span>
                                 </a>

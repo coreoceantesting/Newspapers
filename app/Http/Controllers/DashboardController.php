@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Advertise;
 use App\Models\Billing;
+use App\Models\BudgetProvision;
 
 class DashboardController extends Controller
 {
@@ -21,6 +22,12 @@ class DashboardController extends Controller
 
         $thisYearBill = Billing::whereYear('bill_date', date('Y'))->count();
 
+        $totalBudget = BudgetProvision::whereHas('financialYear', function($query){
+            $query->where('year', date('Y'));
+        })->value('budget');
+
+        $totalAdvertiseCost = Billing::whereYear('bill_date', date('Y'))->sum('net_amount');
+
         return view('dashboard')->with([
             'todayAdvertise' => $todayAdvertise,
             'thisMonthAdvertise' => $thisMonthAdvertise,
@@ -28,6 +35,8 @@ class DashboardController extends Controller
             'todayBill' => $todayBill,
             'thisMonthBill' => $thisMonthBill,
             'thisYearBill' => $thisYearBill,
+            'totalBudget' => $totalBudget,
+            'totalAdvertiseCost' => $totalAdvertiseCost
         ]);
     }
 }

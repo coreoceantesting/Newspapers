@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
 </head>
 
-<body style="background-color: #d9e8ff;">
+<body>
     <!-- Loader starts-->
     <div class="loader-wrapper">
         <div class="loader"></div>
@@ -44,7 +44,7 @@
     <!-- login page start-->
     <div class="container-fluid p-0">
         <div class="row m-0">
-            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/3.jpg') }}" alt="loginpage"></div>
+            <div class="col-xl-7"><img class="bg-img-cover bg-center" src="{{ asset('assets/images/4.jpg') }}" alt="loginpage"></div>
             <div class="col-xl-5 p-0">
                 <div class="login-card p-2">
                     <div>
