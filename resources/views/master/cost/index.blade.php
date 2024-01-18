@@ -50,7 +50,7 @@
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">
-                                                    <a href="{{ route('cost.edit', $cost->id) }}"><button class="btn btn-square btn-primary" type="button">सुधारणे &nbsp;<i class="fa fa-pencil text-white" aria-hidden="true"></i>
+                                                    <a href="{{ route('cost.edit', $cost->id) }}"><button class="btn btn-square btn-primary" type="button"><i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                     </button></a>
                                                 </li>
                                                 <li class="delete">
@@ -59,7 +59,7 @@
                                                         @csrf
                                                         @method('delete')
                                                         <input type="hidden" name="id" value="{{ $cost->id }}">
-                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this cost')">हटवा &nbsp;<i class="fa fa-trash text-white" aria-hidden="true"></i>
+                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this cost')"><i class="fa fa-trash text-white" aria-hidden="true"></i>
                                                         </button>
                                                     </form>
                                                 </li>

@@ -48,17 +48,19 @@
                 <div class="login-card">
                     <div>
                         <div>
+
+                        </div>
+                        <div class="login-main">
                             <a class="logo" href="{{ route('admin.login') }}">
                                 <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="loginpage">
                             </a>
-                        </div>
-                        <div class="login-main">
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <h4 class="text-center">Sign in to account</h4>
-                                <p class="text-center">Enter your email & password to login</p>
+                                <h4 class="text-center">वृत्तपत्रातील जाहिरात</h4>
+                                <h4 class="text-center">खात्यात साइन इन करा</h4>
+                                <p class="text-center">लॉगिन करण्यासाठी तुमचा ईमेल आणि पासवर्ड टाका</p>
                                 <div class="form-group">
-                                    <label class="col-form-label">Email Address</label>
+                                    <label class="col-form-label">ईमेल पत्ता</label>
                                     @error('email')
                                     <div class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -67,7 +69,7 @@
                                     <input class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">Password</label>
+                                    <label class="col-form-label">पासवर्ड</label>
                                     @error('password')
                                     <div class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -79,10 +81,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-0">
-                                    <div class="checkbox p-0">
+                                    {{-- <div class="checkbox p-0">
                                         <input id="checkbox1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="text-muted" for="checkbox1">Remember password</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-end mt-3">
                                         <button class="btn btn-primary btn-block w-100" type="submit">Sign in </button>
                                     </div>

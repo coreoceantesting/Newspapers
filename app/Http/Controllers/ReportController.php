@@ -29,7 +29,7 @@ class ReportController extends Controller
             // $billing = $billing->latest()->get();
 
 
-            $billing = AccountDetail::with(['billing.advertise', 'billing.department', 'billing.advertise.publicationType'])->withWhereHas('billing', function($query) use($request){
+            $billing = AccountDetail::withWhereHas('billing', function($query) use($request){
                 if($request->work_order_number != ""){
                     $query->where('advertise_id', $request->work_order_number);
                 }
@@ -39,7 +39,7 @@ class ReportController extends Controller
                 }
 
                 if($request->department != ""){
-                    $query->where('department_id', $request->department);
+                    $query->where('department_id', $request->department)->with(['department', 'advertise.publicationType']);
                 }
             })->get();
 
@@ -47,7 +47,7 @@ class ReportController extends Controller
         // return $billing;
         return view('reports.index')->with([
             'departments' => $departments,
-            'billing' => $billing
+            'billings' => $billing
         ]);
     }
 }

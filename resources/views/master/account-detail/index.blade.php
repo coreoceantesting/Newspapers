@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">List News Paper Account Details</li>
+                        <li class="breadcrumb-item active">वृत्तपत्र खात्याच्या तपशीलांची यादी करा</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">List News Paper Account Details</h5>
+                                <h5 class="text-white mt-1">वृत्तपत्र खात्याच्या तपशीलांची यादी करा</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('account-details.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add News Paper Account <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('account-details.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">वृत्तपत्र खाते जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -37,13 +37,13 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Sr No.</th>
-                                        <th>News paper</th>
-                                        <th>Bank</th>
-                                        <th>Branch</th>
-                                        <th>Acc No</th>
-                                        <th>IFSC Code</th>
-                                        <th>Action</th>
+                                        <th>अ.क्र.</th>
+                                        <th>वृत्तपत्र</th>
+                                        <th>बँक</th>
+                                        <th>शाखा</th>
+                                        <th>खाते क्रमांक</th>
+                                        <th>IFSC कोड</th>
+                                        <th>कृती</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,7 +67,7 @@
                                                         @csrf
                                                         @method('delete')
                                                         <input type="hidden" name="id" value="{{ $accountDetail->id }}">
-                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this news paper account details')">Delete &nbsp;<i class="fa fa-trash text-white" aria-hidden="true"></i>
+                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this news paper account details')"><i class="fa fa-trash text-white" aria-hidden="true"></i>
                                                         </button>
                                                     </form>
                                                 </li>

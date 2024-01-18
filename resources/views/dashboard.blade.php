@@ -10,7 +10,7 @@
                                 <div class="animated-bg"><i></i><i></i><i></i></div>
                                 <div class="card-body">
                                     <div class="icon"><i data-feather="dollar-sign"></i></div>
-                                    <p>Total Bill</p>
+                                    <p>एकूण बिल</p>
                                     <h3>{{ $totalBilling }}</h3>
                                 </div>
                             </div>
@@ -22,7 +22,7 @@
                                 <div class="animated-bg"><i></i><i></i><i></i></div>
                                 <div class="card-body">
                                     <div class="icon"><i data-feather="database"></i></div>
-                                    <p>Total Advertise</p>
+                                    <p>एकूण जाहिरात</p>
                                     <h3>{{ $totalAdvertise }}</h3>
                                 </div>
                             </div>

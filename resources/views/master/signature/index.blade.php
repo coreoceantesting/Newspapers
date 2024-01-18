@@ -44,8 +44,8 @@
                             </div>
 
                             <div class="text-end" >
-                                <button class="btn btn-square btn-success-gradien" type="submit">Save </button>
-                                <a href="{{ route('signature.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel </button></a>
+                                <button class="btn btn-square btn-success-gradien" type="submit">जतन करा </button>
+                                <a href="{{ route('signature.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा </button></a>
                             </div>
                         </div>
                     </div>

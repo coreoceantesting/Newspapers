@@ -80,7 +80,7 @@
 
                         @if(isset(Request()->search))
                         <div class="table-responsive mt-5" id="printableArea">
-                            @foreach($billing as $bill)
+                            @foreach($billings as $bill)
                             <table class="table table-bordered">
 
                                 <tbody>

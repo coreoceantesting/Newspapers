@@ -12,49 +12,50 @@
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-main-title">
-                        <h6 class="lan-1">General </h6>
+                        <h6 class="lan-1">सामान्य </h6>
                     </li>
                     <li class="menu-box">
                         <ul>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('dashboard') }}">
                                     <i data-feather="home"> </i>
-                                    <span>Dashboard</span>
+                                    <span>डॅशबोर्ड</span>
                                 </a>
                             </li>
-                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span >Master</span></a>
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span >मास्टर</span></a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="{{ route('department.index') }}">Department</a></li>
-                                    <li><a href="{{ route('language.index') }}">Language</a></li>
-                                    <li><a href="{{ route('news-paper-type.index') }}">News Paper Type</a></li>
-                                    <li><a href="{{ route('cost.index') }}">Cost</a></li>
-                                    <li><a href="{{ route('advertise-cost.index') }}">Advertise Cost</a></li>
-                                    <li><a href="{{ route('publication-type.index') }}">Publication Type</a></li>
-                                    <li><a href="{{ route('financial-year.index') }}">Financial Year</a></li>
-                                    <li><a href="{{ route('banner-size.index') }}">Banner Size</a></li>
-                                    <li><a href="{{ route('print-type.index') }}">Print Type</a></li>
-                                    <li><a href="{{ route('budget-provision.index') }}">Budget Provision</a></li>
-                                    <li><a href="{{ route('news-paper.index') }}">News Paper</a></li>
-                                    <li><a href="{{ route('signature.index') }}">Signature</a></li>
-                                    <li><a href="{{ route('account-details.index') }}">Account Details</a></li>
+                                    <li><a href="{{ route('department.index') }}">विभाग</a></li>
+                                    <li><a href="{{ route('language.index') }}">भाषा</a></li>
+                                    <li><a href="{{ route('news-paper-type.index') }}">वृत्तपत्राचा प्रकार</a></li>
+                                    <li><a href="{{ route('cost.index') }}">खर्च</a></li>
+                                    <li><a href="{{ route('advertise-cost.index') }}">जाहिरात खर्च</a></li>
+                                    <li><a href="{{ route('publication-type.index') }}">प्रकाशन प्रकार</a></li>
+                                    <li><a href="{{ route('financial-year.index') }}">आर्थिक वर्ष</a></li>
+                                    <li><a href="{{ route('banner-size.index') }}">बॅनर आकार</a></li>
+                                    <li><a href="{{ route('print-type.index') }}">मुद्रण प्रकार</a></li>
+                                    <li><a href="{{ route('budget-provision.index') }}">अर्थसंकल्पात तरतूद</a></li>
+                                    <li><a href="{{ route('news-paper.index') }}">वृत्तपत्र</a></li>
+                                    <li><a href="{{ route('signature.index') }}">स्वाक्षरी</a></li>
+                                    <li><a href="{{ route('account-details.index') }}">
+                                        खाते तपशील</a></li>
                                 </ul>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('advertise.index') }}">
                                     <i data-feather="feather"> </i>
-                                    <span>Advertise</span>
+                                    <span>जाहिरात करा</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('billing.index') }}">
                                     <i data-feather="file-text"> </i>
-                                    <span>Bill</span>
+                                    <span>बिल</span>
                                 </a>
                             </li>
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{{ route('report.index') }}">
                                     <i data-feather="alert-circle"> </i>
-                                    <span>Report</span>
+                                    <span>अहवाल द्या</span>
                                 </a>
                             </li>
                         </ul>
