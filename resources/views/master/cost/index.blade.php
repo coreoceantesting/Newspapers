@@ -3,12 +3,12 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6">
-                    {{-- <h5>खर्च</h5> --}}
+                    {{-- <h5>कामाची किंमत</h5> --}}
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">खर्च</li>
+                        <li class="breadcrumb-item active">कामाची किंमत</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">वर्तमानपत्र खर्च जोडा</h5>
+                                <h5 class="text-white mt-1">कामाची किंमत यादी</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('cost.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">वर्तमानपत्र खर्च जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('cost.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">कामाची किंमत जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th>अ.क्र.</th>
-                                        <th>खर्च </th>
+                                        <th>कामाची किंमत </th>
                                         <th>कृती</th>
                                     </tr>
                                 </thead>

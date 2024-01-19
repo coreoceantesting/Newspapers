@@ -34,7 +34,7 @@
                                     <li><a href="{{ route('department.index') }}">विभाग</a></li>
                                     <li><a href="{{ route('language.index') }}">भाषा</a></li>
                                     <li><a href="{{ route('news-paper-type.index') }}">वृत्तपत्राचा प्रकार</a></li>
-                                    <li><a href="{{ route('cost.index') }}">खर्च</a></li>
+                                    <li><a href="{{ route('cost.index') }}">कामाची किंमत</a></li>
                                     <li><a href="{{ route('advertise-cost.index') }}">जाहिरात खर्च</a></li>
                                     <li><a href="{{ route('publication-type.index') }}">प्रकाशन प्रकार</a></li>
                                     <li><a href="{{ route('financial-year.index') }}">आर्थिक वर्ष</a></li>

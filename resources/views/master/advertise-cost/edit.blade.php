@@ -5,7 +5,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise-cost.index') }}"> खर्चाची यादी जाहिरात करा </a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('advertise-cost.index') }}"> जाहिरात खर्च यादी </a></li>
                         <li class="breadcrumb-item active">जाहिरात खर्च जोडा</li>
                     </ol>
                 </div>
@@ -28,9 +28,9 @@
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="cost_id">किमत  निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="cost_id">कामाची किंमत  निवडा <span class="error">*</span></label>
                                     <select name="cost_id" required class="form-select">
-                                        <option value="">किमत  निवडा</option>
+                                        <option value="">कामाची किंमत  निवडा</option>
                                         @foreach ( $costs as $cost )
                                             <option @if( $advertiseCost->cost_id == $cost->id)selected @endif value="{{ $cost->id }}">{{ $cost->name }}</option>
                                         @endforeach
@@ -41,9 +41,9 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_type_id">वर्तमानपत्र प्रकार निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_type_id">प्रसिध्दीचा स्तर निवडा <span class="error">*</span></label>
                                     <select name="news_paper_type_id" required class="form-select">
-                                        <option value="">वर्तमानपत्र प्रकार निवडा</option>
+                                        <option value="">प्रसिध्दीचा स्तर निवडा</option>
                                         @foreach ( $newsPaperTypes as $newsPaperType )
                                             <option @if($advertiseCost->news_paper_type_id == $newsPaperType->id)selected @endif value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
                                         @endforeach

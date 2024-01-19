@@ -52,7 +52,7 @@ class BillingController extends Controller
             $billing->save();
             DB::commit();
 
-            return redirect()->route('billing.index');
+            return redirect()->route('billing.index')->with('success', 'Bill Generated Successfully');
         }
         catch(\Exception $e)
         {
@@ -109,7 +109,7 @@ class BillingController extends Controller
             $billing->save();
             DB::commit();
 
-            return redirect()->route('billing.index');
+            return redirect()->route('billing.index')->with('success', 'Bill Updated Successfully');
         }
         catch(\Exception $e)
         {

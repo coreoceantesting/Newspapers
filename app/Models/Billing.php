@@ -9,6 +9,7 @@ use App\Models\NewsPaper;
 use App\Models\Department;
 use App\Models\Advertise;
 use App\Models\AccountDetail;
+use App\Models\Expandeture;
 
 class Billing extends Model
 {
@@ -30,5 +31,9 @@ class Billing extends Model
 
     public function accountDetails(){
         return $this->belongsTo(AccountDetail::class, 'account_detail_id', 'id');
+    }
+
+    public function expandature(){
+        return $this->hasOne(Expandeture::class, 'billing_id', 'id');
     }
 }

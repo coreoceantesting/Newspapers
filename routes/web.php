@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::get('/get-news-papers-account-number', [AjaxController::class, 'getNewsPaperAccountNumber'])->name('get-news-papers-account-number');
 
     Route::get('/get-news-papers-account-details', [AjaxController::class, 'getNewsPaperAccountDetails'])->name('get-news-papers-account-details');
+
+    Route::get('/get-billing-details-for-expandature', [AjaxController::class, 'getBillingDetailsForExpandature'])->name('get-billing-details-for-expandature');
     // end of ajax route
 
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');

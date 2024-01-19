@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('expandetures', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('billing_id');
+            $table->foreign('billing_id')->references('id')->on('billing');
+            $table->foreignId('news_paper_id')->nullable()->constrained();
+            $table->string('unique_no')->nullable();
+            $table->string('invoice_amount')->nullable();
+            $table->string('other_charges')->nullable();
+            $table->string('net_amount')->nullable();
+            $table->string('progressive_expandetures')->nullable();
+            $table->string('balance')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

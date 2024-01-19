@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">खर्चाची यादी जाहिरात करा</li>
+                        <li class="breadcrumb-item active">जाहिरात खर्च यादी</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">खर्चाची यादी जाहिरात करा</h5>
+                                <h5 class="text-white mt-1">जाहिरात खर्च यादी</h5>
                             </div>
                             <div class="col-6 text-end">
                                 <a href="{{ route('advertise-cost.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">जाहिरात खर्च जोडा <i class="fa fa-plus" aria-hidden="true"></i>
@@ -38,9 +38,9 @@
                                 <thead>
                                     <tr>
                                         <th>अ.क्र.</th>
-                                        <th>किमत</th>
-                                        <th>वृत्तपत्राचा प्रकार</th>
-                                        <th>वर्तमानपत्र भाषा</th>
+                                        <th>किंमत</th>
+                                        <th>प्रसिध्दीचा स्तर</th>
+                                        <th>भाषा</th>
                                         <th>वृत्तपत्रांची संख्या</th>
                                         <th>कृती</th>
                                     </tr>

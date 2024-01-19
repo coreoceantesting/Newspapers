@@ -156,4 +156,16 @@ class AjaxController extends Controller
             ]);
         }
     }
+
+    // function to get billing details for expandature
+    public function getBillingDetailsForExpandature(Request $request){
+        if($request->ajax()){
+            $billingDetail = Billing::with(['newsPaper'])->where('id', $request->bill)->first();
+
+            return response()->json([
+                'status' => 200,
+                'data' => $billingDetail
+            ]);
+        }
+    }
 }
