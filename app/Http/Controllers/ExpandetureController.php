@@ -8,10 +8,12 @@ use App\Models\Expandeture;
 class ExpandetureController extends Controller
 {
     public function index(){
-
+        $expandetures = Expandeture::with(['billing'])->all();
     }
 
     public function create(Request $request){
+
+
         return view('expandeture.create');
     }
 

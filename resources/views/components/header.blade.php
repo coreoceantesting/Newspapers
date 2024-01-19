@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="javascript:void(0)"><i data-feather="user"></i><span>Profile </span></a></li>
+                        {{-- <li><a href="javascript:void(0)"><i data-feather="user"></i><span>Profile </span></a></li> --}}
                         <li><a  href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();"><i data-feather="log-in"> </i><span>Log out</span></a></li>
