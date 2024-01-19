@@ -48,8 +48,8 @@
                                     @foreach ( $budgetProvisions as $budgetProvision )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $budgetProvision->financialYear->year }}</td>
-                                        <td>{{ $budgetProvision->department->name }}</td>
+                                        <td>{{ $budgetProvision?->financialYear?->year }}</td>
+                                        <td>{{ $budgetProvision?->department?->name }}</td>
                                         <td>{{ $budgetProvision->budget }}</td>
                                         <td>
                                             <ul class="action">

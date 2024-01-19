@@ -22,6 +22,7 @@ use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Master\AccountDetailController;
+use App\Http\Controllers\ExpandetureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     // end of ajax route
 
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+
+    Route::resource('expandeture', ExpandetureController::class);
 });
 
 Auth::routes();

@@ -49,9 +49,9 @@
                                     @foreach ( $advertiseCosts as $advertiseCost )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $advertiseCost->cost->name }}</td>
-                                        <td>{{ $advertiseCost->newsPaperType->name }}</td>
-                                        <td>{{ $advertiseCost->language->name }}</td>
+                                        <td>{{ $advertiseCost?->cost?->name }}</td>
+                                        <td>{{ $advertiseCost?->newsPaperType?->name }}</td>
+                                        <td>{{ $advertiseCost?->language?->name }}</td>
                                         <td>{{ $advertiseCost->no_of_newspaper }}</td>
                                         <td>
                                             <ul class="action">
