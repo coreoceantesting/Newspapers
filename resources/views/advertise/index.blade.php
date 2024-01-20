@@ -65,6 +65,10 @@
                                                     <a href="#"><button class="btn btn-square btn-primary" type="button">पहा
                                                     </button></a>
                                                 </li>
+                                                <li class="edit">
+                                                    <a href="#"><button class="btn btn-square btn-primary" type="button">पहा
+                                                    </button></a>
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr>

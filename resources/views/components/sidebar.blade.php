@@ -1,7 +1,9 @@
 <div class="sidebar-wrapper">
     <div>
-        <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a>
+        <div class="logo-wrapper">
+            <a href="{{ route('dashboard') }}"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+            {{-- <div class="toggle-sidebar" checked="checked"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i></div> --}}
         </div>
         <div class="logo-icon-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid" src="{{ asset('assets/images/logo/logo-icon1.png') }}" alt=""></a></div>
         <nav class="sidebar-main">

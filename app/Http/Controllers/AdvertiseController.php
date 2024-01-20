@@ -43,8 +43,6 @@ class AdvertiseController extends Controller
     {
         $publicationTypes = PublicationType::latest()->get();
 
-        $advertiseCosts = AdvertiseCost::latest()->get();
-
         $costs = Cost::latest()->get();
 
         $newsPaperTypes = NewsPaperType::latest()->get();
@@ -59,7 +57,6 @@ class AdvertiseController extends Controller
 
         return view('advertise.create')->with([
             'publicationTypes' => $publicationTypes,
-            'advertiseCosts' => $advertiseCosts,
             'newsPaperTypes' => $newsPaperTypes,
             'languages' => $languages,
             'departments' => $departments,
@@ -128,9 +125,12 @@ class AdvertiseController extends Controller
         }
         catch(\Exception $e)
         {
-            Log::info($e);
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
+    }
+
+    public function edit($id){
+
     }
 
 
