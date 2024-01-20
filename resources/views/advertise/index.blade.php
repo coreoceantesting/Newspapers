@@ -59,7 +59,14 @@
                                         <td>{{ $advertise?->department?->name }}</td>
                                         <td>{{ $advertise?->printType?->name }}</td>
                                         <td>{{ $advertise?->bannerSize?->size }}</td>
-                                        <td><button class="btn btn-praimary">पहा</button></td>
+                                        <td>
+                                            <ul class="action">
+                                                <li class="edit">
+                                                    <a href="#"><button class="btn btn-square btn-primary" type="button">पहा
+                                                    </button></a>
+                                                </li>
+                                            </ul>
+                                        </td>
                                     </tr>
                                     @endforeach
 
