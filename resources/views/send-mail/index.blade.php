@@ -49,7 +49,7 @@
                             <label class="form-label" for="work_order_number">ईमेल वर्णन</label>
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
-                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('Are you sure do you want to send email')" type="submit">मेल पाठवा</button>
+                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">मेल पाठवा</button>
                         <button class="btn btn-dark" id="cancelBtn" type="button">रद्द करा</button>
 
                     </form>

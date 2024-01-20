@@ -70,7 +70,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="email">ईमेल <span class="error">*</span></label>
-                                    <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email" id="email" type="email" required placeholder="ईमेल" value="{{ old('email') }}">
+                                    <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email" id="email" type="text" required placeholder="ईमेल" value="{{ old('email') }}">
                                     @error('email')
                                     <span class="error">{{ $message }}</span>
                                     @enderror
