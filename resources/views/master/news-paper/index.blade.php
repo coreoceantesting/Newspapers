@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">वृत्तपत्र</li>
+                        <li class="breadcrumb-item active">वर्तमानपत्र</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">वृत्तपत्र यादी</h5>
+                                <h5 class="text-white mt-1">वर्तमानपत्र यादी</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('news-paper.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">वृत्तपत्र जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('news-paper.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">वर्तमानपत्र जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                                 <thead>
                                     <tr>
                                         <th>अ.क्र.</th>
-                                        <th>वृत्तपत्र प्रकार</th>
+                                        <th>प्रसिध्दीचा स्तर</th>
                                         <th>भाषा</th>
-                                        <th>नाव</th>
+                                        <th>वर्तमानपत्राचे नाव</th>
                                         <th>संपादकाचे नाव</th>
                                         <th>ईमेल</th>
                                         <th>मोबाईल</th>

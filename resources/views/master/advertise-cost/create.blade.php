@@ -52,9 +52,9 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="language_id">वृत्तपत्र भाषा निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="language_id">वर्तमानपत्राची भाषा निवडा <span class="error">*</span></label>
                                     <select name="language_id" required class="form-select">
-                                        <option value="">वृत्तपत्र भाषा निवडा</option>
+                                        <option value="">वर्तमानपत्राची भाषा निवडा</option>
                                         @foreach ( $language as $lang )
                                             <option @if(old('language_id') == $lang->id)selected @endif value="{{ $lang->id }}">{{ $lang->name }}</option>
                                         @endforeach
@@ -65,8 +65,8 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="no_of_newspaper">वृत्तपत्रांची संख्या <span class="error">*</span></label>
-                                    <input @if ($errors->has('no_of_newspaper')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="no_of_newspaper" id="no_of_newspaper" type="number" placeholder="वृत्तपत्रांची संख्या" value="{{ old('no_of_newspaper') }}">
+                                    <label class="form-label" for="no_of_newspaper">वर्तमानपत्राची संख्या <span class="error">*</span></label>
+                                    <input @if ($errors->has('no_of_newspaper')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="no_of_newspaper" id="no_of_newspaper" type="number" placeholder="वर्तमानपत्राची संख्या" value="{{ old('no_of_newspaper') }}">
                                     @error('no_of_newspaper')
                                         <span class="error">{{ $message }}</span>
                                     @enderror

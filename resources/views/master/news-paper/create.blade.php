@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('news-paper.index') }}"> वृत्तपत्र यादी </a></li>
-                        <li class="breadcrumb-item active">वृत्तपत्र जोडा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('news-paper.index') }}"> वर्तमानपत्र यादी </a></li>
+                        <li class="breadcrumb-item active">वर्तमानपत्र जोडा</li>
                     </ol>
                 </div>
             </div>
@@ -20,15 +20,15 @@
                     @csrf
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">वृत्तपत्र जोडा</h5>
+                            <h5 class="text-white item-center mb-2">वर्तमानपत्र जोडा</h5>
                         </div>
 
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_type_id">वृत्तपत्र प्रकार निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_type_id">प्रसिध्दीचा स्तर निवडा <span class="error">*</span></label>
                                     <select name="news_paper_type_id" required class="form-select">
-                                        <option value="">वृत्तपत्र प्रकार निवडा</option>
+                                        <option value="">प्रसिध्दीचा स्तर निवडा</option>
                                         @foreach ( $newsPaperTypes as $newsPaperType )
                                         <option @if( old('news_paper_type_id') == $newsPaperType->id )selected @endif value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
                                         @endforeach
@@ -53,8 +53,8 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="name">नाव <span class="error">*</span></label>
-                                    <input @if ($errors->has('name')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="name" id="name" type="text" placeholder="नाव" value="{{ old('name') }}" required>
+                                    <label class="form-label" for="name">वर्तमानपत्राचे नाव <span class="error">*</span></label>
+                                    <input @if ($errors->has('name')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="name" id="name" type="text" placeholder="वर्तमानपत्राचे नाव" value="{{ old('name') }}" required>
                                     @error('name')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -72,8 +72,9 @@
                                     <label class="form-label" for="email">ईमेल <span class="error">*</span></label>
                                     <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email" id="email" type="email" required placeholder="ईमेल" value="{{ old('email') }}">
                                     @error('email')
-                                        <span class="error">{{ $message }}</span>
+                                    <span class="error">{{ $message }}</span>
                                     @enderror
+                                    <label class="text-danger">For multiple emails use comma separated (e.g xyz@gmail.com, abc@gmail.com...)</label>
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
@@ -82,6 +83,7 @@
                                     @error('mobile')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
+                                    <label class="text-danger">For multiple mobile numbers use comma separated (e.g 9999999999, 8888888888...)</label>
                                 </div>
 
 

@@ -37,8 +37,8 @@
 
                         @endforeach
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">वृत्तपत्र ईमेल</label>
-                            <input class="form-control" type="text" placeholder="वृत्तपत्र ईमेल" value="{{ $newsPaperEmail }}" readonly>
+                            <label class="form-label" for="work_order_number">वर्तमानपत्र ईमेल</label>
+                            <input class="form-control" type="text" placeholder="वर्तमानपत्र ईमेल" value="{{ $newsPaperEmail }}" readonly>
                             <input type="hidden" name="id" value="{{ Request()->id }}">
                         </div>
                         <div class="mt-2 col-12">
@@ -49,8 +49,8 @@
                             <label class="form-label" for="work_order_number">ईमेल वर्णन</label>
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
-                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('Are you sure do you want to send email')" type="submit">Send Email</button>
-                        <button class="btn btn-dark" id="cancelBtn" type="button">Cancel</button>
+                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('Are you sure do you want to send email')" type="submit">मेल पाठवा</button>
+                        <button class="btn btn-dark" id="cancelBtn" type="button">रद्द करा</button>
 
                     </form>
                     <form id="cancelMail" action="{{ route('mail.cancel') }}" method="POST" class="d-none">

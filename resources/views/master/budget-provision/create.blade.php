@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('budget-provision.index') }}"> खर्चाची यादी जाहिरात करा </a></li>
-                        <li class="breadcrumb-item active">जाहिरात खर्च जोडा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('budget-provision.index') }}"> बजेट तरतूद यादी </a></li>
+                        <li class="breadcrumb-item active">बजेट तरतूद जोडा</li>
                     </ol>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">जाहिरात खर्च जोडा</h5>
+                            <h5 class="text-white item-center mb-2">बजेट तरतूद जोडा</h5>
                         </div>
 
                         <div class="card-body">

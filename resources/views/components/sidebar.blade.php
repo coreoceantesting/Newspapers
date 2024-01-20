@@ -33,15 +33,15 @@
                                 <ul class="sidebar-submenu">
                                     <li><a href="{{ route('department.index') }}">विभाग</a></li>
                                     <li><a href="{{ route('language.index') }}">भाषा</a></li>
-                                    <li><a href="{{ route('news-paper-type.index') }}">वृत्तपत्राचा प्रकार</a></li>
+                                    <li><a href="{{ route('news-paper-type.index') }}">प्रसिध्दीचा स्तर</a></li>
+                                    <li><a href="{{ route('news-paper.index') }}">वर्तमानपत्र</a></li>
+                                    <li><a href="{{ route('publication-type.index') }}">पब्लिकेशन प्रकार</a></li>
                                     <li><a href="{{ route('cost.index') }}">कामाची किंमत</a></li>
                                     <li><a href="{{ route('advertise-cost.index') }}">जाहिरात खर्च</a></li>
-                                    <li><a href="{{ route('publication-type.index') }}">प्रकाशन प्रकार</a></li>
                                     <li><a href="{{ route('financial-year.index') }}">आर्थिक वर्ष</a></li>
                                     <li><a href="{{ route('banner-size.index') }}">बॅनर आकार</a></li>
-                                    <li><a href="{{ route('print-type.index') }}">मुद्रण प्रकार</a></li>
-                                    <li><a href="{{ route('budget-provision.index') }}">अर्थसंकल्पात तरतूद</a></li>
-                                    <li><a href="{{ route('news-paper.index') }}">वृत्तपत्र</a></li>
+                                    <li><a href="{{ route('print-type.index') }}">प्रिंट प्रकार</a></li>
+                                    <li><a href="{{ route('budget-provision.index') }}">बजेट तरतूद</a></li>
                                     <li><a href="{{ route('signature.index') }}">स्वाक्षरी</a></li>
                                     <li><a href="{{ route('account-details.index') }}">
                                         खाते तपशील</a></li>
@@ -62,7 +62,7 @@
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('report'))activeUrl @endif" href="{{ route('report.index') }}">
                                     <i data-feather="alert-circle"> </i>
-                                    <span>अहवाल द्या</span>
+                                    <span>अहवाल</span>
                                 </a>
                             </li>
                         </ul>

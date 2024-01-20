@@ -57,17 +57,17 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर नंबर निवडा</label>
+                                    <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर क्रमांक निवडा</label>
                                     <select name="work_order_number" id="selectWorkOrderNumber" class="form-select">
-                                        <option value="">वर्क ऑर्डर नंबर निवडा</option>
+                                        <option value="">वर्क ऑर्डर क्रमांक निवडा</option>
 
                                     </select>
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectNewsPaper">वृत्तपत्र निवडा</label>
+                                    <label class="form-label" for="selectNewsPaper">वर्तमानपत्र निवडा</label>
                                     <select name="news_paper" id="selectNewsPaper" class="form-select">
-                                        <option value="">वृत्तपत्र निवडा</option>
+                                        <option value="">वर्तमानपत्र निवडा</option>
 
                                     </select>
                                 </div>
@@ -89,25 +89,25 @@
                                     </tr>
                                     <tr align="center">
                                         <th style="width: 20%">
-                                            बँकेचे नाव :- {{ $bill->bank }}<br>
-                                            शाखा :- {{ $bill->branch }}
+                                            Bank Name :- {{ $bill->bank }}<br>
+                                            Branch :- {{ $bill->branch }}
                                         </th>
-                                        <th style="width: 30%" colspan="4">खाते क्रमांक : {{ $bill->account_number }}</th>
-                                        <th style="width: 25%" colspan="3">बँक शाखा IFSC कोड :- {{ $bill->ifsc_code }}</th>
-                                        <th style="width: 25%" colspan="3">GST No :- {{ $bill->gst_no }}<br>Pan No:- {{ $bill->pan_card }}</th>
+                                        <th style="width: 30%" colspan="4">Account Number : {{ $bill->account_number }}</th>
+                                        <th style="width: 25%" colspan="3">Bank Branch IFSC Code :- {{ $bill->ifsc_code }}</th>
+                                        <th style="width: 25%" colspan="3">GST NO :- {{ $bill->gst_no }}<br>PAN No :- {{ $bill->pan_card }}</th>
                                     </tr>
                                     <tr align="center">
-                                        <th>काम पुर्ण करण्यचा क्रम</th>
+                                        <th>Work Order</th>
                                         <th>विभागाचे नाव व जाहिरातीचा प्रकार</th>
-                                        <th>क्र.</th>
-                                        <th>बिल क्र.</th>
-                                        <th>तारीख</th>
-                                        <th>मूळ रक्कम</th>
+                                        <th>Sr.No.</th>
+                                        <th>Bill No.</th>
+                                        <th>Date</th>
+                                        <th>Basic Amount</th>
                                         <th>5% GST/SGST</th>
-                                        <th>एकूण रक्कम</th>
+                                        <th>Gross Amount</th>
                                         <th>2% TDS</th>
                                         <th>2% IT</th>
-                                        <th>निव्वळ रक्कम</th>
+                                        <th>Net Amount</th>
                                     </tr>
                                     <tr align="center">
                                         @for($i=1; $i <= 11; $i++)
@@ -122,7 +122,7 @@
                                         <td>{{ $bills?->bill_number }}</td>
                                         <td>{{ date('d-m-Y', strtotime($bills?->bill_date)) }}</td>
                                         <td>{{ $bills?->basic_amount }}</td>
-                                        <td>{{ $bill->gst }}</td>
+                                        <td>{{ $bills?->gst }}</td>
                                         <td>{{ $bills?->gross_amount }}</td>
                                         <td>{{ $bills?->tds }}</td>
                                         <td>{{ $bills?->it }}</td>
@@ -169,7 +169,7 @@
                         },
                         success: function(response){
                             if(response.status === 200){
-                                let html = `<option value="">वर्क ऑर्डर नंबर निवडा</option>`;
+                                let html = `<option value="">वर्क ऑर्डर क्रमांक निवडा</option>`;
                                 $.each(response.data, function(key, val){
                                     html += `<option value="${val.id}">${val.work_order_number}</option>`;
                                 });
@@ -201,7 +201,7 @@
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    let html = `<option value="">वृत्तपत्र निवडा</option>`;
+                                    let html = `<option value="">वर्तमानपत्र निवडा</option>`;
                                     console.log(response.data)
                                     $.each(response.data, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;

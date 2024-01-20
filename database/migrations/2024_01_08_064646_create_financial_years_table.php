@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->boolean('is_active')->comment('0 => Inactive, 1 => Active');
-            $table->string('sequence');
+            $table->string('sequence')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();

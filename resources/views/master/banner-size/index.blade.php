@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">वृत्तपत्र बॅनर आकार</li>
+                        <li class="breadcrumb-item active">वर्तमानपत्र बॅनर आकार</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">यादी बॅनर आकार</h5>
+                                <h5 class="text-white mt-1">बॅनर आकार यादी</h5>
                             </div>
                             <div class="col-6 text-end">
                                 <a href="{{ route('banner-size.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">बॅनर आकार जोडा <i class="fa fa-plus" aria-hidden="true"></i>

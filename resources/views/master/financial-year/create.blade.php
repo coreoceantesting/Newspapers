@@ -6,7 +6,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
                         <li class="breadcrumb-item active"><a href="{{ route('financial-year.index') }}"> आर्थिक वर्षांची यादी </a></li>
-                        <li class="breadcrumb-item active">आर्थिक वर्षांची जोडा</li>
+                        <li class="breadcrumb-item active">आर्थिक वर्ष जोडा</li>
                     </ol>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">आर्थिक वर्षांची जोडा</h5>
+                            <h5 class="text-white item-center mb-2">आर्थिक वर्ष जोडा</h5>
                         </div>
 
                         <div class="card-body">
@@ -45,7 +45,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="year">वर्ष <span class="error">*</span></label>
-                                    <input @if ($errors->has('year')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="year" id="year" type="number" placeholder="YYYY" min="1999" max="4020" value="{{ old('year') }}" required>
+                                    <input @if ($errors->has('year')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="year" id="year" type="text" placeholder="वर्ष" value="{{ old('year') }}" required>
                                     @error('year')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -53,8 +53,8 @@
 
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="sequence">क्रम <span class="error">*</span></label>
-                                    <input @if ($errors->has('sequence')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="sequence" id="sequence" type="number" placeholder="क्रम" value="{{ old('sequence') }}" required>
+                                    <label class="form-label" for="sequence">क्रम</label>
+                                    <input @if ($errors->has('sequence')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="sequence" id="sequence" type="number" placeholder="क्रम" value="{{ old('sequence') }}">
                                     @error('sequence')
                                         <span class="error">{{ $message }}</span>
                                     @enderror

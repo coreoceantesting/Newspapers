@@ -112,8 +112,8 @@
 
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="basic_amount">मूळ रक्कम <span class="error">*</span></label>
-                                    <input @if ($errors->has('basic_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="basic_amount" id="basic_amount" type="number" placeholder="मूळ रक्कम" value="{{ old('basic_amount') }}">
+                                    <label class="form-label" for="basic_amount">Basic Amount <span class="error">*</span></label>
+                                    <input @if ($errors->has('basic_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="basic_amount" id="basic_amount" type="number" placeholder="Basic Amount" value="{{ old('basic_amount') }}">
                                     @error('basic_amount')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -128,8 +128,8 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="gross_amount">एकूण रक्कम <span class="error">*</span></label>
-                                    <input @if ($errors->has('gross_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif readonly class="form-control" name="gross_amount" id="gross_amount" type="number" placeholder="एकूण रक्कम" value="{{ old('gross_amount') }}">
+                                    <label class="form-label" for="gross_amount">Gross Amount <span class="error">*</span></label>
+                                    <input @if ($errors->has('gross_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif readonly class="form-control" name="gross_amount" id="gross_amount" type="number" placeholder="Gross Amount" value="{{ old('gross_amount') }}">
                                     @error('gross_amount')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -152,8 +152,8 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="net_amount">निव्वळ रक्कम <span class="error">*</span></label>
-                                    <input @if ($errors->has('net_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="net_amount" readonly id="net_amount" type="number" placeholder="निव्वळ रक्कम" value="{{ old('net_amount') }}">
+                                    <label class="form-label" for="net_amount">Net Amount <span class="error">*</span></label>
+                                    <input @if ($errors->has('net_amount')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="net_amount" readonly id="net_amount" type="number" placeholder="Net Amount" value="{{ old('net_amount') }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -247,11 +247,11 @@
                                         <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>प्रकाशन प्रकार</th>
-                                                <th>मुद्रण प्रकार</th>
-                                                <th>बॅनर प्रकार</th>
-                                                <th>प्रकाशन तारीख</th>
-                                                <th>प्रतिमा</th>
+                                                <th>प्रसिध्दीचा स्तर</th>
+                                                <th>प्रिंट प्रकार</th>
+                                                <th>बॅनर आकार </th>
+                                                <th>प्रसिद्धीची तारीख</th>
+                                                <th>फोटो</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -267,9 +267,9 @@
                                     </div>`
                                     html += `
                                     <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_id">वृत्तपत्र निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_id">वर्तमानपत्र निवडा <span class="error">*</span></label>
                                     <select name="news_paper_id" id="newsPaperId" required class="form-select">
-                                        <option value="">वृत्तपत्र निवडा</option>`;
+                                        <option value="">वर्तमानपत्र निवडा</option>`;
                                     $.each(response.advertiseNewsPapers, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;
                                     });

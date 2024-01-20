@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">Advertise</li>
+                        <li class="breadcrumb-item active">जाहिरात यादी</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">Advertise</h5>
+                                <h5 class="text-white mt-1">जाहिरात यादी</h5>
                             </div>
                             <div class="col-6 text-end">
                                 <a href="{{ route('advertise.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">जाहिरात जोडा <i class="fa fa-plus" aria-hidden="true"></i>
@@ -40,11 +40,12 @@
                                         <th>अ.क्र.</th>
                                         <th>युनिक क्र</th>
                                         <th>वर्क ऑर्डर क्र</th>
-                                        <th>प्रकाशन</th>
-                                        <th>खर्च</th>
+                                        <th>प्रसिध्दीचा स्तर</th>
+                                        <th>कामाची किंमत</th>
                                         <th>विभाग</th>
-                                        <th>मुद्रण प्रकार</th>
+                                        <th>प्रिंट प्रकार</th>
                                         <th>बॅनर आकार</th>
+                                        <th>कृती </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,6 +59,7 @@
                                         <td>{{ $advertise?->department?->name }}</td>
                                         <td>{{ $advertise?->printType?->name }}</td>
                                         <td>{{ $advertise?->bannerSize?->size }}</td>
+                                        <td><button class="btn btn-praimary">पहा</button></td>
                                     </tr>
                                     @endforeach
 

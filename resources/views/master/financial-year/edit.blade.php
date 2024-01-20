@@ -47,7 +47,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="year">वर्ष <span class="error">*</span></label>
-                                    <input @if ($errors->has('year')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="year" id="year" type="number" placeholder="YYYY" min="1999" max="4020" value="{{ $financialYear->year }}" required>
+                                    <input @if ($errors->has('year')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="year" id="year" type="text" placeholder="वर्ष" value="{{ $financialYear->year }}" required>
                                     @error('year')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -55,8 +55,8 @@
 
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="sequence">क्रम <span class="error">*</span></label>
-                                    <input @if ($errors->has('sequence')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="sequence" id="sequence" type="number" placeholder="क्रम" value="{{ $financialYear->sequence }}" required>
+                                    <label class="form-label" for="sequence">क्रम</label>
+                                    <input @if ($errors->has('sequence')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="sequence" id="sequence" type="number" placeholder="क्रम" value="{{ $financialYear->sequence }}" >
                                     @error('sequence')
                                         <span class="error">{{ $message }}</span>
                                     @enderror

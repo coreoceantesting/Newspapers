@@ -26,7 +26,7 @@
                                 <h5 class="text-white mt-1">आर्थिक वर्षांची यादी</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('financial-year.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">आर्थिक वर्षांची जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('financial-year.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">आर्थिक वर्ष जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
