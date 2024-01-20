@@ -10,18 +10,22 @@ use App\Models\Advertise;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class SendMailController extends Controller
 {
     public function index(Request $request){
+        $advertise = Advertise::find($request->id);
+
+        if($advertise && $advertise->is_mail_send == "1"){
+            return redirect()->route('advertise.index');
+        }
+
         $newsPaperId = AdvertiseNewsPaper::where('advertise_id', $request->id)->pluck('news_paper_id');
 
         $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function($query) use($newsPaperId){
             $query->whereIn('news_paper_id', $newsPaperId);
         })->get();
-        // return $newsPapers;
-        $advertise = Advertise::find($request->id);
 
         return view('send-mail.index')->with([
             'newsPapers' => $newsPapers,
@@ -42,23 +46,29 @@ class SendMailController extends Controller
             }
         }
 
+        DB::table('advertises')->where('id', $request->id)->update([
+            'is_mail_send' => 1,
+            'email_subject' => $request->subject,
+            'email_description' => $request->description,
+        ]);
+
         return redirect()->route('advertise.index')->with('success', 'Mail send successfully');
 
     }
 
     public function cancelMail(Request $request){
-        $advertise = Advertise::find($request->id);
-        Log::info($advertise->generate_pdf_url);
-        if (Storage::exists($advertise->generate_pdf_url)){
-            Storage::delete($advertise->generate_pdf_url);
-        }
+        // $advertise = Advertise::find($request->id);
 
-        if (Storage::exists($advertise->image)){
-            Storage::delete($advertise->image);
-        }
+        // if (Storage::exists($advertise->generate_pdf_url)){
+        //     Storage::delete($advertise->generate_pdf_url);
+        // }
 
-        $advertise->delete();
+        // if (Storage::exists($advertise->image)){
+        //     Storage::delete($advertise->image);
+        // }
 
-        return redirect()->route('advertise.create')->with('success', 'Mail cancel successfully');
+        // $advertise->delete();
+
+        // return redirect()->route('advertise.create')->with('success', 'Mail cancel successfully');
     }
 }

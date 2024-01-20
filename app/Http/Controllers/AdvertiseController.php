@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 use App\Models\PublicationType;
-use App\Models\AdvertiseCost;
 use App\Models\Cost;
 use App\Models\NewsPaperType;
 use App\Models\Language;
@@ -130,7 +128,49 @@ class AdvertiseController extends Controller
     }
 
     public function edit($id){
+        $publicationTypes = PublicationType::latest()->get();
 
+        $costs = Cost::latest()->get();
+
+        $newsPaperTypes = NewsPaperType::latest()->get();
+
+        $languages = Language::latest()->get();
+
+        $departments = Department::latest()->get();
+
+        $printTypes = PrintType::latest()->get();
+
+        $bannerSizes = BannerSize::latest()->get();
+
+        $advertise = Advertise::with(['advertiseNewsPapers' => function($query){
+            $query->with(['newsPaper.newsPaperType', 'newsPaper.language']);
+        }])->where('id', $id)->first();
+
+        $jahorNividaNewsPaperTypeDatas = "";
+        $notJahorNividaNewsPaperTypeDatas = "";
+        if($advertise->cost_id && $advertise->cost_id != ""){
+            $JahorNividaNewsPaperTypeDatas = NewsPaperType::withWhereHas('advertiseCost', function($q) use($advertise){
+                $q->where('cost_id', $advertise->cost_id)
+                  ->with('language', function($lang){
+                        $lang->select('id', 'name')
+                             ->with('newsPapers');
+                  });
+            })->latest()->get();
+        }else{
+            $notJahorNividaNewsPaperTypeDatas =
+        }
+
+        return view('advertise.edit')->with([
+            'publicationTypes' => $publicationTypes,
+            'newsPaperTypes' => $newsPaperTypes,
+            'languages' => $languages,
+            'departments' => $departments,
+            'printTypes' => $printTypes,
+            'costs' => $costs,
+            'bannerSizes' => $bannerSizes,
+            'advertise' => $advertise,
+            'jahorNividaNewsPaperTypeDatas' => $jahorNividaNewsPaperTypeDatas
+        ]);
     }
 
 

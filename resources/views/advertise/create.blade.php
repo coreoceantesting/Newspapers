@@ -186,7 +186,7 @@
             $(document).ready(function(){
                 $('body').on('change', '#selectPublication', function(){
                     let publicationType = $(this).find('option:selected').text();
-                    if(publicationType  == "जाहिर निविदा"){
+                    if(publicationType  == "जाहिर निविदा" || publicationType  == "जाहीर निविदा"){
                         $('#checkjahirnivida').html('<input type="hidden" value="1" name="is_jahir_nivida"/>')
                         $('.jahirNivida').removeClass('d-none')
                         $('.notJahirNivida').addClass('d-none')

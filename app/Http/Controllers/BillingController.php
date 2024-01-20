@@ -24,11 +24,8 @@ class BillingController extends Controller
     public function create(Request $request){
         $departments = Department::latest()->get();
 
-        $workOrderNumbers = Advertise::select('id', 'work_order_number')->latest()->distinct()->get('work_order_number');
-
         return view('billing.create')->with([
-            'departments' => $departments,
-            'workOrderNumbers' => $workOrderNumbers
+            'departments' => $departments
         ]);
     }
 
