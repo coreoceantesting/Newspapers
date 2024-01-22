@@ -11,13 +11,10 @@ use App\Http\Requests\ExpandatureRequest;
 class ExpandetureController extends Controller
 {
     public function index(){
-
-        $bills = Billing::whereHas('expandature', function($q){
-            $q->where('id', '!=', 'expandature.billing_id');
-        })->get();
+        $expandatures = Expandeture::with(['billing', 'newsPaper'])->get();
 
         return view('expandeture.index')->with([
-            'bills' => $bills
+            'expandatures' => $expandatures
         ]);
     }
 
