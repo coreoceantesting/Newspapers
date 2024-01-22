@@ -31,4 +31,17 @@ class ExpandatureRequest extends FormRequest
             'balance' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'billing_id.required' => 'कृपया बिल निवडा',
+            'news_paper_id.required' => 'कृपया वर्तमानपत्र निवडा',
+            'invoice_amount.required' => 'कृपया invoice number प्रविष्ट करा',
+            'other_charges.required' => 'कृपया other charges प्रविष्ट करा',
+            'net_amount.required' => 'कृपया net amount प्रविष्ट करा',
+            'progressive_expandetures.required' => 'कृपया progressive expandetures प्रविष्ट करा',
+            'balance.required' => 'कृपया balance amount प्रविष्ट करा',
+        ];
+    }
 }

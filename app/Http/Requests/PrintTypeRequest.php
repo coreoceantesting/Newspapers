@@ -25,4 +25,11 @@ class PrintTypeRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया प्रिंट प्रकार प्रविष्ट करा',
+        ];
+    }
 }

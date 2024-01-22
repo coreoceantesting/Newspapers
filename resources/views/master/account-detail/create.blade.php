@@ -40,7 +40,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="bank">बँक <span class="error">*</span></label>
-                                    <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" placeholder="बँक" value="{{ old('bank') }}">
+                                    <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" required placeholder="बँक" value="{{ old('bank') }}">
                                     @error('bank')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -48,7 +48,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="branch">शाखा <span class="error">*</span></label>
-                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" type="text" placeholder="शाखा" value="{{ old('branch') }}">
+                                    <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" required type="text" placeholder="शाखा" value="{{ old('branch') }}">
                                     @error('branch')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -56,7 +56,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="account_number">खाते क्रमांक <span class="error">*</span></label>
-                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" type="text" placeholder="खाते क्रमांक" value="{{ old('account_number') }}">
+                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" required id="account_number" type="text" placeholder="खाते क्रमांक" value="{{ old('account_number') }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -64,7 +64,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="ifsc_code">IFSC कोड <span class="error">*</span></label>
-                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="ifsc_code" id="ifsc_code" type="text" placeholder="IFSC कोड" value="{{ old('ifsc_code') }}">
+                                    <input @if ($errors->has('ifsc_code')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="ifsc_code" required id="ifsc_code" type="text" placeholder="IFSC कोड" value="{{ old('ifsc_code') }}">
                                     @error('ifsc_code')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -72,7 +72,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="pan_card">पॅन कार्ड <span class="error">*</span></label>
-                                    <input maxlength="10" @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="पॅन कार्ड" value="{{ old('pan_card') }}">
+                                    <input maxlength="10" @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" required  name="pan_card" id="pan_card" type="text" placeholder="पॅन कार्ड" value="{{ old('pan_card') }}">
                                     @error('pan_card')
                                         <span class="error">{{ $message }}</span>
                                     @enderror

@@ -25,4 +25,11 @@ class SignatureRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया स्वाक्षरी निवडा',
+        ];
+    }
 }

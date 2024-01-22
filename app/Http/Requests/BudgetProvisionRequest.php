@@ -27,4 +27,13 @@ class BudgetProvisionRequest extends FormRequest
             'budget' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'financial_year_id.required' => 'कृपया आर्थिक वर्ष निवडा',
+            'department_id.required' => 'कृपया विभाग निवडा',
+            'budget.required' => 'कृपया बजेट प्रविष्ट करा',
+        ];
+    }
 }

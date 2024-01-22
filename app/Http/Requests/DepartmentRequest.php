@@ -26,4 +26,12 @@ class DepartmentRequest extends FormRequest
             'initial' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया नाव प्रविष्ट करा',
+            'initial.required' => 'कृपया प्रारंभिक प्रविष्ट करा',
+        ];
+    }
 }

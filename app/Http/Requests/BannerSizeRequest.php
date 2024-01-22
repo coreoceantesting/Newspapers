@@ -25,4 +25,11 @@ class BannerSizeRequest extends FormRequest
             'size' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'size.required' => 'कृपया आकार प्रविष्ट करा',
+        ];
+    }
 }

@@ -24,8 +24,12 @@ class LanguageRequest extends FormRequest
         return [
             'name' => 'required',
         ];
-        // [
-        //     'name.required' => __('वृत्तपत्र भाषा आवश्यक आहे'),
-        // ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया भाषा प्रविष्ट करा',
+        ];
     }
 }

@@ -25,4 +25,11 @@ class CostRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया किंमत प्रविष्ट करा',
+        ];
+    }
 }

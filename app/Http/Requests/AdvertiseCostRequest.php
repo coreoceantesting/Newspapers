@@ -28,4 +28,15 @@ class AdvertiseCostRequest extends FormRequest
             'cost_id' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'news_paper_id.required' => 'कृपया वर्तमानपत्र निवडा',
+            'language_id.required' => 'कृपया भाषा निवडा',
+            'no_of_newspaper.required' => 'कृपया वर्तमानपत्र क्रमांक प्रविष्ट करा',
+            'no_of_newspaper.numeric' => 'कृपया अंकीय मूल्य प्रविष्ट करा',
+            'cost_id.required' => 'कृपया किंमत निवडा',
+        ];
+    }
 }

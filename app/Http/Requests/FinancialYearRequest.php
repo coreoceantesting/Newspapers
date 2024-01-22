@@ -27,4 +27,13 @@ class FinancialYearRequest extends FormRequest
             'to_date' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'year.required' => 'कृपया वर्ष प्रविष्ट करा',
+            'from_date.required' => 'कृपया तारखेपासून निवडा',
+            'to_date.required' => 'कृपया आजपर्यंत निवडा',
+        ];
+    }
 }

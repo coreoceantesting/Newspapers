@@ -25,4 +25,11 @@ class PublicationTypeRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया पब्लिकेशन प्रकार प्रविष्ट करा',
+        ];
+    }
 }

@@ -47,7 +47,14 @@ class AccountDetailRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'news_paper_id.required' => 'कृपया वर्तमानपत्र निवडा',
+            'bank.required' => 'कृपया बँकेचे नाव प्रविष्ट करा',
+            'branch.required' => 'कृपया शाखा प्रविष्ट करा',
+            'account_number.required' => 'कृपया खाते क्रमांक प्रविष्ट करा',
+            'account_number.unique' => 'खाते क्रमांक मला अद्वितीय असावा',
+            'ifsc_code.required' => 'कृपया IFSC कोड प्रविष्ट करा',
+            'pan_card.required' => 'कृपया पॅन कार्ड प्रविष्ट करा',
+            'gst_no.required' => 'कृपया GST क्रमांक प्रविष्ट करा',
         ];
     }
 }

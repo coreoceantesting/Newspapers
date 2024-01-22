@@ -25,4 +25,11 @@ class NewsPaperTypeRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'कृपया प्रसिध्दीचा स्तर प्रविष्ट करा',
+        ];
+    }
 }
