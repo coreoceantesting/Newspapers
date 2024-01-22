@@ -22,8 +22,9 @@
         <div class="select2-drpdwn">
             <div class="row">
                 <div class="col-sm-12">
-                    <form action="{{ route('advertise.store') }}" id="saveAdvertiseForm" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('advertise.update') }}" id="saveAdvertiseForm" enctype="multipart/form-data" method="post">
                         @csrf
+                        <input type="hidden" name="id" value="{{ $advertise->id }}">
                         <div class="card">
                             <div class="card-header border-bottom pb-2 bg-primary">
                                 <h5 class="text-white item-center mb-2">जाहिरात जोडा</h5>
@@ -56,10 +57,13 @@
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida @if($isJahirNivida != "0") d-none @endif">
                                         <label class="form-label" for="not_jahir_news_paper_type_id">वर्तमानपत्र प्रकार निवडा <span class="error">*</span></label>
                                         <select name="not_jahir_news_paper_type_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectNewsPaperType"  multiple="multiple">
-                                            @foreach($advertise->advertiseNewsPapers as $newsPaperLang)
+
                                             @foreach ( $newsPaperTypes as $newsPaperType )
-                                                <option @if( $newsPaperLang->newsPaper->newsPaperType->id == $newsPaperType->id )selected @endif value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
-                                            @endforeach
+                                                <option
+                                                @foreach($advertise->advertiseNewsPapers as $newsPaperLang)
+                                                @if( $newsPaperLang->newsPaper->newsPaperType->id == $newsPaperType->id )selected @endif
+                                                @endforeach
+                                                value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('not_jahir_news_paper_type_id')
@@ -70,10 +74,13 @@
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida @if($isJahirNivida != "0") d-none @endif">
                                         <label class="form-label" for="not_jahir_language_id">वर्तमानपत्राची भाषा निवडा <span class="error">*</span></label>
                                         <select name="not_jahir_language_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectLanguage" multiple="multiple">
-                                            @foreach($advertise->advertiseNewsPapers as $newsPaperLang)
+
                                             @foreach ( $languages as $language )
-                                                <option @if( $newsPaperLang->newsPaper->language->id == $language->id )selected @endif value="{{ $language->id }}">{{ $language->name }}</option>
-                                            @endforeach
+                                                <option
+                                                @foreach($advertise->advertiseNewsPapers as $newsPaperLang)
+                                                @if( $newsPaperLang->newsPaper->language->id == $language->id )selected @endif
+                                                @endforeach
+                                                value="{{ $language->id }}">{{ $language->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('not_jahir_language_id')
@@ -82,16 +89,42 @@
                                     </div>
 
 
-                                    <div class="notJahirNivida selectNewsPaperOption d-none row" id="addNotJahirNivida">
+                                    <div class="notJahirNivida selectNewsPaperOption @if($isJahirNivida != "0")d-none @endif row" id="addNotJahirNivida">
+                                        @if($isJahirNivida == "0")
+                                        @foreach($notJahorNividaNewsPaperTypeDatas as $notJahorNividaNewsPaperTypeData)
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="mb-2">
+                                                    <div class="col-form-label">{{ $notJahorNividaNewsPaperTypeData['name'] }} वर्तमानपत्र निवडा</div>
+                                                    <select multiple="" class="js-example-basic-single col-12" required name="not_jahir_news_paper_id[]">
 
+                                                    @foreach($notJahorNividaNewsPaperTypeData['language'] as $language)
+
+                                                        <optgroup label="{{ $language->name }}">
+                                                            @foreach($language->newsPapers as $newsPapers)
+
+                                                                <option
+                                                                @foreach($advertise->advertiseNewsPapers as $newsPaper)
+                                                                @if($newsPaper->newsPaper->id == $newsPapers->id)selected @endif
+                                                                @endforeach
+
+                                                                value="{{ $newsPapers->id }}"> {{ $newsPapers->name }} </option>
+                                                            @endforeach
+                                                        </optgroup>
+                                                    @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                        @endif
                                       </div>
                                     {{-- end of not part of jahir nivida  --}}
 
 
                                     {{-- start jahirNivida --}}
-                                    <div class="col-md-6 col-lg-6 col-12 jahirNivida @if($isJahirNivida == "0") d-none @endif">
+                                    <div class="col-md-6 col-lg-6 col-12 jahirNivida @if($isJahirNivida != "1") d-none @endif">
                                         <label class="form-label" for="cost_id">कामाची किंमत निवडा <span class="error">*</span></label>
-                                        <select name="cost_id" id="selectCosts" required class="form-select">
+                                        <select name="cost_id" id="selectCosts" @if($isJahirNivida == "1") required @endif class="form-select">
                                             <option value="">कामाची किंमत निवडा</option>
                                             @foreach ( $costs as $cost )
                                                 <option @if( $advertise->cost_id == $cost->id )selected @endif value="{{ $cost->id }}">{{ $cost->name }}</option>
@@ -102,7 +135,37 @@
                                         @enderror
                                     </div>
                                     <div id="checkjahirnivida"></div>
-                                    <div id="addJahirNivida" class="row jahirNivida"></div>
+                                    <div id="addJahirNivida" class="row jahirNivida @if($isJahirNivida != "1")d-none @endif">
+                                        @if($isJahirNivida == "1")
+                                        <input type="hidden" value="1" name="is_jahir_nivida"/>
+                                        @foreach($jahorNividaNewsPaperTypeDatas as $jahorNividaNewsPaperTypeData)
+                                        <div class="col-md-6 col-lg-6">
+                                            <div class="mb-2">
+                                                <div class="col-form-label">{{ $jahorNividaNewsPaperTypeData->name }} वर्तमानपत्र निवडा</div>
+                                                <select multiple="" class="js-example-basic-single col-12 selectOptionNewspaper" required name="jahir_news_paper_type_id[]" tabindex="-1" aria-hidden="true">`;
+
+                                                @foreach($jahorNividaNewsPaperTypeData->advertiseCost as $advertiseCost)
+
+                                                    <optgroup class="selectOptgroupNewspaper" label="{{ $advertiseCost->language->name }}" data-selectcount="{{ $advertiseCost->no_of_newspaper }}" data-state="{{ $jahorNividaNewsPaperTypeData->name }}">
+
+                                                    @foreach($advertiseCost->language->newsPapers as $language)
+                                                    <option
+                                                        @foreach($advertise->advertiseNewsPapers as $newsPaper)
+                                                        @if($newsPaper->newsPaper->id == $language->id)selected @endif
+                                                        @endforeach
+                                                        value="{{ $language->id }}">{{ $language->name }}</option>;
+                                                    @endforeach
+
+
+                                                    </optgroup>;
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @endif
+
+                                    </div>
                                     {{-- end of jahirNivida --}}
 
 
@@ -368,18 +431,19 @@
                 // ajax to check work order is duplicate or not
                 $('body').on('blur', '#work_order_number', function(){
                     let workOrderNumber = $(this).val();
+                    let id = "{{ Request()->id }}";
                     if(workOrderNumber != ""){
                         $.ajax({
                             url: "{{ route('check-duplicate-work-order-number') }}",
                             type: "get",
-                            data: {workOrderNumber : workOrderNumber},
+                            data: {workOrderNumber : workOrderNumber, id : id},
                             beforeSend: function()
                             {
                                 $('.ajax-loader').removeClass('d-none');
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    $('#work_order_number_error').html(`Work Order Number ${response.data} Already Created`)
+                                    $('#work_order_number_error').html(`Work Order Number ${response.data} Already Assigned`)
                                     $('#work_order_number_success').html('')
                                     $('#work_order_number').val('')
                                     $('#submitForm').prop('disabled', true)

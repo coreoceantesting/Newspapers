@@ -59,6 +59,7 @@
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                     <div class="text-danger" id="bill_number_error"></div>
+                                    <div class="text-success" id="bill_number_success"></div>
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
@@ -305,10 +306,12 @@
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    $('#bill_number_error').html(`Bill Number ${response.data} Already Assigned`)
+                                    $('#bill_number_error').html(`बिल क्रमांक ${response.data} Already Assigned`)
+                                    $('#bill_number_success').html('')
                                     $('#bill_number').val('')
                                     $('#submitForm').prop('disabled', true)
                                 }else{
+                                    $('#bill_number_success').html(`बिल क्रमांक ${billNumber} Available.`);
                                     $('#bill_number_error').html('')
                                     $('#submitForm').prop('disabled', false)
                                 }

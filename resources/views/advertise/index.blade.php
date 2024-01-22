@@ -61,12 +61,20 @@
                                         <td>{{ $advertise?->bannerSize?->size }}</td>
                                         <td>
                                             <ul class="action">
+                                                @if($advertise->is_mail_send == '0')
                                                 <li class="edit">
-                                                    <a href="#"><button class="btn btn-square btn-primary" type="button">पहा
+                                                    <a href="{{ route('advertise.edit', $advertise->id) }}"><button class="btn btn-square btn-warning" type="button">सुधारणे
                                                     </button></a>
                                                 </li>
+                                                @endif
+                                                @if($advertise->is_mail_send == '0')
                                                 <li class="edit">
-                                                    <a href="#"><button class="btn btn-square btn-primary" type="button">पहा
+                                                    <a href="{{ route('send-mail.index', $advertise->id) }}"><button class="btn btn-square btn-info" type="button">मेल पाठवा
+                                                    </button></a>
+                                                </li>
+                                                @endif
+                                                <li class="edit">
+                                                    <a href="{{ route('advertise.preview', $advertise->id) }}"><button class="btn btn-square btn-primary" type="button">पहा
                                                     </button></a>
                                                 </li>
                                             </ul>

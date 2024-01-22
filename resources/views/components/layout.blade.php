@@ -63,6 +63,12 @@
             background-color: #6781d8;
             border-left: 3px solid #ffce00 !important;
         }
+        .activeSubUrl {
+            color: #e6b549!important;
+        }
+        .activeSubUrl:after {
+            border: 1px solid #e6b549;
+        }
     </style>
     @stack('styles')
 </head>

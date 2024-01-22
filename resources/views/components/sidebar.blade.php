@@ -33,20 +33,46 @@
                             @endphp
                             <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="airplay"></i><span >मास्टर</span></a>
                                 <ul class="sidebar-submenu">
-                                    <li><a href="{{ route('department.index') }}">विभाग</a></li>
-                                    <li><a href="{{ route('language.index') }}">भाषा</a></li>
-                                    <li><a href="{{ route('news-paper-type.index') }}">प्रसिध्दीचा स्तर</a></li>
-                                    <li><a href="{{ route('news-paper.index') }}">वर्तमानपत्र</a></li>
-                                    <li><a href="{{ route('publication-type.index') }}">पब्लिकेशन प्रकार</a></li>
-                                    <li><a href="{{ route('cost.index') }}">कामाची किंमत</a></li>
-                                    <li><a href="{{ route('advertise-cost.index') }}">जाहिरात खर्च</a></li>
-                                    <li><a href="{{ route('financial-year.index') }}">आर्थिक वर्ष</a></li>
-                                    <li><a href="{{ route('banner-size.index') }}">बॅनर आकार</a></li>
-                                    <li><a href="{{ route('print-type.index') }}">प्रिंट प्रकार</a></li>
-                                    <li><a href="{{ route('budget-provision.index') }}">बजेट तरतूद</a></li>
-                                    <li><a href="{{ route('signature.index') }}">स्वाक्षरी</a></li>
-                                    <li><a href="{{ route('account-details.index') }}">
-                                        खाते तपशील</a></li>
+                                    <li>
+                                        <a @if(Request::is('department') || Request::is('department/*'))class="activeSubUrl" @endif href="{{ route('department.index') }}">विभाग</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('language') || Request::is('language/*'))class="activeSubUrl" @endif href="{{ route('language.index') }}">भाषा</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('news-paper-type') || Request::is('news-paper-type/*'))class="activeSubUrl" @endif href="{{ route('news-paper-type.index') }}">प्रसिध्दीचा स्तर</a>
+                                    </li>
+                                    <li>    
+                                        <a @if(Request::is('news-paper') || Request::is('news-paper/*'))class="activeSubUrl" @endif href="{{ route('news-paper.index') }}">वर्तमानपत्र</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('publication-type') || Request::is('publication-type/*'))class="activeSubUrl" @endif href="{{ route('publication-type.index') }}">पब्लिकेशन प्रकार</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('cost') || Request::is('cost/*'))class="activeSubUrl" @endif href="{{ route('cost.index') }}">कामाची किंमत</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('advertise-cost') || Request::is('advertise-cost/*'))class="activeSubUrl" @endif href="{{ route('advertise-cost.index') }}">जाहिरात खर्च</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('financial-year') || Request::is('financial-year/*'))class="activeSubUrl" @endif href="{{ route('financial-year.index') }}">आर्थिक वर्ष</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('banner-size') || Request::is('banner-size/*'))class="activeSubUrl" @endif href="{{ route('banner-size.index') }}">बॅनर आकार</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('print-type') || Request::is('print-type/*'))class="activeSubUrl" @endif href="{{ route('print-type.index') }}">प्रिंट प्रकार</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('budget-provision') || Request::is('budget-provision/*'))class="activeSubUrl" @endif href="{{ route('budget-provision.index') }}">बजेट तरतूद</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('signature') || Request::is('signature/*'))class="activeSubUrl" @endif href="{{ route('signature.index') }}">स्वाक्षरी</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('account-details') || Request::is('account-details/*'))class="activeSubUrl" @endif href="{{ route('account-details.index') }}">
+                                        खाते तपशील</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="sidebar-list">
@@ -65,6 +91,12 @@
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('report'))activeUrl @endif" href="{{ route('report.index') }}">
                                     <i data-feather="alert-circle"> </i>
                                     <span>अहवाल</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-list">
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture.*'))activeUrl @endif" href="{{ route('expandeture.index') }}">
+                                    <i data-feather="alert-circle"> </i>
+                                    <span>अहवाल खर्च</span>
                                 </a>
                             </li>
                         </ul>

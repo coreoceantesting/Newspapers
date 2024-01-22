@@ -50,27 +50,12 @@
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
                         <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">मेल पाठवा</button>
-                        <button class="btn btn-dark" id="cancelBtn" type="button">रद्द करा</button>
+                        <a href="{{ route('advertise.edit', Request()->id) }}" class="btn btn-dark">रद्द करा</a>
 
-                    </form>
-                    <form id="cancelMail" action="{{ route('mail.cancel') }}" method="POST" class="d-none">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ Request()->id }}">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    @push('scripts')
-    <script>
-        $('body').on('click', '#cancelBtn', function(event){
-            var result = confirm("Are you sure you want to cancel this advertise");
-            if (result) {
-                event.preventDefault();
-                document.getElementById('cancelMail').submit();
-            }
-        })
-    </script>
-    @endpush
 </x-layout>

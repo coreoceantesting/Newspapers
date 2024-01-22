@@ -19,7 +19,7 @@
                 <form action="{{ route('billing.update', $billing->id) }}" method="post">
                     @csrf
                     @method('put')
-                    <input type="hidden" name="id" value="{{ $billing->id }}">
+                    <input type="hidden" name="id" id="billingId" value="{{ $billing->id }}">
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
                             <h5 class="text-white item-center mb-2">बिल संपादित करा</h5>
@@ -105,6 +105,7 @@
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                     <div class="text-danger" id="bill_number_error"></div>
+                                    <div class="text-success" id="bill_number_success"></div>
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
@@ -336,22 +337,24 @@
                 // ajax to check बिल क्रमांक is duplicate or not
                 $('body').on('blur', '#bill_number', function(){
                     let billNumber = $(this).val();
+                    let id = $('#billingId').val();
                     if(billNumber != ""){
                         $.ajax({
                             url: "{{ route('check-duplicate-bill-number') }}",
                             type: "get",
-                            data: {billNumber : billNumber},
+                            data: {billNumber : billNumber, id : id},
                             beforeSend: function()
                             {
                                 $('.ajax-loader').removeClass('d-none');
                             },
                             success: function(response){
-                                console.log(response)
                                 if(response.status === 200){
                                     $('#bill_number_error').html(`बिल क्रमांक ${response.data} Already Assigned`)
+                                    $('#bill_number_success').html('')
                                     $('#bill_number').val('')
                                     $('#submitForm').prop('disabled', true)
                                 }else{
+                                    $('#bill_number_success').html(`बिल क्रमांक ${billNumber} Available.`);
                                     $('#bill_number_error').html('')
                                     $('#submitForm').prop('disabled', false)
                                 }

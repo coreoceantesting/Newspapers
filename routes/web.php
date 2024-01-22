@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::get('advertise/create', [AdvertiseController::class, 'create'])->name('advertise.create');
     Route::post('advertise/store', [AdvertiseController::class, 'store'])->name('advertise.store');
     Route::get('advertise/{id}/edit', [AdvertiseController::class, 'edit'])->name('advertise.edit');
+    Route::post('advertise/update', [AdvertiseController::class, 'update'])->name('advertise.update');
+    Route::get('advertise/preview/{id}', [AdvertiseController::class, 'preview'])->name('advertise.preview');
     Route::get('advertise/mail/{id}', [SendMailController::class, 'index'])->name('send-mail.index');
     Route::post('advertise/send-mail', [SendMailController::class, 'sendEmail'])->name('send-mail.send');
     Route::post('advertise/mail/cancel', [SendMailController::class, 'cancelMail'])->name('mail.cancel');
