@@ -24,8 +24,7 @@ class FinancialYearRequest extends FormRequest
         return [
             'year' => 'required',
             'from_date' => 'required',
-            'to_date' => 'required',
-            'sequence' => 'required'
+            'to_date' => 'required'
         ];
     }
 }

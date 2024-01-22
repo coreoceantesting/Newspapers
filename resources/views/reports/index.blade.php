@@ -28,7 +28,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">अहवाल</li>
+                        <li class="breadcrumb-item">अहवाल</li>
+                        <li class="breadcrumb-item active">बिल अहवाल</li>
                     </ol>
                 </div>
             </div>
@@ -60,6 +61,11 @@
                                     <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर क्रमांक निवडा</label>
                                     <select name="work_order_number" id="selectWorkOrderNumber" class="form-select">
                                         <option value="">वर्क ऑर्डर क्रमांक निवडा</option>
+                                        @if($workOrderNumbers != "")
+                                            @foreach($workOrderNumbers as $workOrderNumber)
+                                            <option @if($workOrderNumber->id == Request()->work_order_number)selected @endif value="{{ $workOrderNumber->id }}">{{ $workOrderNumber->work_order_number }}</option>
+                                            @endforeach
+                                        @endif
 
                                     </select>
                                 </div>
@@ -68,7 +74,11 @@
                                     <label class="form-label" for="selectNewsPaper">वर्तमानपत्र निवडा</label>
                                     <select name="news_paper" id="selectNewsPaper" class="form-select">
                                         <option value="">वर्तमानपत्र निवडा</option>
-
+                                        @if($workOrderNumbers != "")
+                                            @foreach($newsPapers as $newsPaper)
+                                            <option @if($newsPaper?->newsPaper?->id == Request()->news_paper)selected @endif value="{{ $newsPaper?->newsPaper?->id }}">{{ $newsPaper?->newsPaper?->name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-12">
@@ -154,10 +164,10 @@
                         getWorkOrderNumber(department)
                     }
                 });
-                let departmentId = "{{ Request()->department }}";
-                if(departmentId != ""){
-                    getWorkOrderNumber(departmentId)
-                }
+                // let departmentId = "{{ Request()->department }}";
+                // if(departmentId != ""){
+                //     getWorkOrderNumber(departmentId)
+                // }
                 function getWorkOrderNumber(department){
                     $.ajax({
                         url: "{{ route('get-work-order-by-department') }}",

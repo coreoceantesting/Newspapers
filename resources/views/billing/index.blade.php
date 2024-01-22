@@ -60,6 +60,7 @@
                                         <td>{{ $bill?->accountDetails?->account_number }}</td>
                                         <td>{{ $bill?->accountDetails?->ifsc_code }}</td>
                                         <td>
+                                            @if($bill->is_expandeture_created == "0")
                                             <ul class="action">
                                                 <li class="edit">
                                                     <a href="{{ route('billing.edit', $bill->id) }}"><button class="btn btn-square btn-primary" type="button"><i class="fa fa-pencil text-white" aria-hidden="true"></i>
@@ -76,6 +77,9 @@
                                                     </form>
                                                 </li>
                                             </ul>
+                                            @else
+                                            -
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

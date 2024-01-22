@@ -58,11 +58,16 @@ class BillingController extends Controller
     }
 
     public function edit($id){
+        $billing = Billing::with(['accountDetails'])->where('id', $id)->first();
+
+        if($billing->is_expandeture_created == "1"){
+            return redirect()->route('billing.index');
+        }
+
         $departments = Department::latest()->get();
 
         $workOrderNumbers = Advertise::select('id', 'work_order_number')->latest()->distinct()->get('work_order_number');
 
-        $billing = Billing::with(['accountDetails'])->where('id', $id)->first();
 
         $advertise = Advertise::with(['publicationType', 'printType', 'bannerSize'])->where('id', $billing->advertise_id)->latest()->first();
 

@@ -42,7 +42,7 @@
                                     <li>
                                         <a @if(Request::is('news-paper-type') || Request::is('news-paper-type/*'))class="activeSubUrl" @endif href="{{ route('news-paper-type.index') }}">प्रसिध्दीचा स्तर</a>
                                     </li>
-                                    <li>    
+                                    <li>
                                         <a @if(Request::is('news-paper') || Request::is('news-paper/*'))class="activeSubUrl" @endif href="{{ route('news-paper.index') }}">वर्तमानपत्र</a>
                                     </li>
                                     <li>
@@ -87,17 +87,29 @@
                                     <span>बिल</span>
                                 </a>
                             </li>
+
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('report'))activeUrl @endif" href="{{ route('report.index') }}">
-                                    <i data-feather="alert-circle"> </i>
-                                    <span>अहवाल</span>
+                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture') || Request::is('expandeture.*'))activeUrl @endif" href="{{ route('expandeture.index') }}">
+                                    <i data-feather="dollar-sign"> </i>
+                                    <span>खर्च</span>
                                 </a>
                             </li>
-                            <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture.*'))activeUrl @endif" href="{{ route('expandeture.index') }}">
-                                    <i data-feather="alert-circle"> </i>
-                                    <span>अहवाल खर्च</span>
-                                </a>
+
+                            @php
+                            $active = "";
+                            if(Request::is('report') || Request::is('report/expandeture')){
+                                $active = "activeUrl";
+                            }
+                            @endphp
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="alert-circle"></i><span >अहवाल</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li>
+                                        <a @if(Request::is('report'))class="activeSubUrl" @endif href="{{ route('report.index') }}">बिल अहवाल</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('report/expandeture'))class="activeSubUrl" @endif href="{{ route('report.expandeture') }}">खर्च अहवाल</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

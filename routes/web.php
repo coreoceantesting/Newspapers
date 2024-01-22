@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     // end of ajax route
 
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');
+    Route::get('/report/expandeture', [ReportController::class, 'expandature'])->name('report.expandeture');
+    Route::get('/report/expandeture/pdf', [ReportController::class, 'expandaturePdf'])->name('report.expandeture.pdf');
 
     Route::resource('expandeture', ExpandetureController::class);
 });

@@ -9,6 +9,9 @@ use App\Models\NewsPaperType;
 use App\Models\Language;
 use App\Models\Advertise;
 use App\Models\AccountDetail;
+use App\Models\FinancialYear;
+use App\Models\Expandeture;
+use App\Models\BudgetProvision;
 
 class AjaxController extends Controller
 {
@@ -160,11 +163,47 @@ class AjaxController extends Controller
     // function to get billing details for expandature
     public function getBillingDetailsForExpandature(Request $request){
         if($request->ajax()){
-            $billingDetail = Billing::with(['newsPaper'])->where('id', $request->bill)->first();
+            $bill = Billing::with(['newsPaper'])->where('id', $request->bill)->first();
+
+            $financialYear = FinancialYear::where('is_active', 1)->first();
+
+            $expendature = Expandeture::where('created_at', '>=', $financialYear->from_date)
+                         ->where('created_at', '<=', $financialYear->to_date)
+                         ->latest()
+                         ->first();
+
+            if($expendature){
+                $newsPaperId = $bill?->newsPaper?->id;
+                $newsPaperName = $bill?->newsPaper?->name;
+                $invoiceAmount = $bill->net_amount;
+                $otherCharges = $bill->tds + $bill->it;
+                $netAmount = $invoiceAmount - $otherCharges;
+                $prograssiveExpendature = $invoiceAmount + $expendature->progressive_expandetures;
+                $balance = $expendature->balance - $invoiceAmount;
+            }else{
+                $budget = BudgetProvision::where('financial_year_id', $financialYear->id)->value('budget');
+                $newsPaperId = $bill?->newsPaper?->id;
+                $newsPaperName = $bill?->newsPaper?->name;
+                $invoiceAmount = $bill->net_amount;
+                $otherCharges = $bill->tds + $bill->it;
+                $netAmount = $invoiceAmount - $otherCharges;
+                $prograssiveExpendature = $invoiceAmount;
+                $balance = $budget - $invoiceAmount;
+            }
+
+            $data = [
+                'newsPaperId' => $newsPaperId,
+                'newsPaperName' => $newsPaperName,
+                'invoiceAmount' => round($invoiceAmount, 2),
+                'otherCharges' => round($otherCharges, 2),
+                'netAmount' => round($netAmount, 2),
+                'prograssiveExpendature' => round($prograssiveExpendature, 2),
+                'balance' => round($balance, 2)
+            ];
 
             return response()->json([
                 'status' => 200,
-                'data' => $billingDetail
+                'data' => $data,
             ]);
         }
     }

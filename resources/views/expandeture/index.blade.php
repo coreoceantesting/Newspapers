@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">Expandature</li>
+                        <li class="breadcrumb-item active">खर्चाची यादी</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">List Expandature</h5>
+                                <h5 class="text-white mt-1">खर्चाची यादी</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('expandeture.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Expandature <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('expandeture.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">खर्च जोडा <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -37,21 +37,23 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Sr No.</th>
-                                        <th>Bill No</th>
-                                        <th>News Paper</th>
-                                        <th>Invoice Amount</th>
-                                        <th>Balance</th>
+                                        <th>अ.क्र.</th>
+                                        <th>युनिक क्र</th>
+                                        <th>बिल क्र</th>
+                                        <th>वर्तमानपत्र नाव</th>
+                                        <th>देयाकावारची रक्कम</th>
+                                        <th>शिल्लक</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ( $expandatures as $expandature )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $expandature->unique_no }}</td>
                                         <td>{{ $expandature?->billing?->bill_number }}</td>
                                         <td>{{ $expandature?->newsPaper?->name }}</td>
-                                        <td>{{ $expandature->invoice_amount }}</td>
-                                        <td>{{ $expandature->balance }}</td>
+                                        <td>{{ round($expandature->invoice_amount, 2) }}</td>
+                                        <td>{{ round($expandature->balance, 2) }}</td>
                                     </tr>
                                     @endforeach
 
