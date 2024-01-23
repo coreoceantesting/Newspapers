@@ -8,7 +8,7 @@
 
     <link rel="icon" href="{{ asset('assets/images/favicon/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/favicon.png') }}" type="image/x-icon">
-    <title>News Paper Advertisement</title>
+    <title>News Paper Advertisement | Logo</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="login-main">
                             <a class="logo" href="{{ route('admin.login') }}">
-                                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="loginpage">
+                                <img class="img-fluid for-light w-50" src="{{ asset('assets/images/logo/login.png') }}" alt="loginpage">
                             </a>
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
