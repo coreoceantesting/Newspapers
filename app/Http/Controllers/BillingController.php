@@ -66,12 +66,12 @@ class BillingController extends Controller
 
         $departments = Department::latest()->get();
 
-        $workOrderNumbers = Advertise::select('id', 'work_order_number')->where('is_mail_send', 1)->latest()->distinct()->get('work_order_number');
+        $workOrderNumbers = Advertise::select('id', 'work_order_number')->where('is_mail_send', 1)->latest()->get();
 
 
         $advertise = Advertise::with(['publicationType', 'printType', 'bannerSize'])->where('id', $billing->advertise_id)->latest()->first();
 
-        $workOrderNumbers = Advertise::where('department_id', $billing->department_id)->select('id', 'work_order_number')->latest()->distinct()->get();
+        $workOrderNumbers = Advertise::where('department_id', $billing->department_id)->select('id', 'work_order_number')->latest()->get();
 
         $accountDetails = AccountDetail::where('news_paper_id', $billing->news_paper_id)->get();
 

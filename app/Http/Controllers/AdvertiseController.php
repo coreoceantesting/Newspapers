@@ -28,9 +28,19 @@ class AdvertiseController extends Controller
     {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
-        ])->latest()->get();
+        ])->where('is_mail_send', 0)->latest()->get();
 
         return view('advertise.index')->with([
+            'advertises' => $advertises
+        ]);
+    }
+
+    public function sendMail(){
+        $advertises = Advertise::with([
+            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+        ])->where('is_mail_send', 1)->latest()->get();
+
+        return view('advertise.send-mail')->with([
             'advertises' => $advertises
         ]);
     }

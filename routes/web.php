@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::post('advertise/send-mail', [SendMailController::class, 'sendEmail'])->name('send-mail.send');
     Route::post('advertise/mail/cancel', [SendMailController::class, 'cancelMail'])->name('mail.cancel');
     Route::get('advertise/pdf', [AdvertiseController::class, 'generatePdf'])->name('advertise.pdf');
-    // Route::get('advertise/pdf/{id}', [AdvertiseController::class, 'pdf'])->name('advertise.gpdf');
+    Route::get('advertise/send-mail', [AdvertiseController::class, 'sendMail'])->name('advertise.sendMail');
     // end of route for advertise
 
 

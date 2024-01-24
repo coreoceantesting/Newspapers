@@ -75,12 +75,32 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="sidebar-list">
+                            {{-- <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('advertise') || Request::is('advertise/*'))activeUrl @endif" href="{{ route('advertise.index') }}">
                                     <i data-feather="feather"> </i>
                                     <span>जाहिरात करा</span>
                                 </a>
+                            </li> --}}
+
+
+                            @php
+                            $active = "";
+                            if(Request::is('advertise') || Request::is('advertise/*')){
+                                $active = "activeUrl";
+                            }
+                            @endphp
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="feather"></i><span >जाहिरात करा</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li>
+                                        <a href="{{ route('advertise.index') }}">जाहिरात यादी</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('advertise/send-mail'))class="activeSubUrl" @endif href="{{ route('advertise.sendMail') }}">जाहिरात मेल यादी</a>
+                                    </li>
+                                </ul>
                             </li>
+
+
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('billing') || Request::is('billing/*'))activeUrl @endif" href="{{ route('billing.index') }}">
                                     <i data-feather="file-text"> </i>
@@ -90,7 +110,7 @@
 
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture') || Request::is('expandeture.*'))activeUrl @endif" href="{{ route('expandeture.index') }}">
-                                    <i data-feather="dollar-sign"> </i>
+                                    <i data-feather="rupee-sign"> </i>
                                     <span>खर्च</span>
                                 </a>
                             </li>
