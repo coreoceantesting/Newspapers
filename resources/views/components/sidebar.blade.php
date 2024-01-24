@@ -110,7 +110,7 @@
 
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture') || Request::is('expandeture.*'))activeUrl @endif" href="{{ route('expandeture.index') }}">
-                                    <i data-feather="rupee-sign"> </i>
+                                    <i data-feather="dollar-sign"> </i>
                                     <span>खर्च</span>
                                 </a>
                             </li>
