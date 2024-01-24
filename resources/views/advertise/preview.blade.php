@@ -54,26 +54,60 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>वर्तमानपत्र नाव</th>
-                                            <td>{{ $newsPaperName }}</td>
+                                            <th><b>विभाग</b></th>
+                                            <td>{{ $advertise?->department?->name }}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th>वर्तमानपत्र ईमेल</th>
+                                            <th><b>प्रसिध्दीचा स्तर</b></th>
+                                            <td>{{ $advertise?->publicationType?->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>प्रिंट प्रकार</b></th>
+                                            <td>{{ $advertise?->printType?->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>बॅनर आकार</b></th>
+                                            <td>{{ $advertise?->bannerSize?->size }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>वर्तमानपत्र नाव</b></th>
+                                            <td>{{ $newsPaperName }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>वर्क ऑर्डर क्रमांक</b></th>
+                                            <td>{{ $advertise->work_order_number }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>फोटो</b></th>
+                                            <td>
+                                                @if($advertise->image)
+                                                <img src="{{ asset('storage/'.$advertise->image) }}" width="150px" alt="">
+                                                @else
+                                                -
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>वर्तमानपत्र ईमेल</b></th>
                                             <td>{{ $newsPaperEmail }}</td>
                                         </tr>
                                         <tr>
-                                            <th>ईमेल विषय</th>
+                                            <th><b>ईमेल विषय</b></th>
                                             <td>{{ $advertise->email_subject }}</td>
                                         </tr>
                                         <tr>
-                                            <th>ईमेल वर्णन</th>
+                                            <th><b>ईमेल वर्णन</b></th>
                                             <td>{{ $advertise->email_description }}</td>
                                         </tr>
                                         <tr>
-                                            <th>PDF पहा</th>
+                                            <th><b>PDF पहा</b></th>
                                             <td><a href="{{ asset('storage/'.$advertise->generate_pdf_url) }}" class="btn btn-primary" target="_blank">PDF</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>पब्लिकेशन तारीख</b></th>
+                                            <td>{{ date('Y-m-d', strtotime($advertise->publication_date)) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

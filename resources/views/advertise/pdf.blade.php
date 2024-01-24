@@ -33,14 +33,14 @@
 <body>
     <img src="{{ public_path('image/header.png') }}" alt="">
     <p class="headerP">
-       कार्यालय: २७४५८०४०/४१/४९
+       कार्यालय: २७४५८०४०/४१/४२
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         पीक्स नं.: ०२२-२७४५२२३३
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Email: panvelcorporation@gmail.com
 
         <hr>
-        <span>जा.क्र. पमपा/ जनसंपर्क./३१२३/प्र.क्र.{{ $advertise->unique_number }}/४९४/२०२३ </span>
+        <span>जा.क्र. पमपा/ जनसंपर्क./३१२३/प्र.क्र.{{ $advertise->unique_number }}/४९४/{{ date('Y-m-d') }} </span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>दिनांक:- ---/{{ date('m') }}/{{ date('Y') }}</span>
     </p>
@@ -59,16 +59,20 @@
         विषय :- पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType?->name }}) वृत्तपत्रात प्रसिध्दी करणेबाबत.
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        संदर्भ:- जा.क्र. पमपा/मातंवि/२२२३/प्र.क्र.४/१८४/२०२३ दिनांक : ०३/११/२०२३ रोजीचे पत्रान्वये.
+        संदर्भ:- जा.क्र. पमपा/-----/-----/प्र.क्र.-----/-----/{{ date('Y') }} दिनांक : {{ date('d-m-Y', strtotime($advertise->publication_date)) }} रोजीचे पत्रान्वये.
     </p>
     <br>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) पमपा/मार्तवि/२२२३/प्र.क्र.४/१८४/२०२३ दिनांक ०३/११/२०२३ आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक ०४/११/२०२३ रोजीच प्रसिध्द करावी.
+        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) पमपा/-----/-----/प्र.क्र.----/----/{{ date('Y') }} दिनांक ----/----/{{ date('Y') }} आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, <b>तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक ----/----/{{ date('Y') }} रोजीच प्रसिध्द करावी.</b>
     </p>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        सदर जाहीरात {{ $advertise?->bannerSize?->size }} चौ. सेमी आकारात शासकीय दराने प्रसिध्द करण्यात यावी, जाहिरात प्रसिध्द केल्यानंतर शासनमान्य दराने देयक आकारणी करुन त्या वर्तमानपत्राच्या ४ प्रतीसह पुढील कार्यवाहीसाठी जनसंपर्क विभागाकडे सादर करण्यात यावे. जाहिरात प्रसिध्द करताना जाहिरातीखाली वरील जाहिरात क्रमांक व दिनांक टाकणे बंधनकारक आहे. देयकात ह्या वितरण जाहिरातीचा जनसंपर्क क्रमांक व दिनांक लिहावा.
+        सदर जाहीरात {{ $advertise?->bannerSize?->size }} चौ. सेमी आकारात शासकीय दराने प्रसिध्द करण्यात यावी, जाहिरात प्रसिध्द केल्यानंतर शासनमान्य दराने देयक आकारणी करुन त्या वर्तमानपत्राच्या ४ प्रतीसह पुढील कार्यवाहीसाठी जनसंपर्क विभागाकडे सादर करण्यात यावे.
+    </p>
+    <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        जाहिरात प्रसिध्द करताना जाहिरातीखाली वरील जाहिरात क्रमांक व दिनांक टाकणे बंधनकारक आहे. देयकात ह्या वितरण जाहिरातीचा जनसंपर्क क्रमांक व दिनांक लिहावा.
     </p>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

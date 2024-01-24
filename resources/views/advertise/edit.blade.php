@@ -218,7 +218,7 @@
 
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="banner_size_id">बॅनर आकार निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="banner_size_id">बॅनर आकार निवडा (चौ. सेमी) <span class="error">*</span></label>
                                         <select name="banner_size_id" id="selectDepartment" required class="form-select">
                                             <option value="">बॅनर आकार निवडा</option>
                                             @foreach ( $bannerSizes as $bannerSize )

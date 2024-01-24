@@ -278,4 +278,19 @@ class AdvertiseController extends Controller
         DB::table('advertises')->where('id', $advertise->id)->update(['generate_pdf_url' => $name]);
     }
 
+    public function preview(Request $request){
+        $advertise = Advertise::with(['department', 'publicationType', 'printType', 'bannerSize'])->find($request->id);
+
+        $newsPaperId = AdvertiseNewsPaper::where('advertise_id', $request->id)->pluck('news_paper_id');
+
+        $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function($query) use($newsPaperId){
+            $query->whereIn('news_paper_id', $newsPaperId);
+        })->get();
+
+        return view('advertise.preview')->with([
+            'newsPapers' => $newsPapers,
+            'advertise' => $advertise
+        ]);
+    }
+
 }
