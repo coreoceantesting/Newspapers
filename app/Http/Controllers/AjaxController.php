@@ -73,7 +73,7 @@ class AjaxController extends Controller
 
     public function getWorkOrderNumber(Request $request){
         if($request->ajax()){
-            $advertise = Advertise::where('department_id', $request->department_id)->select('id', 'work_order_number')->where('is_mail_send', 1)->latest()->distinct()->get();
+            $advertise = Advertise::where('department_id', $request->department_id)->select('id', 'work_order_number')->where('is_mail_send', 1)->latest()->get();
 
             return response()->json([
                 'status' => 200,
