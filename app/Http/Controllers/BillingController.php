@@ -9,6 +9,7 @@ use App\Models\Advertise;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\BillingRequest;
 use App\Models\AdvertiseNewsPaper;
+use App\Models\BudgetProvision;
 use App\Models\AccountDetail;
 
 class BillingController extends Controller
@@ -32,6 +33,18 @@ class BillingController extends Controller
     public function store(BillingRequest $request){
         try
         {
+            $totalBillAmount = Billing::sum('net_amount');
+
+            $totalAmount = $totalBillAmount + $request->net_amount;
+
+            $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
+                $q->where('from_date', '>=', date('Y-m-d'))
+                ->where('to_date', '<=', date('Y-m-d'));
+            })->where('department_id', $request->department_id)->value('budget');
+            if($totalAmount > $budget){
+                return redirect()->route('billing.index')->with('error', 'Your budget is finished.');
+            }
+
             DB::beginTransaction();
             $billing = new Billing;
             $billing->department_id = $request->department_id;
@@ -94,6 +107,18 @@ class BillingController extends Controller
     public function update(BillingRequest $request){
         try
         {
+            $totalBillAmount = Billing::sum('net_amount');
+
+            $totalAmount = $totalBillAmount + $request->net_amount;
+
+            $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
+                $q->where('from_date', '>=', date('Y-m-d'))
+                ->where('to_date', '<=', date('Y-m-d'));
+            })->where('department_id', $request->department_id)->value('budget');
+            if($totalAmount > $budget){
+                return redirect()->route('billing.index')->with('error', 'Your budget is finished.');
+            }
+
             DB::beginTransaction();
             $billing = Billing::find($request->id);
             $billing->department_id = $request->department_id;
