@@ -40,9 +40,9 @@
         Email: panvelcorporation@gmail.com
 
         <hr>
-        <span>जा.क्र. पमपा/ जनसंपर्क./३१२३/प्र.क्र.{{ $advertise->unique_number }}/४९४/{{ date('d-m-Y') }} </span>
+        <span>जा.क्र. पमपा/ जनसंपर्क./3123/प्र.क्र.436/494/{{ date('Y') }} </span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>दिनांक:- ---/{{ date('m') }}/{{ date('Y') }}</span>
+        <span>दिनांक:- {{ date('d-m-Y') }}</span>
     </p>
     <p>
         प्रति,<br>
@@ -59,12 +59,12 @@
         विषय :- पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType?->name }}) वृत्तपत्रात प्रसिध्दी करणेबाबत.
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        संदर्भ:- जा.क्र. पमपा/-----/-----/प्र.क्र.-----/-----/{{ date('Y') }} दिनांक : {{ date('d-m-Y', strtotime($advertise->publication_date)) }} रोजीचे पत्रान्वये.
+        संदर्भ:- जा.क्र. पमपा/-----/-----/प्र.क्र.-----/-----/{{ date('Y') }} दिनांक : {{ date('d-m-Y') }} रोजीचे पत्रान्वये.
     </p>
     <br>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) पमपा/-----/-----/प्र.क्र.----/----/{{ date('Y') }} दिनांक ----/----/{{ date('Y') }} आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, <b>तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक ----/----/{{ date('Y') }} रोजीच प्रसिध्द करावी.</b>
+        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) पमपा/-----/-----/प्र.क्र.----/----/{{ date('Y') }} दिनांक {{ date('d-m-Y') }} आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, <b>तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक - {{ date('d-m-Y', strtotime($advertise->publication_date)) }} रोजीच प्रसिध्द करावी.</b>
     </p>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
