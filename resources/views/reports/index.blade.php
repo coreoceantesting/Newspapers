@@ -61,7 +61,7 @@
                                     <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर क्रमांक निवडा</label>
                                     <select name="work_order_number" id="selectWorkOrderNumber" class="form-select">
                                         <option value="">वर्क ऑर्डर क्रमांक निवडा</option>
-                                        @if($workOrderNumbers != "")
+                                        @if($workOrderNumbers)
                                             @foreach($workOrderNumbers as $workOrderNumber)
                                             <option @if($workOrderNumber->id == Request()->work_order_number)selected @endif value="{{ $workOrderNumber->id }}">{{ $workOrderNumber->work_order_number }}</option>
                                             @endforeach
@@ -74,7 +74,7 @@
                                     <label class="form-label" for="selectNewsPaper">वर्तमानपत्र निवडा</label>
                                     <select name="news_paper" id="selectNewsPaper" class="form-select">
                                         <option value="">वर्तमानपत्र निवडा</option>
-                                        @if($workOrderNumbers != "")
+                                        @if($newsPapers)
                                             @foreach($newsPapers as $newsPaper)
                                             <option @if($newsPaper?->newsPaper?->id == Request()->news_paper)selected @endif value="{{ $newsPaper?->newsPaper?->id }}">{{ $newsPaper?->newsPaper?->name }}</option>
                                             @endforeach

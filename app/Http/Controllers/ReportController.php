@@ -17,8 +17,8 @@ class ReportController extends Controller
         $departments = Department::latest()->get();
 
         $billing = [];
-        $workOrderNumbers = "";
-        $newsPapers = "";
+        $workOrderNumbers = null;
+        $newsPapers = null;
 
         if(isset($request->department)){
             $workOrderNumbers = Advertise::where('department_id', $request->department)->get();
