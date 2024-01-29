@@ -158,4 +158,10 @@ class BillingController extends Controller
             return redirect()->route('billing.index')->with('error', 'Something Went Wrog !');
         }
     }
+
+    public function show($id){
+        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->where('id', $id)->latest()->first();
+        // return $billing;
+        return view('billing.show')->with(['billing' => $billing]);
+    }
 }
