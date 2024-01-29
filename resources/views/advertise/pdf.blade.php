@@ -51,7 +51,7 @@
         @foreach($advertise->advertiseNewsPapers as $newsPaper)
         {{ $newsPaper->newsPaper->name }}@if($loop->iteration != $count), @endif
         @if($count > 4)
-            @if(($loop->iteration + 1) % 2 == 0)
+            @if(($loop->iteration) % 2 == 0)
             <br>
             @endif
         @else
