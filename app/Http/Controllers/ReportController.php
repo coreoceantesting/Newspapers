@@ -93,6 +93,6 @@ class ReportController extends Controller
                         'orientation' => 'L'
                     ]);
 
-        return $pdf->stream('document.pdf', 'F');
+        return $pdf->save('document.pdf');
     }
 }
