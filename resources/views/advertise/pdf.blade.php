@@ -50,8 +50,13 @@
         @php $count = count($advertise->advertiseNewsPapers); @endphp
         @foreach($advertise->advertiseNewsPapers as $newsPaper)
         {{ $newsPaper->newsPaper->name }}@if($loop->iteration != $count), @endif
-
+        @if($count > 4)
+            @if(($loop->iteration + 1) % 2 == 0)
+            <br>
+            @endif
+        @else
         <br>
+        @endif
         @endforeach
     </p>
     <p>
@@ -90,6 +95,9 @@
     <br>
     <table style="width: 100%">
         <tr>
+            <td colspan="2" class='alnright'><img src="{{ public_path('storage/'.$signature) }}" style="width: 150px" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
             <td colspan="2" class='alnright'><b>विभाग प्रमुख, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>
         </tr>
         <tr>
@@ -99,13 +107,9 @@
             <td>सोबत :- वरिलप्रमाणे जाहिरातीचा मसूदा</td>
             <td class='alnright'>
                 <b>पनवेल महानगरपालिका&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                <br>
-                <img src="{{ public_path('storage/'.$signature) }}" style="width: 150px" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
         </tr>
     </table>
-
-
 
 </body>
 </html>
