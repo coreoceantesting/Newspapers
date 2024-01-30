@@ -1,8 +1,11 @@
 <x-layout>
     <style>
-        .select2-container--bgform .select2-selection--multiple .select2-selection__choice {
-    clear: both;
-}
+        .select2-drpdwn .select2-selection{
+            height: auto!important;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__rendered li{
+            margin: 2px 4px;
+        }
     </style>
     <div class="container-fluid">
         <div class="page-title">
