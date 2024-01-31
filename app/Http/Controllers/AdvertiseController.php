@@ -168,8 +168,8 @@ class AdvertiseController extends Controller
 
         $bannerSizes = BannerSize::latest()->get();
 
-        $jahorNividaNewsPaperTypeDatas = "";
-        $notJahorNividaNewsPaperTypeDatas = "";
+        $jahorNividaNewsPaperTypeDatas = [];
+        $notJahorNividaNewsPaperTypeDatas = [];
         if($advertise->cost_id && $advertise->cost_id != ""){
             $jahorNividaNewsPaperTypeDatas = NewsPaperType::withWhereHas('advertiseCost', function($q) use($advertise){
                 $q->where('cost_id', $advertise->cost_id)
