@@ -104,6 +104,7 @@ class AdvertiseController extends Controller
             }
 
             if($advertise->save()){
+                $newsPaperId = []; //array to store news paper id
                 if(isset($request->is_jahir_nivida)){
                     if(isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0){
                         for($i=0; $i < count($request->jahir_news_paper_type_id); $i++){
@@ -112,6 +113,8 @@ class AdvertiseController extends Controller
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->jahir_news_paper_type_id[$i];
                                 $advertiseNew->save();
+
+                                $newsPaperId[] = $request->jahir_news_paper_type_id[$i];
                             }
                         }
                     }
@@ -123,10 +126,13 @@ class AdvertiseController extends Controller
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->not_jahir_news_paper_id[$i];
                                 $advertiseNew->save();
+
+                                $newsPaperId[] = $request->not_jahir_news_paper_id[$i];
                             }
                         }
                     }
                 }
+                $this->updateNewsPaperSelectedtime($newsPaperId);
                 $this->generatePdf($advertise);
             }
 
@@ -169,7 +175,9 @@ class AdvertiseController extends Controller
                 $q->where('cost_id', $advertise->cost_id)
                   ->with('language', function($lang){
                         $lang->select('id', 'name')
-                             ->with('newsPapers');
+                             ->with('newsPapers', function($newsPaper){
+                                $newsPaper->orderBy('selected_datetime', 'asc');
+                             });
                   });
             })->latest()->get();
         }else{
@@ -233,6 +241,7 @@ class AdvertiseController extends Controller
             }
 
             if($advertise->save()){
+                $newsPaperId = [];
                 DB::table('advertise_news_papers')->where('advertise_id', $advertise->id)->delete();
                 if(isset($request->is_jahir_nivida)){
                     if(isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0){
@@ -242,6 +251,8 @@ class AdvertiseController extends Controller
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->jahir_news_paper_type_id[$i];
                                 $advertiseNew->save();
+
+                                $newsPaperId[] = $request->jahir_news_paper_type_id[$i];
                             }
                         }
                     }
@@ -253,6 +264,8 @@ class AdvertiseController extends Controller
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->not_jahir_news_paper_id[$i];
                                 $advertiseNew->save();
+
+                                $newsPaperId[] = $request->not_jahir_news_paper_id[$i];
                             }
                         }
                     }
@@ -260,6 +273,8 @@ class AdvertiseController extends Controller
                 if (Storage::exists($advertise->generate_pdf_url)){
                     Storage::delete($advertise->generate_pdf_url);
                 }
+
+                $this->updateNewsPaperSelectedtime($newsPaperId);
                 $this->generatePdf($advertise);
             }
 
@@ -286,6 +301,12 @@ class AdvertiseController extends Controller
         Storage::put($name, $pdf->output());
 
         DB::table('advertises')->where('id', $advertise->id)->update(['generate_pdf_url' => $name]);
+    }
+
+    public function updateNewsPaperSelectedtime($newsPaperId){
+        DB::table('news_papers')->whereIn('id', $newsPaperId)->update([
+            'selected_datetime' => now()
+        ]);
     }
 
     public function preview(Request $request){

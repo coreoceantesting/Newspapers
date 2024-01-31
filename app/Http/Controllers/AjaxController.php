@@ -22,7 +22,9 @@ class AjaxController extends Controller
                 $q->where('cost_id', $request->cost_id)
                   ->with('language', function($lang){
                         $lang->select('id', 'name')
-                             ->with('newsPapers');
+                             ->with('newsPapers', function($newsPaper){
+                                $newsPaper->orderBy('selected_datetime', 'asc');
+                             });
                   });
             })->latest()->get();
 
@@ -43,7 +45,7 @@ class AjaxController extends Controller
                 'id' => $newsPaperType->id,
                 'name' => $newsPaperType->name,
                 'language' => Language::withWhereHas('newsPapers', function($query) use($id){
-                    $query->where('news_paper_type_id', $id);
+                    $query->where('news_paper_type_id', $id)->orderBy('selected_datetime', 'asc');
                 })->whereIn('id', $request->language)->get()
             ];
         }
