@@ -87,7 +87,11 @@ class AjaxController extends Controller
 
     public function checkDuplicateBillNumber(Request $request){
         if($request->ajax()){
-            $check = Billing::where('bill_number', $request->billNumber)->exists();
+            if(isset($request->id)){
+                $check = Billing::where('bill_number', $request->billNumber)->where('id', '!=', $request->id)->exists();
+            }else{
+                $check = Billing::where('bill_number', $request->billNumber)->exists();
+            }
 
             if($check){
                 return response()->json([
@@ -102,7 +106,11 @@ class AjaxController extends Controller
 
     public function checkDuplicateWorkOrderNumber(Request $request){
         if($request->ajax()){
-            $check = Advertise::where('work_order_number', $request->workOrderNumber)->exists();
+            if(isset($request->id)){
+                $check = Advertise::where('work_order_number', $request->workOrderNumber)->where('id', '!=', $request->id)->exists();
+            }else{
+                $check = Advertise::where('work_order_number', $request->workOrderNumber)->exists();
+            }
 
             if($check){
                 return response()->json([

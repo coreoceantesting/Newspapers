@@ -59,7 +59,7 @@
                                     {{-- not part of jahir nivida --}}
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida @if($isJahirNivida != "0") d-none @endif">
                                         <label class="form-label" for="not_jahir_news_paper_type_id">वर्तमानपत्र प्रकार निवडा <span class="error">*</span></label>
-                                        <select name="not_jahir_news_paper_type_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectNewsPaperType"  multiple="multiple">
+                                        <select name="not_jahir_news_paper_type_id[]"  @if($isJahirNivida == "0") required @endif  class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectNewsPaperType"  multiple="multiple">
 
                                             @foreach ( $newsPaperTypes as $newsPaperType )
                                                 <option
@@ -76,7 +76,7 @@
 
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida @if($isJahirNivida != "0") d-none @endif">
                                         <label class="form-label" for="not_jahir_language_id">वर्तमानपत्राची भाषा निवडा <span class="error">*</span></label>
-                                        <select name="not_jahir_language_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectLanguage" multiple="multiple">
+                                        <select name="not_jahir_language_id[]" @if($isJahirNivida == "0") required @endif class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectLanguage" multiple="multiple">
 
                                             @foreach ( $languages as $language )
                                                 <option
@@ -137,10 +137,10 @@
                                             <span class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div id="checkjahirnivida"></div>
+                                    <div id="checkjahirnivida">@if($isJahirNivida == "1")<input type="hidden" value="1" name="is_jahir_nivida"/> @endif</div>
                                     <div id="addJahirNivida" class="row jahirNivida @if($isJahirNivida != "1")d-none @endif">
                                         @if($isJahirNivida == "1")
-                                        <input type="hidden" value="1" name="is_jahir_nivida"/>
+
                                         @foreach($jahorNividaNewsPaperTypeDatas as $jahorNividaNewsPaperTypeData)
                                         <div class="col-md-6 col-lg-6">
                                             <div class="mb-2">
