@@ -296,7 +296,7 @@ class AdvertiseController extends Controller
 
         $pdf = PDF::loadView('advertise.pdf', compact('advertise', 'signature'));
 
-        $name = 'pdf/'.encrypt(time()).'.pdf';
+        $name = 'pdf/'.'advertise-'.time().'.pdf';
 
         Storage::put($name, $pdf->output());
 
