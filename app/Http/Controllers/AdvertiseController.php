@@ -227,6 +227,8 @@ class AdvertiseController extends Controller
             $advertise->publication_type_id = $request->publication_type_id;
             if(isset($request->is_jahir_nivida)){
                 $advertise->cost_id = $request->cost_id ?? null;
+            }else{
+                $advertise->cost_id = null;
             }
             $advertise->department_id = $request->department_id;
             $advertise->print_type_id = $request->print_type_id;
