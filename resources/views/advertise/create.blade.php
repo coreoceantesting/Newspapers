@@ -235,10 +235,9 @@
                                     $.each(val.advertise_cost, function(dataKey, dataVal){
                                         html += `<optgroup class="selectOptgroupNewspaper" label="${dataVal.language.name}" data-selectcount="${dataVal.no_of_newspaper}" data-state="${val.name}">`;
                                         $.each(dataVal.language.news_papers, function(newsKey, newsVal){
-                                            // if(newsVal.news_paper_type_id == val.news_paper_type_id && newsVal.language_id == dataVal.id){
+                                            if(newsVal.news_paper_type_id == val.id){
                                                 html += `<option value="${newsVal.id}">${newsVal.name}</option>`;
-
-                                            // }
+                                            }
                                         });
                                         html += `</optgroup>`;
                                     });

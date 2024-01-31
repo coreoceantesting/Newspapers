@@ -152,11 +152,14 @@
                                                     <optgroup class="selectOptgroupNewspaper" label="{{ $advertiseCost->language->name }}" data-selectcount="{{ $advertiseCost->no_of_newspaper }}" data-state="{{ $jahorNividaNewsPaperTypeData->name }}">
 
                                                     @foreach($advertiseCost->language->newsPapers as $language)
+                                                    @if($language->news_paper_type_id == $jahorNividaNewsPaperTypeData->id)
                                                     <option
                                                         @foreach($advertise->advertiseNewsPapers as $newsPaper)
                                                         @if($newsPaper->newsPaper->id == $language->id)selected @endif
                                                         @endforeach
-                                                        value="{{ $language->id }}">{{ $language->name }}</option>;
+                                                        value="{{ $language->id }}">{{ $language->name }}
+                                                    </option>;
+                                                    @endif
                                                     @endforeach
 
 
@@ -314,10 +317,9 @@
                                     $.each(val.advertise_cost, function(dataKey, dataVal){
                                         html += `<optgroup class="selectOptgroupNewspaper" label="${dataVal.language.name}" data-selectcount="${dataVal.no_of_newspaper}" data-state="${val.name}">`;
                                         $.each(dataVal.language.news_papers, function(newsKey, newsVal){
-                                            // if(newsVal.news_paper_type_id == val.news_paper_type_id && newsVal.language_id == dataVal.id){
+                                            if(newsVal.news_paper_type_id == val.id){
                                                 html += `<option value="${newsVal.id}">${newsVal.name}</option>`;
-
-                                            // }
+                                            }
                                         });
                                         html += `</optgroup>`;
                                     });
