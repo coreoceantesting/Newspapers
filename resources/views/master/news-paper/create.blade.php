@@ -86,18 +86,33 @@
                                     <label class="text-danger">For multiple mobile numbers use comma separated (e.g 9999999999, 8888888888...)</label>
                                 </div> --}}
 
-                                <div class="col-12">
+                                <div class="col-md-6 col-lg-6 col-12">
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>ईमेल <span class="error">*</span></th>
-                                                <th>मोबाईल <span class="error">*</span></th>
-                                                <th><button class="btn btn-primary btn-sm" id="addMoreBtn" type="button">Add More</button></th>
+                                                <th><button class="btn btn-primary btn-sm" id="addMoreEmailBtn" type="button">Add More</button></th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tableTbody">
+                                        <tbody id="tableEmailTbody">
                                             <tr>
                                                 <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>मोबाईल <span class="error">*</span></th>
+                                                <th><button class="btn btn-primary btn-sm" id="addMoreMobileBtn" type="button">Add More</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableMobileTbody">
+                                            <tr>
                                                 <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
                                                 <td></td>
                                             </tr>
@@ -123,22 +138,38 @@
     @push('scripts')
     <script>
         $(document).ready(function(){
-            var count = 1;
-            $('body').on('click', '#addMoreBtn', function(){
-                let html = `<tr id="row${count}">
-                            <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+            var mobileCount = 1;
+            $('body').on('click', '#addMoreMobileBtn', function(){
+                let html = `<tr id="mobileRow${mobileCount}">
                             <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
-                            <td><button class="btn btn-danger btn-sm btnRemove" data-count="${count}" type="button">Remove</button></td>
+                            <td><button class="btn btn-danger btn-sm btnRemoveMobile" data-count="${mobileCount}" type="button">Remove</button></td>
                         </tr>`;
-                count = count + 1;
+                mobileCount = mobileCount + 1;
 
-                $('#tableTbody').append(html)
+                $('#tableMobileTbody').append(html)
 
             });
 
-            $('body').on('click', '.btnRemove', function(){
+            var emailCount = 1;
+            $('body').on('click', '#addMoreEmailBtn', function(){
+                let html = `<tr id="emailRow${emailCount}">
+                            <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+                            <td><button class="btn btn-danger btn-sm btnRemoveEmail" data-count="${emailCount}" type="button">Remove</button></td>
+                        </tr>`;
+                emailCount = emailCount + 1;
+
+                $('#tableEmailTbody').append(html)
+
+            });
+
+            $('body').on('click', '.btnRemoveEmail', function(){
                 let id = $(this).data('count');
-                $('#row'+id).remove();
+                $('#emailRow'+id).remove();
+            })
+
+            $('body').on('click', '.btnRemoveMobile', function(){
+                let id = $(this).data('count');
+                $('#mobileRow'+id).remove();
             })
         })
     </script>
