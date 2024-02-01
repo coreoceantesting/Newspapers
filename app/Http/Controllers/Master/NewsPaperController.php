@@ -48,6 +48,23 @@ class NewsPaperController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
+            $email = "";
+            if(isset($request->email)){
+                for($i=0; $i < count($request->email); $i++){
+                    $email .= $request->email[$i]. ', ';
+                }
+                $email = substr($email, 0, -2);
+            }
+            $mobile = "";
+            if(isset($request->mobile)){
+                for($i=0; $i < count($request->mobile); $i++){
+                    $mobile .= $request->mobile[$i]. ', ';
+                }
+                $mobile = substr($mobile, 0, -2);
+            }
+
+            $input['email'] = $email;
+            $input['mobile'] = $mobile;
             NewsPaper::create( Arr::only( $input, NewsPaper::getFillables() ) );
             DB::commit();
 
@@ -84,6 +101,23 @@ class NewsPaperController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
+            $email = "";
+            if(isset($request->email)){
+                for($i=0; $i < count($request->email); $i++){
+                    $email .= $request->email[$i]. ', ';
+                }
+                $email = substr($email, 0, -2);
+            }
+            $mobile = "";
+            if(isset($request->mobile)){
+                for($i=0; $i < count($request->mobile); $i++){
+                    $mobile .= $request->mobile[$i]. ', ';
+                }
+                $mobile = substr($mobile, 0, -2);
+            }
+
+            $input['email'] = $email;
+            $input['mobile'] = $mobile;
             $newsPaper->update( Arr::only( $input, NewsPaper::getFillables() ) );
             DB::commit();
 

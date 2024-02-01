@@ -68,7 +68,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 col-lg-6 col-12">
+                                {{-- <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="email">ईमेल <span class="error">*</span></label>
                                     <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email" id="email" type="text" required placeholder="ईमेल" value="{{ old('email') }}">
                                     @error('email')
@@ -84,6 +84,25 @@
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                     <label class="text-danger">For multiple mobile numbers use comma separated (e.g 9999999999, 8888888888...)</label>
+                                </div> --}}
+
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>ईमेल <span class="error">*</span></th>
+                                                <th>मोबाईल <span class="error">*</span></th>
+                                                <th><button class="btn btn-primary btn-sm" id="addMoreBtn" type="button">Add More</button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableTbody">
+                                            <tr>
+                                                <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+                                                <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
 
@@ -100,4 +119,29 @@
         </div>
     </div>
     <!-- Container-fluid Ends-->
+
+    @push('scripts')
+    <script>
+        $(document).ready(function(){
+            var count = 1;
+            $('body').on('click', '#addMoreBtn', function(){
+                let html = `<tr id="row${count}">
+                            <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+                            <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
+                            <td><button class="btn btn-danger btn-sm btnRemove" data-count="${count}" type="button">Remove</button></td>
+                        </tr>`;
+                count = count + 1;
+
+                $('#tableTbody').append(html)
+
+            });
+
+            $('body').on('click', '.btnRemove', function(){
+                let id = $(this).data('count');
+                $('#row'+id).remove();
+            })
+        })
+    </script>
+    @endpush
+
 </x-layout>
