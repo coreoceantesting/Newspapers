@@ -52,7 +52,7 @@ class SendMailController extends Controller
             'email_description' => $request->description,
         ]);
 
-        return redirect()->route('advertise.index')->with('success', 'Mail send successfully');
+        return redirect()->route('advertise.sendMail')->with('success', 'Mail send successfully');
 
     }
 

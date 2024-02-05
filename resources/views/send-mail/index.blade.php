@@ -37,16 +37,16 @@
 
                         @endforeach
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">वर्तमानपत्र ईमेल</label>
+                            <label class="form-label" for="work_order_number">वर्तमानपत्र ईमेल <span class="error">*</span></label>
                             <input class="form-control" type="text" placeholder="वर्तमानपत्र ईमेल" value="{{ $newsPaperEmail }}" readonly>
                             <input type="hidden" name="id" value="{{ Request()->id }}">
                         </div>
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">ईमेल विषय</label>
+                            <label class="form-label" for="work_order_number">ईमेल विषय <span class="error">*</span></label>
                             <input class="form-control" type="text" name="subject" placeholder="ईमेल विषय" required>
                         </div>
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">ईमेल वर्णन</label>
+                            <label class="form-label" for="work_order_number">ईमेल वर्णन <span class="error">*</span></label>
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
                         <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">मेल पाठवा</button>

@@ -344,7 +344,7 @@
                                     <select name="account_detail_id" id="accountDetail" required class="form-select">
                                         <option value="">खाते तपशील निवडा</option>`;
                                     $.each(response.data, function(key, val){
-                                        html += `<option value="${val.id}">${val.account_number}</option>`;
+                                        html += `<option value="${val.id}">${val.account_number} (${val.bank})</option>`;
                                     });
 
                                     html += `</select>`;

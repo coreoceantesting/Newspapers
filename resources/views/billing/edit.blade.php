@@ -92,7 +92,7 @@
                                         <select name="account_detail_id" id="accountDetail" required class="form-select">
                                             <option value="">खाते तपशील निवडा</option>
                                             @foreach($accountDetails as $accountDetail)
-                                            <option @if($accountDetail->id == $billing->account_detail_id)selected @endif value="{{ $accountDetail->id }}">{{ $accountDetail->account_number }}</option>
+                                            <option @if($accountDetail->id == $billing->account_detail_id)selected @endif value="{{ $accountDetail->id }}">{{ $accountDetail->account_number }} ({{ $accountDetail->bank }})</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -388,7 +388,7 @@
                                     <select name="account_detail_id" id="accountDetail" required class="form-select">
                                         <option value="">खाते तपशील निवडा</option>`;
                                     $.each(response.data, function(key, val){
-                                        html += `<option value="${val.id}">${val.account_number}</option>`;
+                                        html += `<option value="${val.id}">${val.account_number} (${val.bank})</option>`;
                                     });
 
                                     html += `</select>`;

@@ -56,7 +56,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="account_number">खाते क्रमांक <span class="error">*</span></label>
-                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" required id="account_number" type="text" placeholder="खाते क्रमांक" value="{{ old('account_number') }}">
+                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" required id="account_number" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" type="text" placeholder="खाते क्रमांक" value="{{ old('account_number') }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror

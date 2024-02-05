@@ -24,13 +24,16 @@ class SecurityHeaders
         $response->headers->set('Content-Security-Policy', "frame-ancestors 'none';");
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
         $response->headers->set('X-XSS-Protection', '1; mode=block');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        $response->headers->set('Feature-Policy', "geolocation 'self'; vibrate 'none'");
-
-
+        $response->headers->set('Access-Control-Allow-Origin', 'SAMEORIGIN');
+        $response->headers->set('Cross-Origin-Resource-Policy', 'SAMEORIGIN');
         $response->headers->set('Permissions-Policy', 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()');
-        $response->headers->set('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,X-CSRF-Token');
+
+
+        // $response->headers->set('X-Aspnet-Version', '4.8.1');
+        // $response->headers->set('X-Powered-By', 'ASP.NET');
+        // $response->headers->set('Feature-Policy', "geolocation 'self'; vibrate 'none'");
         $this->removeUnwantedHeaders($this->unwantedHeaders);
 
         return $response;
