@@ -11,6 +11,7 @@ use App\Http\Requests\BillingRequest;
 use App\Models\AdvertiseNewsPaper;
 use App\Models\BudgetProvision;
 use App\Models\AccountDetail;
+use App\Models\FinancialYear;
 
 class BillingController extends Controller
 {
@@ -33,14 +34,19 @@ class BillingController extends Controller
     public function store(BillingRequest $request){
         try
         {
-            $totalBillAmount = Billing::sum('net_amount');
+            $financialYear = FinancialYear::where('is_active', 1)->first();
+
+            $totalBillAmount = Billing::where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->to_date)))->sum('net_amount');
+
+            // $totalBillAmount = Billing::sum('net_amount');
 
             $totalAmount = $totalBillAmount + $request->net_amount;
 
             $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
-                $q->where('from_date', '>=', date('Y-m-d'))
-                ->where('to_date', '<=', date('Y-m-d'));
+                $q->where('from_date', '<=', date('Y-m-d'))
+                ->where('to_date', '>=', date('Y-m-d'));
             })->where('department_id', $request->department_id)->value('budget');
+
             if($totalAmount > $budget){
                 return redirect()->route('billing.index')->with('error', 'Your budget is finished.');
             }
@@ -107,13 +113,15 @@ class BillingController extends Controller
     public function update(BillingRequest $request){
         try
         {
-            $totalBillAmount = Billing::sum('net_amount');
+            $financialYear = FinancialYear::where('is_active', 1)->first();
+
+            $totalBillAmount = Billing::where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->to_date)))->where('id', '!=', $request->id)->sum('net_amount');
 
             $totalAmount = $totalBillAmount + $request->net_amount;
 
             $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
-                $q->where('from_date', '>=', date('Y-m-d'))
-                ->where('to_date', '<=', date('Y-m-d'));
+                $q->where('from_date', '<=', date('Y-m-d'))
+                ->where('to_date', '>=', date('Y-m-d'));
             })->where('department_id', $request->department_id)->value('budget');
             if($totalAmount > $budget){
                 return redirect()->route('billing.index')->with('error', 'Your budget is finished.');
