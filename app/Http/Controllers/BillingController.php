@@ -7,6 +7,7 @@ use App\Models\Billing;
 use App\Models\Department;
 use App\Models\Advertise;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\BillingRequest;
 use App\Models\AdvertiseNewsPaper;
 use App\Models\BudgetProvision;
@@ -17,7 +18,7 @@ class BillingController extends Controller
 {
     public function index(){
         $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->latest()->get();
-        // return $billing;
+
         return view('billing.index')->with([
             'billing' => $billing
         ]);
@@ -36,9 +37,7 @@ class BillingController extends Controller
         {
             $financialYear = FinancialYear::where('is_active', 1)->first();
 
-            $totalBillAmount = Billing::where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->to_date)))->sum('net_amount');
-
-            // $totalBillAmount = Billing::sum('net_amount');
+            $totalBillAmount = Billing::where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->to_date)))->sum('net_amount');
 
             $totalAmount = $totalBillAmount + $request->net_amount;
 
@@ -52,21 +51,28 @@ class BillingController extends Controller
             }
 
             DB::beginTransaction();
-            $billing = new Billing;
-            $billing->department_id = $request->department_id;
-            $billing->advertise_id = $request->advertise_id;
-            $billing->news_paper_id = $request->news_paper_id;
-            $billing->bill_number = $request->bill_number;
-            $billing->account_detail_id = $request->account_detail_id;
-            $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
-            $billing->basic_amount = $request->basic_amount;
-            $billing->gst = $request->gst;
-            $billing->gross_amount = $request->gross_amount;
-            $billing->tds = $request->tds;
-            $billing->it = $request->it;
-            $billing->net_amount = $request->net_amount;
-            $billing->save();
-            DB::commit();
+            try{
+                $billing = new Billing;
+                $billing->department_id = $request->department_id;
+                $billing->advertise_id = $request->advertise_id;
+                $billing->news_paper_id = $request->news_paper_id;
+                $billing->bill_number = $request->bill_number;
+                $billing->account_detail_id = $request->account_detail_id;
+                $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
+                $billing->basic_amount = $request->basic_amount;
+                $billing->gst = $request->gst;
+                $billing->gross_amount = $request->gross_amount;
+                $billing->tds = $request->tds;
+                $billing->it = $request->it;
+                $billing->net_amount = $request->net_amount;
+                $billing->save();
+                DB::commit();
+            }catch(\Exception $e){
+                DB::rollback();
+                Log::info($e);
+                return redirect()->route('billing.index')->with('error', 'Something is went wrong');
+            }
+
 
             return redirect()->route('billing.index')->with('success', 'Bill Generated Successfully');
         }
@@ -115,7 +121,7 @@ class BillingController extends Controller
         {
             $financialYear = FinancialYear::where('is_active', 1)->first();
 
-            $totalBillAmount = Billing::where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->to_date)))->where('id', '!=', $request->id)->sum('net_amount');
+            $totalBillAmount = Billing::where('bill_date', '>=', date('Y-m-d', strtotime($financialYear->from_date)))->where('bill_date', '<=', date('Y-m-d', strtotime($financialYear->to_date)))->where('id', '!=', $request->id)->sum('net_amount');
 
             $totalAmount = $totalBillAmount + $request->net_amount;
 
@@ -128,21 +134,27 @@ class BillingController extends Controller
             }
 
             DB::beginTransaction();
-            $billing = Billing::find($request->id);
-            $billing->department_id = $request->department_id;
-            $billing->advertise_id = $request->advertise_id;
-            $billing->news_paper_id = $request->news_paper_id;
-            $billing->account_detail_id = $request->account_detail_id;
-            $billing->bill_number = $request->bill_number;
-            $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
-            $billing->basic_amount = $request->basic_amount;
-            $billing->gst = $request->gst;
-            $billing->gross_amount = $request->gross_amount;
-            $billing->tds = $request->tds;
-            $billing->it = $request->it;
-            $billing->net_amount = $request->net_amount;
-            $billing->save();
-            DB::commit();
+            try{
+                $billing = Billing::find($request->id);
+                $billing->department_id = $request->department_id;
+                $billing->advertise_id = $request->advertise_id;
+                $billing->news_paper_id = $request->news_paper_id;
+                $billing->account_detail_id = $request->account_detail_id;
+                $billing->bill_number = $request->bill_number;
+                $billing->bill_date = date('Y-m-d', strtotime($request->bill_date));
+                $billing->basic_amount = $request->basic_amount;
+                $billing->gst = $request->gst;
+                $billing->gross_amount = $request->gross_amount;
+                $billing->tds = $request->tds;
+                $billing->it = $request->it;
+                $billing->net_amount = $request->net_amount;
+                $billing->save();
+                DB::commit();
+            }catch(\Exception $e){
+                DB::rollback();
+                Log::info($e);
+                return redirect()->route('billing.index')->with('error', 'Something is went wrong');
+            }
 
             return redirect()->route('billing.index')->with('success', 'Bill Updated Successfully');
         }
@@ -154,15 +166,14 @@ class BillingController extends Controller
 
     public function destroy(Billing $billing)
     {
-        try
-        {
-            DB::beginTransaction();
+        DB::beginTransaction();
+        try{
             $billing->delete();
             DB::commit();
             return redirect()->route('billing.index')->with('success', 'Billi Removed Successfully');
-        }
-        catch(\Exception $e)
-        {
+        }catch(\Exception $e){
+            DB::rollback();
+            Log::info($e);
             return redirect()->route('billing.index')->with('error', 'Something Went Wrog !');
         }
     }

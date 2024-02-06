@@ -9,7 +9,7 @@ use App\Models\Signature;
 use App\Models\Advertise;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class SendMailController extends Controller
@@ -35,40 +35,32 @@ class SendMailController extends Controller
 
     public function sendEmail(Request $request){
         set_time_limit(0);
+        DB::beginTransaction();
+        try{
+            $signature = Signature::value('name');
 
-        $signature = Signature::value('name');
+            $pdf = Advertise::where('id', $request->id)->value('generate_pdf_url');
 
-        $pdf = Advertise::where('id', $request->id)->value('generate_pdf_url');
-
-        if(isset($request->email)){
-            for($i=0; $i < count($request->email); $i++){
-                Mail::to($request->email[$i])->send(new SendMail($signature, $pdf, $request));
+            if(isset($request->email)){
+                for($i=0; $i < count($request->email); $i++){
+                    Mail::to($request->email[$i])->send(new SendMail($signature, $pdf, $request));
+                }
             }
+
+            DB::table('advertises')->where('id', $request->id)->update([
+                'is_mail_send' => 1,
+                'email_subject' => $request->subject,
+                'email_description' => $request->description,
+            ]);
+
+            DB::commit();
+            return redirect()->route('advertise.sendMail')->with('success', 'Mail send successfully');
+        }catch(\Exception $e){
+            DB::rollback();
+            Log::info($e);
+            return redirect()->route('advertise.sendMail')->with('error', 'Something Went Wrog !');
         }
 
-        DB::table('advertises')->where('id', $request->id)->update([
-            'is_mail_send' => 1,
-            'email_subject' => $request->subject,
-            'email_description' => $request->description,
-        ]);
 
-        return redirect()->route('advertise.sendMail')->with('success', 'Mail send successfully');
-
-    }
-
-    public function cancelMail(Request $request){
-        // $advertise = Advertise::find($request->id);
-
-        // if (Storage::exists($advertise->generate_pdf_url)){
-        //     Storage::delete($advertise->generate_pdf_url);
-        // }
-
-        // if (Storage::exists($advertise->image)){
-        //     Storage::delete($advertise->image);
-        // }
-
-        // $advertise->delete();
-
-        // return redirect()->route('advertise.create')->with('success', 'Mail cancel successfully');
     }
 }

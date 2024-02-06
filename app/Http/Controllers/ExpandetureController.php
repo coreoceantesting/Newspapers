@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Billing;
 use App\Models\Expandeture;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ExpandatureRequest;
 
 class ExpandetureController extends Controller
@@ -27,9 +28,8 @@ class ExpandetureController extends Controller
     }
 
     public function store(ExpandatureRequest $request){
-        try
-        {
-            DB::beginTransaction();
+        DB::beginTransaction();
+        try{
             $expandeture = new Expandeture;
             $expandeture->billing_id = $request->billing_id;
             $expandeture->news_paper_id = $request->news_paper_id;
@@ -48,8 +48,9 @@ class ExpandetureController extends Controller
 
             return redirect()->route('expandeture.index')->with('success', 'Expandature Created Successfully');
         }
-        catch(\Exception $e)
-        {
+        catch(\Exception $e){
+            DB::rollback();
+            Log::info($e);
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
 

@@ -80,9 +80,9 @@ class AdvertiseController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try
         {
-            DB::beginTransaction();
             $sequenceNo = FinancialYear::where('is_active', 1)->value('sequence');
             DB::table('financial_years')->where('is_active', 1)->update([
                 'sequence' => $sequenceNo+1
@@ -142,6 +142,7 @@ class AdvertiseController extends Controller
         }
         catch(\Exception $e)
         {
+            DB::rollback();
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
     }
@@ -219,10 +220,9 @@ class AdvertiseController extends Controller
     }
 
     public function update(Request $request){
+        DB::beginTransaction();
         try
         {
-            DB::beginTransaction();
-
             $advertise = Advertise::find($request->id);
             $advertise->publication_type_id = $request->publication_type_id;
             if(isset($request->is_jahir_nivida)){
@@ -283,9 +283,8 @@ class AdvertiseController extends Controller
             DB::commit();
 
             return redirect()->route('send-mail.index', $advertise->id);
-        }
-        catch(\Exception $e)
-        {
+        }catch(\Exception $e){
+            DB::rollback();
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
     }
