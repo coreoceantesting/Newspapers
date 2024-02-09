@@ -40,7 +40,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12 workOrderNumberDiv d-none">
                                     <label class="form-label" for="advertise_id">वर्क ऑर्डर क्रमांक <span class="error">*</span></label>
-                                    <select name="advertise_id" id="workOrderNumber" required class="form-select">
+                                    <select name="advertise_id" id="workOrderNumber" required class="js-example-basic-single col-sm-12 select2-hidden-accessible">
 
                                     </select>
                                     @error('advertise_id')

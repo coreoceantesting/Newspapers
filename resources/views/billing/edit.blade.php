@@ -42,7 +42,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12 workOrderNumberDiv">
                                     <label class="form-label" for="advertise_id">वर्क ऑर्डर क्रमांक <span class="error">*</span></label>
-                                    <select name="advertise_id" id="workOrderNumber" required class="form-select">
+                                    <select name="advertise_id" id="workOrderNumber" required class="js-example-basic-single col-sm-12 select2-hidden-accessible">
                                         <option value="">Select वर्क ऑर्डर क्रमांक</option>
                                         @foreach($workOrderNumbers as $workOrderNumber)
                                         <option @if($workOrderNumber->id == $billing->advertise_id)selected @endif value="{{ $workOrderNumber->id }}">{{ $workOrderNumber->work_order_number }}</option>

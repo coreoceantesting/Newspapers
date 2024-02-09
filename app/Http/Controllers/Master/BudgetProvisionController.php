@@ -43,6 +43,12 @@ class BudgetProvisionController extends Controller
      */
     public function store(BudgetProvisionRequest $request)
     {
+        $check = BudgetProvision::where('financial_year_id', $request->financial_year_id)->exists();
+
+        if($check){
+            return redirect()->route('budget-provision.index')->with('error', 'Budget Already Exists of this year');
+        }
+
         try
         {
             DB::beginTransaction();
@@ -79,6 +85,12 @@ class BudgetProvisionController extends Controller
      */
     public function update(BudgetProvisionRequest $request, BudgetProvision $budgetProvision)
     {
+        $check = BudgetProvision::where('financial_year_id', $request->financial_year_id)->where('id', '!=', $request->id)->exists();
+
+        if($check){
+            return redirect()->route('budget-provision.index')->with('error', 'Budget Already Exists of this year');
+        }
+
         try
         {
             DB::beginTransaction();

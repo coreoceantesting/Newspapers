@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="selectDepartment">विभाग निवडा</label>
-                                    <select name="department" id="selectDepartment" class="form-select">
+                                    <select name="department" id="selectDepartment" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
                                         <option value="">विभाग निवडा</option>
                                         @foreach ( $departments as $department )
                                             <option @if(isset(Request()->department) && $department->id == Request()->department)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
@@ -59,7 +59,7 @@
 
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर क्रमांक निवडा</label>
-                                    <select name="work_order_number" id="selectWorkOrderNumber" class="form-select">
+                                    <select name="work_order_number" id="selectWorkOrderNumber" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
                                         <option value="">वर्क ऑर्डर क्रमांक निवडा</option>
                                         @if($workOrderNumbers)
                                             @foreach($workOrderNumbers as $workOrderNumber)
@@ -72,7 +72,7 @@
 
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="selectNewsPaper">वर्तमानपत्र निवडा</label>
-                                    <select name="news_paper" id="selectNewsPaper" class="form-select">
+                                    <select name="news_paper" id="selectNewsPaper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
                                         <option value="">वर्तमानपत्र निवडा</option>
                                         @if($newsPapers)
                                             @foreach($newsPapers as $newsPaper)
