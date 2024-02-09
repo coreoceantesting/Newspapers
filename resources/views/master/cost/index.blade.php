@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">कामाची किंमत</li>
+                        <li class="breadcrumb-item active">List Cost (कामाची किंमत)</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">कामाची किंमत यादी</h5>
+                                <h5 class="text-white mt-1">List Cost (कामाची किंमत यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('cost.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">कामाची किंमत जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('cost.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Cost (कामाची किंमत जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>

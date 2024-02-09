@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise-cost.index') }}"> जाहिरात खर्च यादी </a></li>
-                        <li class="breadcrumb-item active">जाहिरात खर्च जोडा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('advertise-cost.index') }}">List Advertise Cost (जाहिरात खर्च यादी) </a></li>
+                        <li class="breadcrumb-item active">Edit Advertise Cost (जाहिरात खर्च संपादित करा)</li>
                     </ol>
                 </div>
             </div>
@@ -22,15 +22,15 @@
                     <input type="hidden" name="id" value="{{ $advertiseCost->id }}">
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">जाहिरात खर्च जोडा</h5>
+                            <h5 class="text-white item-center mb-2">Edit Advertise Cost (जाहिरात खर्च संपादित करा)</h5>
                         </div>
 
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="cost_id">कामाची किंमत  निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="cost_id">Select Cost (कामाची किंमत निवडा) <span class="error">*</span></label>
                                     <select name="cost_id" required class="form-select">
-                                        <option value="">कामाची किंमत  निवडा</option>
+                                        <option value="">Select Cost (कामाची किंमत निवडा)</option>
                                         @foreach ( $costs as $cost )
                                             <option @if( $advertiseCost->cost_id == $cost->id)selected @endif value="{{ $cost->id }}">{{ $cost->name }}</option>
                                         @endforeach
@@ -41,9 +41,9 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_type_id">प्रसिध्दीचा स्तर निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_type_id">Select Publication Level (प्रसिध्दीचा स्तर निवडा) <span class="error">*</span></label>
                                     <select name="news_paper_type_id" required class="form-select">
-                                        <option value="">प्रसिध्दीचा स्तर निवडा</option>
+                                        <option value="">Select Publication Level (प्रसिध्दीचा स्तर निवडा)</option>
                                         @foreach ( $newsPaperTypes as $newsPaperType )
                                             <option @if($advertiseCost->news_paper_type_id == $newsPaperType->id)selected @endif value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
                                         @endforeach
@@ -54,9 +54,9 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="language_id">वर्तमानपत्राची भाषा निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="language_id">Select Language (वर्तमानपत्राची भाषा निवडा) <span class="error">*</span></label>
                                     <select name="language_id" required class="form-select">
-                                        <option value="">वर्तमानपत्राची भाषा निवडा</option>
+                                        <option value="">Select Language (वर्तमानपत्राची भाषा निवडा)</option>
                                         @foreach ( $language as $lang )
                                             <option @if($advertiseCost->language_id == $lang->id)selected @endif value="{{ $lang->id }}">{{ $lang->name }}</option>
                                         @endforeach
@@ -68,7 +68,7 @@
 
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="no_of_newspaper">वर्तमानपत्राची संख्या <span class="error">*</span></label>
+                                    <label class="form-label" for="no_of_newspaper">No of Newspaper (वर्तमानपत्राची संख्या) <span class="error">*</span></label>
                                     <input @if ($errors->has('no_of_newspaper')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="no_of_newspaper" id="no_of_newspaper" type="number" placeholder="वर्तमानपत्राची संख्या" value="{{ $advertiseCost->no_of_newspaper }}">
                                     @error('no_of_newspaper')
                                         <span class="error">{{ $message }}</span>
@@ -80,8 +80,8 @@
                             </div>
 
                             <div class="text-end" >
-                                <button class="btn btn-square btn-success-gradien" type="submit">जतन करा </button>
-                                <a href="{{ route('advertise-cost.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा </button></a>
+                                <button class="btn btn-square btn-success-gradien" type="submit">Submit (जतन करा) </button>
+                                <a href="{{ route('advertise-cost.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel (रद्द करा) </button></a>
                             </div>
                         </div>
                     </div>

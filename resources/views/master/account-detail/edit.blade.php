@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('account-details.index') }}"> वर्तमानपत्र खात्यांच्या तपशिलांची यादी </a></li>
-                        <li class="breadcrumb-item active">वर्तमानपत्र खाते संपादित करा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('account-details.index') }}"> List Account Details (वर्तमानपत्र खात्यांच्या तपशिलांची यादी) </a></li>
+                        <li class="breadcrumb-item active">Edit Account Details (वर्तमानपत्र खाते संपादित करा)</li>
                     </ol>
                 </div>
             </div>
@@ -22,15 +22,15 @@
                     <input type="hidden" name="id" value="{{ $accountDetail->id }}">
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">वर्तमानपत्र खाते संपादित करा</h5>
+                            <h5 class="text-white item-center mb-2">Edit Account Details (वर्तमानपत्र खाते संपादित करा)</h5>
                         </div>
 
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_id">वर्तमानपत्राचे नाव निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_id">Select Newspaper (वर्तमानपत्राचे नाव निवडा) <span class="error">*</span></label>
                                     <select name="news_paper_id" required class="form-select">
-                                        <option value="">वर्तमानपत्राचे नाव निवडा</option>
+                                        <option value="">Select Newspaper (वर्तमानपत्राचे नाव निवडा)</option>
                                         @foreach ( $newsPapers as $newsPaper )
                                             <option @if( $accountDetail->news_paper_id == $newsPaper->id)selected @endif value="{{ $newsPaper->id }}">{{ $newsPaper->name }}</option>
                                         @endforeach
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="bank">बँक <span class="error">*</span></label>
+                                    <label class="form-label" for="bank">Bank (बँक) <span class="error">*</span></label>
                                     <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" required id="bank" type="text" placeholder="बँक" value="{{ $accountDetail->bank }}">
                                     @error('bank')
                                         <span class="error">{{ $message }}</span>
@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="branch">शाखा <span class="error">*</span></label>
+                                    <label class="form-label" for="branch">Branch (शाखा) <span class="error">*</span></label>
                                     <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" required type="text" placeholder="शाखा" value="{{ $accountDetail->branch }}">
                                     @error('branch')
                                         <span class="error">{{ $message }}</span>
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="account_number">खाते क्रमांक <span class="error">*</span></label>
+                                    <label class="form-label" for="account_number">Account Number (खाते क्रमांक) <span class="error">*</span></label>
                                     <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" type="text" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" placeholder="खाते क्रमांक" required value="{{ $accountDetail->account_number }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="pan_card">पॅन कार्ड <span class="error">*</span></label>
+                                    <label class="form-label" for="pan_card">Pan Card (पॅन कार्ड) <span class="error">*</span></label>
                                     <input maxlength="10" @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="पॅन कार्ड" required value="{{ $accountDetail->pan_card }}">
                                     @error('pan_card')
                                         <span class="error">{{ $message }}</span>
@@ -91,8 +91,8 @@
                             </div>
 
                             <div class="text-end" >
-                                <button class="btn btn-square btn-success-gradien" type="submit">जतन करा </button>
-                                <a href="{{ route('account-details.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा </button></a>
+                                <button class="btn btn-square btn-success-gradien" type="submit">Submit (जतन करा) </button>
+                                <a href="{{ route('account-details.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel (रद्द करा) </button></a>
                             </div>
                         </div>
                     </div>

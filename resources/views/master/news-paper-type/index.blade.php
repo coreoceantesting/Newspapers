@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">प्रसिध्दीचा स्तर</li>
+                        <li class="breadcrumb-item active">Publication Level (प्रसिध्दीचा स्तर)</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">प्रसिध्दीचा स्तर यादी</h5>
+                                <h5 class="text-white mt-1">List Publication Level (प्रसिध्दीचा स्तर यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('news-paper-type.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">प्रसिध्दीचा स्तर जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('news-paper-type.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Publication Level (प्रसिध्दीचा स्तर जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>

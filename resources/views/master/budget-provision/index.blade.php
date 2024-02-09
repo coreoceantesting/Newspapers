@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">बजेट तरतूद यादी</li>
+                        <li class="breadcrumb-item active">List Budget Provision (बजेट तरतूद यादी)</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">बजेट तरतूद यादी</h5>
+                                <h5 class="text-white mt-1">List Budget Provision (बजेट तरतूद यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('budget-provision.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">बजेट तरतूद जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('budget-provision.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Budget Provision (बजेट तरतूद जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>

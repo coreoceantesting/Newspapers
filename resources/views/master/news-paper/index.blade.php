@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">वर्तमानपत्र</li>
+                        <li class="breadcrumb-item active">Newspaper (वर्तमानपत्र)</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">वर्तमानपत्र यादी</h5>
+                                <h5 class="text-white mt-1">List Newspaper (वर्तमानपत्र यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('news-paper.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">वर्तमानपत्र जोडा <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('news-paper.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Newspaper (वर्तमानपत्र जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>

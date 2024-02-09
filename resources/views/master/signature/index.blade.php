@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('signature.index') }}"> स्वाक्षरी यादी </a></li>
-                        <li class="breadcrumb-item active">स्वाक्षरी संपादित करा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('signature.index') }}">List Signature (स्वाक्षरी यादी) </a></li>
+                        <li class="breadcrumb-item active">Edit Signature (स्वाक्षरी संपादित करा)</li>
                     </ol>
                 </div>
             </div>
@@ -24,14 +24,15 @@
 
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">स्वाक्षरी संपादित करा</h5>
+                            <h5 class="text-white item-center mb-2">Edit Signature (स्वाक्षरी संपादित करा)</h5>
                         </div>
 
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="name">स्वाक्षरी <span class="error">*</span></label>
+                                    <label class="form-label" for="name">Signature (स्वाक्षरी) <span class="error">*</span></label>
                                     @if($signature && $signature->name)
+                                    <br>
                                     <img src="{{ asset('storage/'.$signature->name) }}" style="width: 150px" class="mb-2" alt="Signature">
                                     @endif
 
@@ -44,8 +45,8 @@
                             </div>
 
                             <div class="text-end" >
-                                <button class="btn btn-square btn-success-gradien" type="submit">जतन करा </button>
-                                <a href="{{ route('signature.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा </button></a>
+                                <button class="btn btn-square btn-success-gradien" type="submit">Submit (जतन करा) </button>
+                                <a href="{{ route('signature.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel (रद्द करा) </button></a>
                             </div>
                         </div>
                     </div>
