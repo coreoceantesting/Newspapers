@@ -104,7 +104,12 @@
                                             @endphp
                                             @for($i=0; $i < count($emails); $i++)
                                             <tr id="emailRow{{ $count }}">
-                                                <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" value="{{ $emails[$i] }}" name="email[]" type="email" required placeholder="ईमेल"></td>
+                                                <td>
+                                                    @error('email.*')
+                                                        <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                    <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" value="{{ $emails[$i] }}" name="email[]" type="email" required placeholder="ईमेल">
+                                                </td>
                                                 <td>@if($i != 0)<button class="btn btn-danger btn-sm btnRemoveEmail" data-count="{{ $count }}" type="button">Remove</button>@endif</td>
                                             </tr>
                                             @php $count = $count + 1; @endphp
@@ -128,7 +133,11 @@
                                             @endphp
                                             @for($i=0; $i < count($mobiles); $i++)
                                             <tr id="mobileRow{{ $count }}">
-                                                <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" type="tel" value="{{ $mobiles[$i] }}" required placeholder="मोबाईल"></td>
+                                                <td>
+                                                    @error('mobile.*')
+                                                        <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                    <input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" minlength="10" type="tel" value="{{ $mobiles[$i] }}" required placeholder="मोबाईल"></td>
                                                 <td>@if($i != 0)<button class="btn btn-danger btn-sm btnRemoveMobile" data-count="{{ $count }}" type="button">Remove</button>@endif</td>
                                             </tr>
                                             @php $count = $count + 1; @endphp
@@ -158,7 +167,7 @@
             var mobileCount = 100;
             $('body').on('click', '#addMoreMobileBtn', function(){
                 let html = `<tr id="mobileRow${mobileCount}">
-                            <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
+                            <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" minlength="10" type="tel" required placeholder="मोबाईल"></td>
                             <td><button class="btn btn-danger btn-sm btnRemoveMobile" data-count="${mobileCount}" type="button">Remove</button></td>
                         </tr>`;
                 mobileCount = mobileCount + 1;

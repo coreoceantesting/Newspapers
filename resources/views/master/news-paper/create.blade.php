@@ -113,7 +113,7 @@
                                         </thead>
                                         <tbody id="tableMobileTbody">
                                             <tr>
-                                                <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
+                                                <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" minlength="10" type="tel" required placeholder="मोबाईल"></td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
@@ -141,7 +141,7 @@
             var mobileCount = 1;
             $('body').on('click', '#addMoreMobileBtn', function(){
                 let html = `<tr id="mobileRow${mobileCount}">
-                            <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" type="tel" required placeholder="मोबाईल"></td>
+                            <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" name="mobile[]" maxlength="12" minlength="10" type="tel" required placeholder="मोबाईल"></td>
                             <td><button class="btn btn-danger btn-sm btnRemoveMobile" data-count="${mobileCount}" type="button">Remove</button></td>
                         </tr>`;
                 mobileCount = mobileCount + 1;

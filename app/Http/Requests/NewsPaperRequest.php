@@ -26,8 +26,8 @@ class NewsPaperRequest extends FormRequest
             'language_id' => 'required',
             'name' => 'required',
             'editor_name' => 'required',
-            'email' => 'required',
-            'mobile' => 'required'
+            'email.*' => 'required|regex:/(.+)@(.+)\.(.+)/i',
+            'mobile.*' => 'required|numeric'
         ];
     }
 
@@ -38,8 +38,10 @@ class NewsPaperRequest extends FormRequest
             'language_id.required' => 'कृपया भाषा निवडा',
             'name.required' => 'कृपया नाव प्रविष्ट करा',
             'editor_name.required' => 'कृपया संपादकाचे नाव प्रविष्ट करा',
-            'email.required' => 'कृपया ईमेल प्रविष्ट करा',
-            'mobile.required' => 'कृपया मोबाईल नंबर टाका',
+            'email.*.required' => 'कृपया ईमेल प्रविष्ट करा',
+            'mobile.*.required' => 'कृपया मोबाईल नंबर टाका',
+            'email.*.regex' => 'कृपया वैध ईमेल प्रविष्ट करा',
+            'mobile.*.numeric' => 'कृपया फक्त नंबर फील्ड प्रविष्ट करा'
         ];
     }
 }
