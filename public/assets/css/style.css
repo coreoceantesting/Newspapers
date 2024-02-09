@@ -27965,7 +27965,6 @@ footer {
   font-weight: 500;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-transform: capitalize;
