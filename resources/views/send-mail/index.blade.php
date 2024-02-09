@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}"> जाहिरात करा </a></li>
-                        <li class="breadcrumb-item active">मेल पाठवा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}">List Advertise (जाहिरात यादी) </a></li>
+                        <li class="breadcrumb-item active">Send Mail (मेल पाठवा)</li>
                     </ol>
                 </div>
             </div>
@@ -37,20 +37,20 @@
 
                         @endforeach
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">वर्तमानपत्र ईमेल <span class="error">*</span></label>
+                            <label class="form-label" for="work_order_number">Email (वर्तमानपत्र ईमेल) <span class="error">*</span></label>
                             <input class="form-control" type="text" placeholder="वर्तमानपत्र ईमेल" value="{{ $newsPaperEmail }}" readonly>
                             <input type="hidden" name="id" value="{{ Request()->id }}">
                         </div>
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">ईमेल विषय <span class="error">*</span></label>
+                            <label class="form-label" for="work_order_number">Subject (ईमेल विषय) <span class="error">*</span></label>
                             <input class="form-control" type="text" name="subject" placeholder="ईमेल विषय" required>
                         </div>
                         <div class="mt-2 col-12">
-                            <label class="form-label" for="work_order_number">ईमेल वर्णन <span class="error">*</span></label>
+                            <label class="form-label" for="work_order_number">Description (ईमेल वर्णन) <span class="error">*</span></label>
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
-                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">मेल पाठवा</button>
-                        <a href="{{ route('advertise.edit', Request()->id) }}" class="btn btn-dark">रद्द करा</a>
+                        <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">Send mail (मेल पाठवा)</button>
+                        <a href="{{ route('advertise.edit', Request()->id) }}" class="btn btn-dark">Cancel (रद्द करा)</a>
 
                     </form>
                 </div>

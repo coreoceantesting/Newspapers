@@ -146,11 +146,11 @@
                                         <th style="font-size: 12px;">Publication Type</th>
                                         <th style="font-size: 12px;">Publication Date</th>
                                         <th style="font-size: 12px;">Print Type</th>
-                                        <th style="font-size: 12px;">banner Size</th>
+                                        <th style="font-size: 12px;">Banner Size</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($advertises as $advertise)
+                                    @forelse($advertises as $advertise)
                                     <tr>
                                         <td style="font-size: 12px;">{{ $loop->iteration }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->unique_number }}</td>
@@ -159,7 +159,98 @@
                                         <td style="font-size: 12px;">{{ $advertise->printType?->name }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->bannerSize?->size }}</td>
                                     </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td align="center" colspan="5" style="font-size: 12px;">Data Not Found</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-white" style="font-size: 16px;margin-bottom: 1px;">Latest Bill</p>
+                            <a href="{{ route('billing.index') }}" style="padding: 6px 13px 4px 13px;font-size:10px" class="btn btn-sm btn-warning">View All</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size: 12px;">Sr.No</th>
+                                        <th style="font-size: 12px;">Bill No</th>
+                                        <th style="font-size: 12px;">Bill Date</th>
+                                        <th style="font-size: 12px;">Bank</th>
+                                        <th style="font-size: 12px;">Branch</th>
+                                        <th style="font-size: 12px;">Account Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($billing as $bill)
+                                    <tr>
+                                        <td style="font-size: 12px;">{{ $loop->iteration }}</td>
+                                        <td style="font-size: 12px;">{{ $bill->bill_number }}</td>
+                                        <td style="font-size: 12px;">{{ date('d-m-Y', strtotime($bill->bill_date)) }}</td>
+                                        <td style="font-size: 12px;">{{ $bill->accountDetails?->bank }}</td>
+                                        <td style="font-size: 12px;">{{ $bill->accountDetails?->branch }}</td>
+                                        <td style="font-size: 12px;">{{ $bill->accountDetails?->account_number }}</td>
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td align="center" colspan="5" style="font-size: 12px;">Data Not Found</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <div class="d-flex justify-content-between">
+                            <p class="text-white" style="font-size: 16px;margin-bottom: 1px;">Latest Expense</p>
+                            <a href="{{ route('expandeture.index') }}" style="padding: 6px 13px 4px 13px;font-size:10px" class="btn btn-sm btn-warning">View All</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="font-size: 12px;">Sr.No</th>
+                                        <th style="font-size: 12px;">Unique No</th>
+                                        <th style="font-size: 12px;">Net Amount</th>
+                                        <th style="font-size: 12px;">Prograssive Expandetures</th>
+                                        <th style="font-size: 12px;">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($expenses as $expense)
+                                    <tr>
+                                        <td style="font-size: 12px;">{{ $loop->iteration }}</td>
+                                        <td style="font-size: 12px;">{{ $expense->unique_no }}</td>
+                                        <td style="font-size: 12px;">{{ $expense->net_amount }}</td>
+                                        <td style="font-size: 12px;">{{ $expense->progressive_expandetures }}</td>
+                                        <td style="font-size: 12px;">{{ $expense->balance }}</td>
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td align="center" colspan="5" style="font-size: 12px;">Data Not Found</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

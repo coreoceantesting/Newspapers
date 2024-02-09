@@ -10,8 +10,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('billing.index') }}"> बिल करा </a></li>
-                        <li class="breadcrumb-item active">बिल पहा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('billing.index') }}"> List Bill (बिलांची यादी) </a></li>
+                        <li class="breadcrumb-item active">Preview Bill (बिल पहा)</li>
                     </ol>
                 </div>
             </div>
@@ -26,10 +26,10 @@
                         <div class="card-header border-bottom bg-primary pt-3 pb-1">
                             <div class="row">
                                 <div class="col-6">
-                                    <h5 class="text-white mt-1">बिल पहा</h5>
+                                    <h5 class="text-white mt-1">Preview Bill (बिल पहा)</h5>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <a href="{{ route('billing.index') }}"><button class="btn btn-square btn-warning-gradien" type="button">परत जा <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    <a href="{{ route('billing.index') }}"><button class="btn btn-square btn-warning-gradien" type="button">Back (परत जा) <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                     </button></a>
                                 </div>
                             </div>
@@ -39,33 +39,33 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="width:25%"><b>विभाग</b></th>
+                                            <th style="width:35%"><b>Department (विभाग)</b></th>
                                             <td>{{ $billing?->department?->name }}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th><b>बिल क्रमांक</b></th>
+                                            <th><b>Bill Number (बिल क्रमांक)</b></th>
                                             <td>{{ $billing->bill_number }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>बिल तारीख</b></th>
+                                            <th><b>Bill Date (बिल तारीख)</b></th>
                                             <td>{{ date('d-m-Y', strtotime($billing->bill_date)) }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>वर्तमानपत्र नाव</b></th>
+                                            <th><b>Newspaper Name (वर्तमानपत्र नाव)</b></th>
                                             <td>{{ $billing?->newsPaper?->name }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>बँकेचे नाव</b></th>
+                                            <th><b>Bank Name (बँकेचे नाव)</b></th>
                                             <td>{{ $billing?->accountDetails?->bank }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>शाखेचे नाव</b></th>
+                                            <th><b>Branch Name (शाखेचे नाव)</b></th>
                                             <td>{{ $billing?->accountDetails?->branch }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>खाते क्रमांक</b></th>
+                                            <th><b>Account Number (खाते क्रमांक)</b></th>
                                             <td>{{ $billing?->accountDetails?->account_number }}</td>
                                         </tr>
                                         <tr>
@@ -73,7 +73,7 @@
                                             <td>{{ $billing?->accountDetails?->ifsc_code }}</td>
                                         </tr>
                                         <tr>
-                                            <th><b>पॅन कार्ड</b></th>
+                                            <th><b>Pan Card (पॅन कार्ड)</b></th>
                                             <td>{{ $billing?->accountDetails?->pan_card }}</td>
                                         </tr>
                                         <tr>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Advertise;
 use App\Models\Billing;
 use App\Models\BudgetProvision;
+use App\Models\Expandeture;
 
 class DashboardController extends Controller
 {
@@ -26,9 +27,13 @@ class DashboardController extends Controller
             $query->where('year', date('Y'));
         })->value('budget');
 
+        $totalAdvertiseCost = Billing::whereYear('bill_date', date('Y'))->sum('net_amount');
+
         $advertises = Advertise::with(['publicationType', 'printType', 'bannerSize'])->limit(5)->latest()->get();
 
-        $totalAdvertiseCost = Billing::whereYear('bill_date', date('Y'))->sum('net_amount');
+        $billing = Billing::with(['accountDetails'])->where('is_expandeture_created', 0)->limit(5)->latest()->get();
+
+        $expenses = Expandeture::limit(5)->latest()->get();
 
         return view('dashboard')->with([
             'todayAdvertise' => $todayAdvertise,
@@ -39,7 +44,9 @@ class DashboardController extends Controller
             'thisYearBill' => $thisYearBill,
             'totalBudget' => $totalBudget,
             'totalAdvertiseCost' => $totalAdvertiseCost,
-            'advertises' => $advertises
+            'advertises' => $advertises,
+            'billing' => $billing,
+            'expenses' => $expenses
         ]);
     }
 }

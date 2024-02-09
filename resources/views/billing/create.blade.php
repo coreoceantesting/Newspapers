@@ -5,8 +5,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise-cost.index') }}"> बिल </a></li>
-                        <li class="breadcrumb-item active">बिल जोडा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('billing.index') }}"> List Bill (बिलांची यादी) </a></li>
+                        <li class="breadcrumb-item active">Add Bill (बिल जोडा)</li>
                     </ol>
                 </div>
             </div>
@@ -20,15 +20,15 @@
                     @csrf
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
-                            <h5 class="text-white item-center mb-2">बिल जोडा</h5>
+                            <h5 class="text-white item-center mb-2">Add Bill (बिल जोडा)</h5>
                         </div>
 
                         <div class="card-body">
                             <div class="row g-3 pb-3">
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="department_id">विभाग निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="department_id">Select Department (विभाग निवडा) <span class="error">*</span></label>
                                     <select name="department_id" id="selectDepartment" required class="form-select">
-                                        <option value="">विभाग निवडा</option>
+                                        <option value="">Select Department (विभाग निवडा) </option>
                                         @foreach ( $departments as $department )
                                             <option @if(old('department_id') == $department->id)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
                                         @endforeach
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12 workOrderNumberDiv d-none">
-                                    <label class="form-label" for="advertise_id">वर्क ऑर्डर क्रमांक <span class="error">*</span></label>
+                                    <label class="form-label" for="advertise_id">Select Work Order Number (वर्क ऑर्डर क्रमांक निवडा) <span class="error">*</span></label>
                                     <select name="advertise_id" id="workOrderNumber" required class="js-example-basic-single col-sm-12 select2-hidden-accessible">
 
                                     </select>
@@ -53,7 +53,7 @@
 
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="bill_number">बिल क्रमांक <span class="error">*</span></label>
+                                    <label class="form-label" for="bill_number">Bill Number (बिल क्रमांक) <span class="error">*</span></label>
                                     <input @if ($errors->has('bill_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bill_number" id="bill_number" type="text" placeholder="बिल क्रमांक" value="{{ old('bill_number') }}">
                                     @error('bill_number')
                                         <span class="error">{{ $message }}</span>
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="bank">बँकेचे नाव <span class="error">*</span></label>
+                                    <label class="form-label" for="bank">Bank Name (बँकेचे नाव) <span class="error">*</span></label>
                                     <input @if ($errors->has('bank')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bank" id="bank" type="text" readonly placeholder="बँकेचे नाव" value="{{ old('bank') }}">
                                     @error('bank')
                                         <span class="error">{{ $message }}</span>
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="branch">शाखेचे नाव <span class="error">*</span></label>
+                                    <label class="form-label" for="branch">Branch Name (शाखेचे नाव) <span class="error">*</span></label>
                                     <input @if ($errors->has('branch')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="branch" id="branch" readonly type="text" placeholder="शाखेचे नाव" value="{{ old('branch') }}">
                                     @error('branch')
                                         <span class="error">{{ $message }}</span>
@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="account_number">खाते क्रमांक <span class="error">*</span></label>
+                                    <label class="form-label" for="account_number">Account Number (खाते क्रमांक) <span class="error">*</span></label>
                                     <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" readonly id="account_number" type="number" placeholder="खाते क्रमांक" value="{{ old('account_number') }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="pan_card">पॅन कार्ड <span class="error">*</span></label>
+                                    <label class="form-label" for="pan_card">Pan Card (पॅन कार्ड) <span class="error">*</span></label>
                                     <input @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" readonly placeholder="पॅन कार्ड" value="{{ old('pan_card') }}">
                                     @error('pan_card')
                                         <span class="error">{{ $message }}</span>
@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="bill_date">बिल तारीख <span class="error">*</span></label>
+                                    <label class="form-label" for="bill_date">Bill Date (बिल तारीख) <span class="error">*</span></label>
                                     <input @if ($errors->has('bill_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="bill_date" id="bill_date" type="date" placeholder="बिल तारीख" value="{{ old('bill_date') }}">
                                     @error('bill_date')
                                         <span class="error">{{ $message }}</span>
@@ -162,8 +162,8 @@
                             </div>
 
                             <div class="text-end" >
-                                <button class="btn btn-square btn-success-gradien" id="submitForm" type="submit">जतन करा </button>
-                                <a href="{{ route('billing.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा </button></a>
+                                <button class="btn btn-square btn-success-gradien" id="submitForm" type="submit">Submit (जतन करा) </button>
+                                <a href="{{ route('billing.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel (रद्द करा) </button></a>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    let html = `<option value="">वर्क ऑर्डर क्रमांक</option>`;
+                                    let html = `<option value="">Select Work Order Number (वर्क ऑर्डर क्रमांक निवडा)</option>`;
                                     $.each(response.data, function(key, val){
                                         html += `<option value="${val.id}">${val.work_order_number}</option>`;
                                     });
@@ -248,11 +248,11 @@
                                         <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>प्रसिध्दीचा स्तर</th>
-                                                <th>प्रिंट प्रकार</th>
-                                                <th>बॅनर आकार </th>
-                                                <th>प्रसिद्धीची तारीख</th>
-                                                <th>फोटो</th>
+                                                <th>Publication Type (पब्लिकेशन प्रकार)</th>
+                                                <th>Print Type (प्रिंट प्रकार)</th>
+                                                <th>Banner Size (बॅनर आकार) </th>
+                                                <th>Publication Date (प्रसिद्धीची तारीख)</th>
+                                                <th>Photo (फोटो)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -268,9 +268,9 @@
                                     </div>`
                                     html += `
                                     <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="news_paper_id">वर्तमानपत्र निवडा <span class="error">*</span></label>
+                                    <label class="form-label" for="news_paper_id">Select Newspaper (वर्तमानपत्र निवडा) <span class="error">*</span></label>
                                     <select name="news_paper_id" id="newsPaperId" required class="form-select">
-                                        <option value="">वर्तमानपत्र निवडा</option>`;
+                                        <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>`;
                                     $.each(response.advertiseNewsPapers, function(key, val){
                                         html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;
                                     });
@@ -340,9 +340,9 @@
                             },
                             success: function(response){
                                 if(response.status === 200){
-                                    let html = `<label class="form-label" for="account_detail_id">खाते तपशील निवडा <span class="error">*</span></label>
+                                    let html = `<label class="form-label" for="account_detail_id">Select Account Number (खाते तपशील निवडा) <span class="error">*</span></label>
                                     <select name="account_detail_id" id="accountDetail" required class="form-select">
-                                        <option value="">खाते तपशील निवडा</option>`;
+                                        <option value="">Select Account Number (खाते तपशील निवडा)</option>`;
                                     $.each(response.data, function(key, val){
                                         html += `<option value="${val.id}">${val.account_number} (${val.bank})</option>`;
                                     });

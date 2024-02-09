@@ -13,8 +13,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}"> जाहिरात करा </a></li>
-                        <li class="breadcrumb-item active">जाहिरात जोडा</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('advertise.index') }}">List Advertise (जाहिरात यादी) </a></li>
+                        <li class="breadcrumb-item active">Add Advertise (जाहिरात जोडा)</li>
                     </ol>
                 </div>
             </div>
@@ -29,16 +29,16 @@
                         @csrf
                         <div class="card">
                             <div class="card-header border-bottom pb-2 bg-primary">
-                                <h5 class="text-white item-center mb-2">जाहिरात जोडा</h5>
+                                <h5 class="text-white item-center mb-2">Add Advertise (जाहिरात जोडा)</h5>
                             </div>
 
                             <div class="card-body">
                                 <div class="row g-3 pb-3">
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="publication_type_id">प्रसिध्दीचा स्तर निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="publication_type_id">Select Publication Type (पब्लिकेशन प्रकार निवडा) <span class="error">*</span></label>
                                         <select name="publication_type_id" id="selectPublication" required class="form-select">
-                                            <option value="">प्रसिध्दीचा स्तर निवडा</option>
+                                            <option value="">Select Publication Type (पब्लिकेशन प्रकार निवडा)</option>
                                             @foreach ( $publicationTypes as $publicationType )
                                                 <option value="{{ $publicationType->id }}">{{ $publicationType->name }}</option>
                                             @endforeach
@@ -50,7 +50,7 @@
 
                                     {{-- not part of jahir nivida --}}
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida d-none">
-                                        <label class="form-label" for="not_jahir_news_paper_type_id">वर्तमानपत्र प्रकार निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="not_jahir_news_paper_type_id">Select Publication Level (प्रसिध्दीचा स्तर निवडा) <span class="error">*</span></label>
                                         <select name="not_jahir_news_paper_type_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectNewsPaperType"  multiple="multiple">
                                             @foreach ( $newsPaperTypes as $newsPaperType )
                                                 <option value="{{ $newsPaperType->id }}">{{ $newsPaperType->name }}</option>
@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12 notJahirNivida d-none">
-                                        <label class="form-label" for="not_jahir_language_id">वर्तमानपत्राची भाषा निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="not_jahir_language_id">Select Language (वर्तमानपत्राची भाषा निवडा) <span class="error">*</span></label>
                                         <select name="not_jahir_language_id[]" required class="form-select js-example-basic-multiple selectNotJahirNividaType" id="selectLanguage" multiple="multiple">
                                             @foreach ( $languages as $language )
                                                 <option value="{{ $language->id }}">{{ $language->name }}</option>
@@ -82,9 +82,9 @@
 
                                     {{-- start jahirNivida --}}
                                     <div class="col-md-6 col-lg-6 col-12 jahirNivida d-none">
-                                        <label class="form-label" for="cost_id">कामाची किंमत निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="cost_id">Select Cost (कामाची किंमत निवडा) <span class="error">*</span></label>
                                         <select name="cost_id" id="selectCosts" required class="form-select">
-                                            <option value="">कामाची किंमत निवडा</option>
+                                            <option value="">Select Cost (कामाची किंमत निवडा)</option>
                                             @foreach ( $costs as $cost )
                                                 <option value="{{ $cost->id }}">{{ $cost->name }}</option>
                                             @endforeach
@@ -102,9 +102,9 @@
                                     <hr class="m-0">
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="department_id">विभाग निवडा <span class="error">*</span></label>
+                                        <label class="form-label" for="department_id">Select Department (विभाग निवडा) <span class="error">*</span></label>
                                         <select name="department_id" id="selectDepartment" required class="form-select">
-                                            <option value="">विभाग निवडा</option>
+                                            <option value="">Select Department (विभाग निवडा)</option>
                                             @foreach ( $departments as $department )
                                                 <option value="{{ $department->id }}">{{ $department->name }}</option>
                                             @endforeach
@@ -115,7 +115,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="work_order_number">वर्क ऑर्डर क्रमांक <span class="error">*</span></label>
+                                        <label class="form-label" for="work_order_number">Work Order Number (वर्क ऑर्डर क्रमांक) <span class="error">*</span></label>
                                         <input @if ($errors->has('work_order_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="work_order_number" id="work_order_number" type="text" placeholder="वर्क ऑर्डर क्रमांक" value="{{ old('work_order_number') }}">
                                         @error('work_order_number')
                                             <span class="error">{{ $message }}</span>
@@ -125,9 +125,9 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="print_type_id">प्रिंटचा प्रकार <span class="error">*</span></label>
+                                        <label class="form-label" for="print_type_id">Select Print Type (प्रिंटचा प्रकार) <span class="error">*</span></label>
                                         <select name="print_type_id" id="selectTypeOfPrint" required class="form-select">
-                                            <option value="">प्रिंटचा प्रकार</option>
+                                            <option value="">Select Print Type (प्रिंटचा प्रकार)</option>
                                             @foreach ( $printTypes as $printType )
                                                 <option value="{{ $printType->id }}">{{ $printType->name }}</option>
                                             @endforeach
@@ -138,7 +138,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="publication_date">पब्लिकेशन तारीख <span class="error">*</span></label>
+                                        <label class="form-label" for="publication_date">Select Publication Date (पब्लिकेशन तारीख) <span class="error">*</span></label>
                                         <input @if ($errors->has('publication_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="publication_date" id="publication_date" type="date" placeholder="पब्लिकेशन तारीख" value="{{ old('publication_date') }}">
                                         @error('publication_date')
                                             <span class="error">{{ $message }}</span>
@@ -147,9 +147,9 @@
 
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="banner_size_id">बॅनर आकार निवडा (चौ. सेमी) <span class="error">*</span></label>
+                                        <label class="form-label" for="banner_size_id"> Select Banner Size (बॅनर आकार निवडा (चौ. सेमी)) <span class="error">*</span></label>
                                         <select name="banner_size_id" id="selectDepartment" required class="form-select">
-                                            <option value="">बॅनर आकार निवडा</option>
+                                            <option value=""> Select Banner Size (बॅनर आकार निवडा)</option>
                                             @foreach ( $bannerSizes as $bannerSize )
                                                 <option value="{{ $bannerSize->id }}">{{ $bannerSize->size }}</option>
                                             @endforeach
@@ -160,7 +160,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-lg-6 col-12">
-                                        <label class="form-label" for="image">फोटो अपलोड करा <span class="error">*</span></label>
+                                        <label class="form-label" for="image">Select Photo (फोटो अपलोड करा) <span class="error">*</span></label>
                                         <input @if ($errors->has('image')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="image" id="image" type="file" accept="image/*" required placeholder="Publication Date" value="{{ old('image') }}">
                                         @error('image')
                                             <span class="error">{{ $message }}</span>
@@ -172,8 +172,8 @@
                                 </div>
 
                                 <div class="text-end" >
-                                    <button class="btn btn-square btn-success-gradien" type="submit" id="submitForm">जतन करा आणि पूर्वावलोकन करा</button>
-                                    <a href="{{ route('advertise.index') }}"><button class="btn btn-square btn-dark" type="button">रद्द करा</button></a>
+                                    <button class="btn btn-square btn-success-gradien" type="submit" id="submitForm">Save & Preview (जतन करा आणि पूर्वावलोकन करा)</button>
+                                    <a href="{{ route('advertise.index') }}"><button class="btn btn-square btn-dark" type="button">Cancel (रद्द करा)</button></a>
                                 </div>
                             </div>
                         </div>

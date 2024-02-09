@@ -28,8 +28,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">अहवाल</li>
-                        <li class="breadcrumb-item active">बिल अहवाल</li>
+                        <li class="breadcrumb-item">Report (अहवाल)</li>
+                        <li class="breadcrumb-item active">Bill Report (बिल अहवाल)</li>
                     </ol>
                 </div>
             </div>
@@ -43,14 +43,17 @@
             <!-- Zero Configuration  Starts-->
             <div class="col-sm-12">
                 <div class="card">
+                    <div class="card-header border-bottom pb-2">
+                        <h5 class="card-title">Bill Report (बिल अहवाल)</h5>
+                    </div>
                     <div class="card-body">
                         <form action="" method="get">
                             <input type="hidden" name="search" value="search">
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectDepartment">विभाग निवडा</label>
+                                    <label class="form-label" for="selectDepartment">Select Department (विभाग निवडा)</label>
                                     <select name="department" id="selectDepartment" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">विभाग निवडा</option>
+                                        <option value="">Select Department (विभाग निवडा)</option>
                                         @foreach ( $departments as $department )
                                             <option @if(isset(Request()->department) && $department->id == Request()->department)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
                                         @endforeach
@@ -58,9 +61,9 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectWorkOrderNumber">वर्क ऑर्डर क्रमांक निवडा</label>
+                                    <label class="form-label" for="selectWorkOrderNumber">Select Wrok Order No (वर्क ऑर्डर क्रमांक निवडा)</label>
                                     <select name="work_order_number" id="selectWorkOrderNumber" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">वर्क ऑर्डर क्रमांक निवडा</option>
+                                        <option value="">Select Wrok Order No (वर्क ऑर्डर क्रमांक निवडा)</option>
                                         @if($workOrderNumbers)
                                             @foreach($workOrderNumbers as $workOrderNumber)
                                             <option @if($workOrderNumber->id == Request()->work_order_number)selected @endif value="{{ $workOrderNumber->id }}">{{ $workOrderNumber->work_order_number }}</option>
@@ -71,9 +74,9 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectNewsPaper">वर्तमानपत्र निवडा</label>
+                                    <label class="form-label" for="selectNewsPaper">Select Newspaper (वर्तमानपत्र निवडा)</label>
                                     <select name="news_paper" id="selectNewsPaper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">वर्तमानपत्र निवडा</option>
+                                        <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>
                                         @if($newsPapers)
                                             @foreach($newsPapers as $newsPaper)
                                             <option @if($newsPaper?->newsPaper?->id == Request()->news_paper)selected @endif value="{{ $newsPaper?->newsPaper?->id }}">{{ $newsPaper?->newsPaper?->name }}</option>
@@ -83,7 +86,7 @@
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <div class="form-label">&nbsp;</div>
-                                    <button class="btn btn-primary">शोधा</button>
+                                    <button class="btn btn-primary">Search (शोधा)</button>
                                 </div>
                             </div>
                         </form>
