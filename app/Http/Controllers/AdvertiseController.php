@@ -83,7 +83,8 @@ class AdvertiseController extends Controller
         DB::beginTransaction();
         try
         {
-            $sequenceNo = FinancialYear::where('is_active', 1)->value('sequence');
+            $financialYear = FinancialYear::where('is_active', 1)->first();
+            $sequenceNo = ($financialYear->sequence) ? $financialYear->sequence : 0;
             DB::table('financial_years')->where('is_active', 1)->update([
                 'sequence' => $sequenceNo+1
             ]);
@@ -96,7 +97,7 @@ class AdvertiseController extends Controller
             $advertise->department_id = $request->department_id;
             $advertise->print_type_id = $request->print_type_id;
             $advertise->banner_size_id = $request->banner_size_id;
-            $advertise->unique_number = $sequenceNo;
+            $advertise->unique_number = 'PMC/NPM/'.$sequenceNo.'/'.$financialYear->year;
             $advertise->publication_date = date('Y-m-d', strtotime($request->publication_date));
             $advertise->work_order_number = $request->work_order_number;
             if($request->hasFile('image')){

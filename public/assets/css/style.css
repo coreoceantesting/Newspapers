@@ -14978,7 +14978,7 @@ span.twitter-typeahead .tt-suggestion.active, span.twitter-typeahead .tt-suggest
 @media screen and (max-width: 1660px) and (min-width: 1366px) {
   .default-dash .card .card-header,
   .default-dash2 .card .card-header {
-    padding: 20px;
+    padding: 9px;
   }
   .default-dash .card .card-header h5,
   .default-dash2 .card .card-header h5 {
@@ -14991,7 +14991,7 @@ span.twitter-typeahead .tt-suggestion.active, span.twitter-typeahead .tt-suggest
   }
   .default-dash .card .card-body,
   .default-dash2 .card .card-body {
-    padding: 20px;
+    padding: 10px;
   }
   .default-dash .recent-activi.card .card-body {
     padding: 8px !important;

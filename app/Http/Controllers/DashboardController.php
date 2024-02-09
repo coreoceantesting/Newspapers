@@ -26,6 +26,8 @@ class DashboardController extends Controller
             $query->where('year', date('Y'));
         })->value('budget');
 
+        $advertises = Advertise::with(['publicationType', 'printType', 'bannerSize'])->limit(5)->latest()->get();
+
         $totalAdvertiseCost = Billing::whereYear('bill_date', date('Y'))->sum('net_amount');
 
         return view('dashboard')->with([
@@ -36,7 +38,8 @@ class DashboardController extends Controller
             'thisMonthBill' => $thisMonthBill,
             'thisYearBill' => $thisYearBill,
             'totalBudget' => $totalBudget,
-            'totalAdvertiseCost' => $totalAdvertiseCost
+            'totalAdvertiseCost' => $totalAdvertiseCost,
+            'advertises' => $advertises
         ]);
     }
 }
