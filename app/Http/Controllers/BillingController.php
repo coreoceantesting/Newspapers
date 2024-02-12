@@ -17,7 +17,11 @@ use App\Models\FinancialYear;
 class BillingController extends Controller
 {
     public function index(){
-        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->latest()->get();
+        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from')))." 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to')))." 23:59:59";
+            return $q->where('bill_date', '>=', $from)->where('bill_date', '<=', $to);
+        })->latest()->get();
 
         return view('billing.index')->with([
             'billing' => $billing

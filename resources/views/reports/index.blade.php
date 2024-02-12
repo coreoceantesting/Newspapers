@@ -111,7 +111,7 @@
                                     </tr>
                                     <tr align="center">
                                         <th>Work Order</th>
-                                        <th>विभागाचे नाव व जाहिरातीचा प्रकार</th>
+                                        <th><b>विभागाचे नाव व जाहिरातीचा प्रकार</b></th>
                                         <th>Sr.No.</th>
                                         <th>Bill No.</th>
                                         <th>Date</th>

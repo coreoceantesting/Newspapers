@@ -15,13 +15,13 @@ class DashboardController extends Controller
 
         $thisMonthAdvertise = Advertise::whereMonth('publication_date', date('m'))->count();
 
-        $thisYearAdvertise = Advertise::whereYear('publication_date', date('Y'))->count();
+        $thisYearAdvertise = Advertise::count();
 
         $todayBill = Billing::whereDate('bill_date', date('Y-m-d'))->count();
 
         $thisMonthBill = Billing::whereMonth('bill_date', date('m'))->count();
 
-        $thisYearBill = Billing::whereYear('bill_date', date('Y'))->count();
+        $thisYearBill = Billing::count();
 
         $totalBudget = BudgetProvision::whereHas('financialYear', function($query){
             $query->where('year', date('Y'));

@@ -4991,6 +4991,7 @@ div.DTS div.dataTables_scrollBody table {
 }
 .dataTables_wrapper table.dataTable thead th, .dataTables_wrapper table.dataTable thead td {
   border-bottom: 1px solid #00000080;
+  border-right: 1px solid #00000080;
 }
 .dataTables_wrapper table.dataTable th, .dataTables_wrapper table.dataTable td {
   padding: 0.75rem;
@@ -10385,6 +10386,7 @@ th {
 .table-bordered td,
 .table-bordered th {
   border-color: #00000080;
+  border-right: 1px solid #00000080;
 }
 
 .grid-wrrapper .table-striped tbody tr:nth-of-type(odd) {
@@ -13177,9 +13179,9 @@ p.data-attributes svg {
   color: rgba(43, 43, 43, 0.7);
 }
 
-.table thead th {
-  border-bottom: 2px solid #eeeeee;
-}
+/* .table thead th {
+  border-bottom: 1px solid #00000080;
+} */
 
 .header-top {
   display: -webkit-box;

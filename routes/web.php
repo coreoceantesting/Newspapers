@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
 
     // route for advertise
     Route::get('advertise', [AdvertiseController::class, 'index'])->name('advertise.index');
+    Route::get('advertise/show', [AdvertiseController::class, 'show'])->name('advertise.show');
     Route::get('advertise/create', [AdvertiseController::class, 'create'])->name('advertise.create');
     Route::post('advertise/store', [AdvertiseController::class, 'store'])->name('advertise.store');
     Route::get('advertise/{id}/edit', [AdvertiseController::class, 'edit'])->name('advertise.edit');

@@ -326,4 +326,16 @@ class AdvertiseController extends Controller
         ]);
     }
 
+    public function show(Request $req){
+        $advertises = Advertise::with([
+            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+        ])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from')))." 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to')))." 23:59:59";
+            return $q->where('publication_date', '>=', $from)->where('publication_date', '<=', $to);
+        })->latest()->get();
+
+        return view('advertise.index')->with(['advertises' => $advertises]);
+    }
+
 }

@@ -19,7 +19,7 @@
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="row" style="margin-bottom: -14px;">
                     <div class="col-xl-4 col-lg-4 col-sm-4 p-0">
-                        <a href="{{ route('advertise.index') }}">
+                        <a href="{{ route('advertise.show', ['from' => date('Y-m-d'), 'to' => date('Y-m-d')]) }}">
                             <div class="card investment-sec">
                                 <div class="card-header bg-primary"><span class="text-white">Today's Advertise <br>(आजच्या जाहिराती)</span></div>
                                 {{-- <div class="animated-bg"><i></i><i></i><i></i></div> --}}
@@ -30,7 +30,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-sm-4 p-0">
-                        <a href="{{ route('advertise.index') }}">
+                        <a href="{{ route('advertise.show', ['from' => date('Y-m-01'), 'to' => date('Y-m-t')]) }}">
                             <div class="card investment-sec">
                                 <div class="card-header bg-primary"><span class="text-white">Monthly Advertise <br>(मासिक जाहिराती )</span></div>
                                 {{-- <div class="animated-bg"><i></i><i></i><i></i></div> --}}
@@ -41,7 +41,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-sm-4 p-0">
-                        <a href="{{ route('advertise.index') }}">
+                        <a href="{{ route('advertise.show') }}">
                             <div class="card investment-sec">
                                 <div class="card-header bg-primary"><span class="text-white">Total Advertise <br>(एकूण जाहिराती)</span></div>
                                 {{-- <div class="animated-bg"><i></i><i></i><i></i></div> --}}
@@ -57,7 +57,7 @@
 
                 <div class="row" style="margin-bottom: -14px;">
                     <div class="col-xl-4 col-lg-4 col-sm-4 p-0">
-                        <a href="{{ route('billing.index') }}">
+                        <a href="{{ route('billing.index', ['from' => date('Y-m-d'), 'to' => date('Y-m-d')]) }}">
                             <div class="card investment-sec">
                                 <div class="card-header bg-primary"><span class="text-white">Today's Bill <br>(आजची बिले)</span></div>
                                 {{-- <div class="animated-bg"><i></i><i></i><i></i></div> --}}
@@ -68,7 +68,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-sm-4 p-0">
-                        <a href="{{ route('billing.index') }}">
+                        <a href="{{ route('billing.index', ['from' => date('Y-m-01'), 'to' => date('Y-m-t')]) }}">
                             <div class="card investment-sec">
                                 <div class="card-header bg-primary"><span class="text-white">Monthly Bill <br>(मासिक बिले)</span></div>
                                 {{-- <div class="animated-bg"><i></i><i></i><i></i></div> --}}

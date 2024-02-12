@@ -33,7 +33,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <label class="form-label" for="department">Select Department (विभाग निवडा)</label>
-                                    <select name="department" id="department" class="form-select">
+                                    <select name="department" required id="department" class="form-select">
+                                        <option value="">Select Department (विभाग निवडा)</option>
                                         @foreach ( $departments as $department )
                                             <option @if(isset(Request()->department) && $department->id == Request()->department)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
                                         @endforeach
