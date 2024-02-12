@@ -74,7 +74,7 @@ class ReportController extends Controller
             $from = date('Y-m-d', strtotime(request('from')))." 00:00:00";
             return $q->where('created_at', '>=', $from);
         })->when(request('to'), function ($q) {
-            $to = date('Y-m-d', strtotime(request('to')))." 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to')))." 23:59:59";
             return $q->where('created_at', '<=', $to);
         })->get();
 

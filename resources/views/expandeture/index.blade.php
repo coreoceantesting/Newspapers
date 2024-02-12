@@ -38,6 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th>अ.क्र.</th>
+                                        <th>दिनांक</th>
                                         <th>युनिक क्र</th>
                                         <th>बिल क्र</th>
                                         <th>वर्तमानपत्र नाव</th>
@@ -49,6 +50,7 @@
                                     @foreach ( $expandatures as $expandature )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ date('d-m-Y h:iA', strtotime($expandature->created_at)) }}</td>
                                         <td>{{ $expandature->unique_no }}</td>
                                         <td>{{ $expandature?->billing?->bill_number }}</td>
                                         <td>{{ $expandature?->newsPaper?->name }}</td>
