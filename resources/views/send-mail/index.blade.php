@@ -50,7 +50,7 @@
                             <textarea name="description" class="form-control" placeholder="ईमेल वर्णन" cols="20" rows="10"></textarea>
                         </div>
                         <button class="btn btn-primary mb-3 mt-1" onclick="return confirm('After Send the mail you can\'t edit the advertise')" type="submit">Send mail (मेल पाठवा)</button>
-                        <a href="{{ route('advertise.edit', Request()->id) }}" class="btn btn-dark">Cancel (रद्द करा)</a>
+                        <a href="{{ route('advertise.index') }}" class="btn btn-dark">Cancel (रद्द करा)</a>
 
                     </form>
                 </div>
