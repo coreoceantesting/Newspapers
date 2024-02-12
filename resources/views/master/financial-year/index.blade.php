@@ -42,6 +42,7 @@
                                         <th>आजपर्यंत</th>
                                         <th>वर्ष</th>
                                         <th>क्रम</th>
+                                        <th>स्थिती</th>
                                         <th>कृती</th>
                                     </tr>
                                 </thead>
@@ -53,6 +54,13 @@
                                         <td>{{ date('d-m-Y', strtotime($financialYear->to_date)) }}</td>
                                         <td>{{ $financialYear->year }}</td>
                                         <td>{{ $financialYear->sequence }}</td>
+                                        <td>
+                                            @if($financialYear->is_active == "1")
+                                            <div class="badge badge-success">Active</div>
+                                            @else
+                                            <div class="badge badge-danger">Inactive</div>
+                                            @endif
+                                        </td>
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">

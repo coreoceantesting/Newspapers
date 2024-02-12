@@ -46,8 +46,7 @@ class BillingController extends Controller
             $totalAmount = $totalBillAmount + $request->net_amount;
 
             $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
-                $q->where('from_date', '<=', date('Y-m-d'))
-                ->where('to_date', '>=', date('Y-m-d'));
+                $q->where('is_active', '1');
             })->where('department_id', $request->department_id)->value('budget');
 
             if($totalAmount > $budget){
@@ -130,8 +129,7 @@ class BillingController extends Controller
             $totalAmount = $totalBillAmount + $request->net_amount;
 
             $budget = BudgetProvision::whereHas('financialYear', function($q) use($request){
-                $q->where('from_date', '<=', date('Y-m-d'))
-                ->where('to_date', '>=', date('Y-m-d'));
+                $q->where('is_active', '1');
             })->where('department_id', $request->department_id)->value('budget');
             if($totalAmount > $budget){
                 return redirect()->route('billing.index')->with('error', 'Your budget is finished.');

@@ -62,6 +62,17 @@
                                     @enderror
                                 </div>
 
+                                <div class="col-md-6 col-lg-6 col-12">
+                                    <label class="form-label" for="status">Select status (स्थिती निवडा) <span class="error">*</span></label>
+                                    <select name="status" required class="form-select">
+                                        <option {{ ($financialYear->is_active == "0") ? 'selected' : '' }} value="0">Inactive</option>
+                                        <option {{ ($financialYear->is_active == "1") ? 'selected' : '' }} value="1">Active</option>
+                                    </select>
+                                    @error('status')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
 
                             </div>
 

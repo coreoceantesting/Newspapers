@@ -36,12 +36,15 @@ class FinancialYearController extends Controller
         try
         {
             DB::beginTransaction();
-            DB::table('financial_years')->update(['is_active' => 0]);
+
+            if($request->status == "1"){
+                DB::table('financial_years')->update(['is_active' => 0]);
+            }
             $financialYear = new FinancialYear;
             $financialYear->year = $request->year;
             $financialYear->from_date = date('Y-m-d', strtotime($request->from_date));
             $financialYear->to_date = date('Y-m-d', strtotime($request->to_date));
-            $financialYear->is_active = 1;
+            $financialYear->is_active = $request->status;
             $financialYear->sequence = $request->sequence;
             $financialYear->save();
             DB::commit();
@@ -73,11 +76,15 @@ class FinancialYearController extends Controller
         try
         {
             DB::beginTransaction();
+            if($request->status == "1"){
+                DB::table('financial_years')->update(['is_active' => 0]);
+            }
             $financialYear = FinancialYear::find($request->id);
             $financialYear->year = $request->year;
             $financialYear->from_date = date('Y-m-d', strtotime($request->from_date));
             $financialYear->to_date = date('Y-m-d', strtotime($request->to_date));
             $financialYear->sequence = $request->sequence;
+            $financialYear->is_active = $request->status;
             $financialYear->save();
             DB::commit();
 

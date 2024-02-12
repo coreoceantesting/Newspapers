@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $thisYearBill = Billing::count();
 
         $totalBudget = BudgetProvision::whereHas('financialYear', function($query){
-            $query->where('year', date('Y'));
+            $query->where('is_active', '1');
         })->value('budget');
 
         $totalAdvertiseCost = Billing::whereYear('bill_date', date('Y'))->sum('net_amount');
