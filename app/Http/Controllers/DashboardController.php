@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
         $advertises = Advertise::with(['publicationType', 'printType', 'bannerSize'])->limit(5)->latest()->get();
 
-        $billing = Billing::with(['accountDetails'])->where('is_expandeture_created', 0)->limit(5)->latest()->get();
+        $billing = Billing::with(['accountDetails'])->limit(5)->latest()->get();
 
         $expenses = Expandeture::limit(5)->latest()->get();
 
