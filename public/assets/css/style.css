@@ -4975,7 +4975,7 @@ div.DTS div.dataTables_scrollBody table {
   background-color: #fff;
 }
 .dataTables_wrapper table.dataTable {
-  border: 1px solid #efefef;
+  border: 1px solid #00000080;
 }
 .dataTables_wrapper table.dataTable tbody td.select-checkbox, .dataTables_wrapper table.dataTable tbody th.select-checkbox {
   padding-right: 40px !important;
@@ -4990,7 +4990,7 @@ div.DTS div.dataTables_scrollBody table {
   margin-left: 21px;
 }
 .dataTables_wrapper table.dataTable thead th, .dataTables_wrapper table.dataTable thead td {
-  border-bottom: 2px solid #efefef;
+  border-bottom: 1px solid #00000080;
 }
 .dataTables_wrapper table.dataTable th, .dataTables_wrapper table.dataTable td {
   padding: 0.75rem;
@@ -10384,7 +10384,7 @@ th {
 .table-bordered tr,
 .table-bordered td,
 .table-bordered th {
-  border-color: #f2f4ff;
+  border-color: #00000080;
 }
 
 .grid-wrrapper .table-striped tbody tr:nth-of-type(odd) {
