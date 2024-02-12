@@ -102,14 +102,14 @@
                     <tr class="dataTd">
                         <td align="center">{{ $expendature->unique_no }}<br>{{ date('d-m-Y', strtotime($expendature->created_at)) }}</td>
                         <td></td>
-                        <td align="left">{{ $expendature?->newsPaper?->name }}</td>
+                        <td align="center">{{ $expendature?->newsPaper?->name }}</td>
                         <td align="center">{{ $expendature->invoice_amount }}</td>
                         <td></td>
                         <td></td>
                         <td align="center">{{ $expendature->other_charges }}</td>
                         <td align="center">{{ $expendature->net_amount }}</td>
-                        <td align="right">{{ $expendature->progressive_expandetures }}</td>
-                        <td align="right">{{ $expendature->balance }}</td>
+                        <td align="center">{{ $expendature->progressive_expandetures }}</td>
+                        <td align="center">{{ $expendature->balance }}</td>
                         <td></td>
                         <td></td>
                         <td></td>

@@ -235,7 +235,7 @@ $(document).ready(function () {
   }
   var trans = [
     {
-      en: "General",
+      en: "",
       pt: "Geral",
       es: "Generalo",
       fr: "GÃ©nÃ©rale",
