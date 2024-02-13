@@ -8,6 +8,7 @@ use App\Http\Requests\BudgetProvisionRequest;
 use App\Models\FinancialYear;
 use App\Models\Department;
 use App\Models\BudgetProvision;
+use App\Models\Expandeture;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -85,15 +86,59 @@ class BudgetProvisionController extends Controller
      */
     public function update(BudgetProvisionRequest $request, BudgetProvision $budgetProvision)
     {
+        // dd($request);
         $check = BudgetProvision::where('financial_year_id', $request->financial_year_id)->where('id', '!=', $request->id)->exists();
 
         if($check){
             return redirect()->route('budget-provision.index')->with('error', 'Budget Already Exists of this year');
         }
 
+        $expenseAmount = Expandeture::whereHas('billing.department.budgetProvision', function($q) use($request){
+            return $q->where('id', $request->id);
+        })->latest()->value('progressive_expandetures');
+
         try
         {
             DB::beginTransaction();
+
+            if($expenseAmount > $request->budget){
+                return redirect()->route('budget-provision.index')->with('error', 'Expense amount is more than budget amount');
+            }else{
+                $expenses = Expandeture::whereHas('billing.department.budgetProvision', function($q) use($request){
+                    return $q->where('id', $request->id);
+                })->get();
+                $count = 1;
+                $lastBalance = 0;
+                $lastProgressiveExpandeture = 0;
+                foreach($expenses as $expense){
+                    if($count == "1"){
+                        $budget = $request->budget;
+                        $invoiceAmount = $expense->net_amount;
+                        $otherCharges = $expense->other_charges;
+                        $netAmount = $invoiceAmount - $otherCharges;
+                        $prograssiveExpendature = $budget;
+                        $balance = $budget - $invoiceAmount;
+                    }else{
+                        $invoiceAmount = $expense->net_amount;
+                        $otherCharges = $expense->other_charges;
+                        $netAmount = $invoiceAmount - $otherCharges;
+                        $prograssiveExpendature = $invoiceAmount + $lastProgressiveExpandeture;
+                        $balance = $lastBalance - $invoiceAmount;
+                    }
+                    $lastBalance = $balance;
+                    $lastProgressiveExpandeture = $prograssiveExpendature;
+                    $count = $count + 1;
+
+                    DB::table('expandetures')->where('id', $expense->id)->update([
+                        'invoice_amount' => $invoiceAmount,
+                        'other_charges' => $otherCharges,
+                        'net_amount' => $netAmount,
+                        'progressive_expandetures' => $prograssiveExpendature,
+                        'balance' => $balance,
+                    ]);
+                }
+            }
+
             $input = $request->validated();
             $budgetProvision->update( Arr::only( $input, BudgetProvision::getFillables() ) );
             DB::commit();

@@ -45,7 +45,7 @@
           );
       }
     });
-    $(".sidebar-submenu, .menu-content").hide();
+    // $(".sidebar-submenu, .menu-content").hide();
     $(".submenu-title").append(
       '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
     );

@@ -32,7 +32,7 @@
                             }
                             @endphp
                             <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"data-bs-original-title><i data-feather="airplay"></i><span >Masters (मास्टर)</span></a>
-                                <ul class="sidebar-submenu" style="display: block">
+                                <ul class="sidebar-submenu" style="display: {{ ($active == "") ? 'none' : 'block' }}">
                                     <li>
                                         <a @if(Request::is('department') || Request::is('department/*'))class="active" @endif href="{{ route('department.index') }}">Department (विभाग)</a>
                                     </li>
@@ -90,9 +90,9 @@
                             }
                             @endphp
                             <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="feather"></i><span >Advertise (जाहिरात करा)</span></a>
-                                <ul class="sidebar-submenu">
+                                <ul class="sidebar-submenu" style="display: {{ ($active == "") ? 'none' : 'block' }}">
                                     <li>
-                                        <a href="{{ route('advertise.index') }}">Advertise List(जाहिरात यादी)</a>
+                                        <a @if((Request::is('advertise') || Request::is('advertise/*') && Request::path() != "advertise/send-mail" ))class="active" @endif href="{{ route('advertise.index') }}">Advertise List(जाहिरात यादी)</a>
                                     </li>
                                     <li>
                                         <a @if(Request::is('advertise/send-mail'))class="active" @endif href="{{ route('advertise.sendMail') }}">Advertise Email List(जाहिरात मेल यादी)</a>
@@ -122,7 +122,7 @@
                             }
                             @endphp
                             <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="alert-circle"></i><span >Reports (अहवाल)</span></a>
-                                <ul class="sidebar-submenu">
+                                <ul class="sidebar-submenu" style="display: {{ ($active == "") ? 'none' : 'block' }}">
                                     <li>
                                         <a @if(Request::is('report'))class="active" @endif href="{{ route('report.index') }}">Billing Report (बिल अहवाल)</a>
                                     </li>

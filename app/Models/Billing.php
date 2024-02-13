@@ -36,4 +36,8 @@ class Billing extends Model
     public function expandature(){
         return $this->hasOne(Expandeture::class, 'billing_id', 'id');
     }
+
+    public function latestExpandature(){
+        return $this->hasOne(Expandeture::class, 'billing_id', 'id')->latestOfMany();
+    }
 }
