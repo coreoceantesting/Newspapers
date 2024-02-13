@@ -75,9 +75,10 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::post('advertise/mail/cancel', [SendMailController::class, 'cancelMail'])->name('mail.cancel');
     Route::get('advertise/pdf', [AdvertiseController::class, 'generatePdf'])->name('advertise.pdf');
     Route::get('advertise/send-mail', [AdvertiseController::class, 'sendMail'])->name('advertise.sendMail');
+    Route::get('advertise/export', [AdvertiseController::class, 'export'])->name('advertise.export');
     // end of route for advertise
 
-
+    Route::get('billing/export', [BillingController::class, 'export'])->name('billing.export');
     Route::resource('billing', BillingController::class);
 
     // ajax route
@@ -108,6 +109,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     Route::get('/report/expandeture', [ReportController::class, 'expandature'])->name('report.expandeture');
     Route::get('/report/expandeture/pdf', [ReportController::class, 'expandaturePdf'])->name('report.expandeture.pdf');
 
+    Route::get('expandeture/export', [ExpandetureController::class, 'export'])->name('expandeture.export');
     Route::resource('expandeture', ExpandetureController::class);
 });
 

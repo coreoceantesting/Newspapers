@@ -17,6 +17,8 @@ use App\Models\AdvertiseNewsPaper;
 use App\Models\FinancialYear;
 use App\Models\NewsPaper;
 use App\Models\Signature;
+use App\Exports\AdvertiseExport;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class AdvertiseController extends Controller
@@ -340,6 +342,15 @@ class AdvertiseController extends Controller
         })->latest()->get();
 
         return view('advertise.index')->with(['advertises' => $advertises]);
+    }
+
+    public function export(Request $request)
+    {
+        $advertises = Advertise::with([
+            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+        ])->where('is_mail_send', $request->is_mail_send)->latest()->get();
+
+        return Excel::download(new AdvertiseExport($advertises), 'advertise.xlsx');
     }
 
 }

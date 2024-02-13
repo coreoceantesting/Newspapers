@@ -26,6 +26,9 @@
                                 <h5 class="text-white mt-1">List Expense (खर्चाची यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
+                                <a href="{{ route('expandeture.export') }}"><button class="btn btn-square btn-success-gradien" type="button">Export As Excel
+                                </button></a>
+
                                 <a href="{{ route('expandeture.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Expense (खर्च जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>

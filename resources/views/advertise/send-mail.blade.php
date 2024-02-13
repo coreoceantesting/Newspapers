@@ -26,8 +26,8 @@
                                 <h5 class="text-white mt-1">List Advertise Mail (जाहिरात मेल यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                {{-- <a href="{{ route('advertise.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">जाहिरात जोडा <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button></a> --}}
+                                <a href="{{ route('advertise.export', ['is_mail_send' => 1]) }}"><button class="btn btn-square btn-success-gradien" type="button">Export As Excel
+                                </button></a>
                             </div>
                         </div>
                     </div>

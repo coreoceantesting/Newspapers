@@ -8,6 +8,8 @@ use App\Models\Expandeture;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ExpandatureRequest;
+use App\Exports\ExpandetureExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExpandetureController extends Controller
 {
@@ -54,6 +56,13 @@ class ExpandetureController extends Controller
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
 
+    }
+
+    public function export(Request $request)
+    {
+        $expandatures = Expandeture::with(['billing', 'newsPaper'])->get();
+
+        return Excel::download(new ExpandetureExport($expandatures), 'expandeture.xlsx');
     }
 
     public function edit(Request $request){

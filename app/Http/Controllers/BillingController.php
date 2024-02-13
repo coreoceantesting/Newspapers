@@ -13,6 +13,8 @@ use App\Models\AdvertiseNewsPaper;
 use App\Models\BudgetProvision;
 use App\Models\AccountDetail;
 use App\Models\FinancialYear;
+use App\Exports\BillingExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BillingController extends Controller
 {
@@ -184,5 +186,12 @@ class BillingController extends Controller
         $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->where('id', $id)->latest()->first();
         // return $billing;
         return view('billing.show')->with(['billing' => $billing]);
+    }
+
+    public function export(Request $request)
+    {
+        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->latest()->get();
+
+        return Excel::download(new BillingExport($billing), 'billing.xlsx');
     }
 }
