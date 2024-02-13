@@ -52,13 +52,12 @@
                             @endforeach
                             <div class="table-responsive table-bordered">
                                 <table class="table">
-                                    <thead>
+
+                                    <tbody>
                                         <tr>
                                             <th><b>Department (विभाग)</b></th>
                                             <td>{{ $advertise?->department?->name }}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
                                         <tr>
                                             <th><b>Publication Type (पब्लिकेशन प्रकार)</b></th>
                                             <td>{{ $advertise?->publicationType?->name }}</td>
@@ -78,6 +77,14 @@
                                         <tr>
                                             <th><b>Work Order Number (वर्क ऑर्डर क्रमांक)</b></th>
                                             <td>{{ $advertise->work_order_number }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Context (संदर्भ)</b></th>
+                                            <td>{{ $advertise->context }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th><b>Select Context Date (संदर्भ तारीख)</b></th>
+                                            <td>{{ date('d-m-Y', strtotime($advertise->context_date)) }}</td>
                                         </tr>
                                         <tr>
                                             <th><b>Photo (फोटो)</b></th>

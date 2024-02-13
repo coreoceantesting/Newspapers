@@ -64,12 +64,12 @@
         विषय :- पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType?->name }}) वृत्तपत्रात प्रसिध्दी करणेबाबत.
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        संदर्भ:- जा.क्र. पमपा/-----/-----/प्र.क्र.-----/-----/{{ date('Y') }} दिनांक : {{ date('d-m-Y') }} रोजीचे पत्रान्वये.
+        संदर्भ:- {{ $advertise->context }} दिनांक : {{ date('d-m-Y', strtotime($advertise->context_date)) }} रोजीचे पत्रान्वये.
     </p>
     <br>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) पमपा/-----/-----/प्र.क्र.----/----/{{ date('Y') }} दिनांक {{ date('d-m-Y') }} आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, <b>तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक - {{ date('d-m-Y', strtotime($advertise->publication_date)) }} रोजीच प्रसिध्द करावी.</b>
+        उपरोक्त विषयान्वये कळविणेत येते की, पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType->name }}) {{ $advertise->context }} दिनांक {{ date('d-m-Y', strtotime($advertise->context_date)) }} आपल्या दैनिकात प्रसिध्द करणेस सोबत जोडली आहे, <b>तरी सदरची जाहिरात आपण आपल्या दैनिकात दिनांक - {{ date('d-m-Y', strtotime($advertise->publication_date)) }} रोजीच प्रसिध्द करावी.</b>
     </p>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

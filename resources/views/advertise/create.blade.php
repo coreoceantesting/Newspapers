@@ -116,7 +116,7 @@
 
                                     <div class="col-md-6 col-lg-6 col-12">
                                         <label class="form-label" for="work_order_number">Work Order Number (वर्क ऑर्डर क्रमांक) <span class="error">*</span></label>
-                                        <input @if ($errors->has('work_order_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="work_order_number" id="work_order_number" type="text" placeholder="वर्क ऑर्डर क्रमांक" value="{{ old('work_order_number') }}">
+                                        <input @if ($errors->has('work_order_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="work_order_number" id="work_order_number" type="text" placeholder="वर्क ऑर्डर क्रमांक" value="{{ old('work_order_number') }}" required>
                                         @error('work_order_number')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
@@ -126,7 +126,7 @@
 
                                     <div class="col-md-6 col-lg-6 col-12">
                                         <label class="form-label" for="print_type_id">Select Print Type (प्रिंटचा प्रकार) <span class="error">*</span></label>
-                                        <select name="print_type_id" id="selectTypeOfPrint" required class="form-select">
+                                        <select name="print_type_id" id="selectTypeOfPrint" required class="form-select" required>
                                             <option value="">Select Print Type (प्रिंटचा प्रकार)</option>
                                             @foreach ( $printTypes as $printType )
                                                 <option value="{{ $printType->id }}">{{ $printType->name }}</option>
@@ -139,8 +139,25 @@
 
                                     <div class="col-md-6 col-lg-6 col-12">
                                         <label class="form-label" for="publication_date">Select Publication Date (पब्लिकेशन तारीख) <span class="error">*</span></label>
-                                        <input @if ($errors->has('publication_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="publication_date" id="publication_date" type="date" placeholder="पब्लिकेशन तारीख" value="{{ old('publication_date') }}">
+                                        <input @if ($errors->has('publication_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="publication_date" id="publication_date" type="date" placeholder="पब्लिकेशन तारीख" value="{{ old('publication_date') }}" required>
                                         @error('publication_date')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="col-md-6 col-lg-6 col-12">
+                                        <label class="form-label" for="context">Context (संदर्भ) <span class="error">*</span></label>
+                                        <input @if ($errors->has('context')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="context" id="context" type="text" placeholder="संदर्भ" value="{{ old('context') }}" required>
+                                        @error('context')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-12">
+                                        <label class="form-label" for="context_date">Select Context Date (संदर्भ तारीख) <span class="error">*</span></label>
+                                        <input @if ($errors->has('context_date')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="context_date" id="context_date" type="date" placeholder="संदर्भ तारीख" value="{{ old('context_date') }}" required>
+                                        @error('context_date')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -229,7 +246,7 @@
                                 $.each(response.data, function(key, val){
                                     html += `<div class="col-md-6 col-lg-6">
                                         <div class="mb-2">
-                                            <div class="col-form-label">${val.name} वर्तमानपत्र निवडा</div>
+                                            <div class="col-form-label">${val.name} वर्तमानपत्र निवडा  <span class="error">*</span></div>
                                             <select multiple="" class="js-example-basic-single col-12 selectOptionNewspaper" required name="jahir_news_paper_type_id[]" tabindex="-1" aria-hidden="true">`;
 
                                     $.each(val.advertise_cost, function(dataKey, dataVal){
@@ -283,7 +300,7 @@
                                     $.each(response.data, function(key, val){
                                         html += `<div class="col-md-6 col-lg-6">
                                             <div class="mb-2">
-                                                <div class="col-form-label">${val.name} वर्तमानपत्र निवडा</div>
+                                                <div class="col-form-label">${val.name} वर्तमानपत्र निवडा  <span class="error">*</span></div>
                                                 <select multiple="" class="js-example-basic-single col-12" required name="not_jahir_news_paper_id[]">`;
 
 

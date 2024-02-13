@@ -97,6 +97,8 @@ class AdvertiseController extends Controller
             $advertise->department_id = $request->department_id;
             $advertise->print_type_id = $request->print_type_id;
             $advertise->banner_size_id = $request->banner_size_id;
+            $advertise->context = $request->context;
+            $advertise->context_date = date('Y-m-d', strtotime($request->context_date));
             $advertise->unique_number = 'PMC/NPM/'.$sequenceNo.'/'.$financialYear->year;
             $advertise->publication_date = date('Y-m-d', strtotime($request->publication_date));
             $advertise->work_order_number = $request->work_order_number;
@@ -234,6 +236,8 @@ class AdvertiseController extends Controller
             $advertise->department_id = $request->department_id;
             $advertise->print_type_id = $request->print_type_id;
             $advertise->banner_size_id = $request->banner_size_id;
+            $advertise->context = $request->context;
+            $advertise->context_date = date('Y-m-d', strtotime($request->context_date));
             $advertise->publication_date = date('Y-m-d', strtotime($request->publication_date));
             $advertise->work_order_number = $request->work_order_number;
             if($request->hasFile('image')){
