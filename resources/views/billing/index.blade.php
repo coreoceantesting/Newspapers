@@ -80,7 +80,7 @@
                                                     </form>
                                                 </li>
                                                 @endif
-                                                <li class="edit">
+                                                <li class="edit mx-1">
                                                     <a href="{{ route('billing.show', $bill->id) }}"><button class="btn btn-square btn-primary" type="button">पहा
                                                     </button></a>
                                                 </li>

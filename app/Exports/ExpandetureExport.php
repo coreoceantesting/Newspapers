@@ -3,11 +3,10 @@
 namespace App\Exports;
 
 use App\Models\Expandeture;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class ExpandetureExport implements FromCollection, WithHeadings, WithMapping
+class ExpandetureExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -19,25 +18,10 @@ class ExpandetureExport implements FromCollection, WithHeadings, WithMapping
         $this->expendature = $expendature;
     }
 
-    public function collection()
+    public function view(): View
     {
-        return $this->expendature;
-    }
-
-    public function map($expendature): array
-    {
-        return [
-            ($expendature->created_at) ? date('d-m-Y', strtotime($expendature->created_at)) : '',
-            $expendature->unique_no,
-            $expendature?->billing?->bill_number,
-            $expendature?->newsPaper?->name,
-            round($expendature->invoice_amount, 2),
-            round($expendature->balance, 2)
-        ];
-    }
-
-    public function headings(): array
-    {
-        return ["दिनांक", "युनिक क्र", "बिल क्र", "वर्तमानपत्र नाव", "देयाकावारची रक्कम", "शिल्लक"];
+        return view('expandeture.export', [
+            'expandetures' => $this->expendature
+        ]);
     }
 }

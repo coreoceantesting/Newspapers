@@ -3,11 +3,10 @@
 namespace App\Exports;
 
 use App\Models\Advertise;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class AdvertiseExport implements FromCollection, WithHeadings, WithMapping
+class AdvertiseExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -24,23 +23,11 @@ class AdvertiseExport implements FromCollection, WithHeadings, WithMapping
         return $this->advertise;
     }
 
-    public function map($advertise): array
+    public function view(): View
     {
-        return [
-            $advertise->unique_number,
-            $advertise->work_order_number,
-            $advertise?->publicationType?->name,
-            $advertise?->cost?->name,
-            $advertise?->department?->name,
-            $advertise?->printType?->name,
-            $advertise?->bannerSize?->size,
-            $advertise->context,
-            ($advertise->context_date) ? date('d-m-Y', strtotime($advertise->context_date)) : ''
-        ];
-    }
-
-    public function headings(): array
-    {
-        return ["युनिक क्र", "वर्क ऑर्डर क्र", "प्रसिध्दीचा स्तर", "कामाची किंमत", "विभाग", "प्रिंट प्रकार", "बॅनर आकार", "संदर्भ", "संदर्भ तारीख"];
+        return view('advertise.export', [
+            'advertises' => $this->advertise,
+            'is_mail_send' => request()->is_mail_send
+        ]);
     }
 }

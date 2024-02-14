@@ -94,7 +94,9 @@ class BudgetProvisionController extends Controller
         }
 
         $expenseAmount = Expandeture::whereHas('billing.department.budgetProvision', function($q) use($request){
-            return $q->where('id', $request->id);
+            return $q->where('id', $request->id)->whereHas('financialYear', function($query){
+                return $query->where('is_active', 1);
+            });
         })->latest()->value('progressive_expandetures');
 
         try
@@ -105,7 +107,9 @@ class BudgetProvisionController extends Controller
                 return redirect()->route('budget-provision.index')->with('error', 'Expense amount is more than budget amount');
             }else{
                 $expenses = Expandeture::whereHas('billing.department.budgetProvision', function($q) use($request){
-                    return $q->where('id', $request->id);
+                    return $q->where('id', $request->id)->whereHas('financialYear', function($query){
+                        return $query->where('is_active', 1);
+                    });
                 })->get();
                 $count = 1;
                 $lastBalance = 0;

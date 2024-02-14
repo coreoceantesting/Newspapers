@@ -101,21 +101,21 @@
     $(".form-control").toggleClass("open");
   });
 
-  $(".form-control-search input").keyup(function (e) {
-    if (e.target.value) {
-      $(".page-wrapper").addClass("offcanvas-bookmark");
-    } else {
-      $(".page-wrapper").removeClass("offcanvas-bookmark");
-    }
-  });
-  $(".search-full input").keyup(function (e) {
-    console.log(e.target.value);
-    if (e.target.value) {
-      $("body").addClass("offcanvas");
-    } else {
-      $("body").removeClass("offcanvas");
-    }
-  });
+  // $(".form-control-search input").keyup(function (e) {
+  //   if (e.target.value) {
+  //     $(".page-wrapper").addClass("offcanvas-bookmark");
+  //   } else {
+  //     $(".page-wrapper").removeClass("offcanvas-bookmark");
+  //   }
+  // });
+  // $(".search-full input").keyup(function (e) {
+  //   console.log(e.target.value);
+  //   if (e.target.value) {
+  //     $("body").addClass("offcanvas");
+  //   } else {
+  //     $("body").removeClass("offcanvas");
+  //   }
+  // });
 
   $("body").keydown(function (e) {
     if (e.keyCode == 27) {
