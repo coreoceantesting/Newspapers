@@ -30,17 +30,26 @@ class AdvertiseController extends Controller
     {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
-        ])->where('is_mail_send', 0)->latest()->get();
+        ])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
+            return $q->where('publication_date', '>=', $from)->where('publication_date', '<=', $to);
+        })->where('is_mail_send', 0)->latest()->get();
 
         return view('advertise.index')->with([
             'advertises' => $advertises
         ]);
     }
 
-    public function sendMail(){
+    public function sendMail()
+    {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
-        ])->where('is_mail_send', 1)->latest()->get();
+        ])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
+            return $q->where('publication_date', '>=', $from)->where('publication_date', '<=', $to);
+        })->where('is_mail_send', 1)->latest()->get();
 
         return view('advertise.send-mail')->with([
             'advertises' => $advertises
@@ -83,17 +92,16 @@ class AdvertiseController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        try
-        {
+        try {
             $financialYear = FinancialYear::where('is_active', 1)->first();
             $sequenceNo = ($financialYear->sequence) ? $financialYear->sequence : 0;
             DB::table('financial_years')->where('is_active', 1)->update([
-                'sequence' => $sequenceNo+1
+                'sequence' => $sequenceNo + 1
             ]);
 
             $advertise = new Advertise;
             $advertise->publication_type_id = $request->publication_type_id;
-            if(isset($request->is_jahir_nivida)){
+            if (isset($request->is_jahir_nivida)) {
                 $advertise->cost_id = $request->cost_id ?? null;
             }
             $advertise->department_id = $request->department_id;
@@ -101,19 +109,19 @@ class AdvertiseController extends Controller
             $advertise->banner_size_id = $request->banner_size_id;
             $advertise->context = $request->context;
             $advertise->context_date = date('Y-m-d', strtotime($request->context_date));
-            $advertise->unique_number = 'PMC/NPM/'.$sequenceNo.'/'.$financialYear->year;
+            $advertise->unique_number = 'PMC/NPM/' . $sequenceNo . '/' . $financialYear->year;
             $advertise->publication_date = date('Y-m-d', strtotime($request->publication_date));
             $advertise->work_order_number = $request->work_order_number;
-            if($request->hasFile('image')){
+            if ($request->hasFile('image')) {
                 $advertise->image = $request->image->store('advertise');
             }
 
-            if($advertise->save()){
+            if ($advertise->save()) {
                 $newsPaperId = []; //array to store news paper id
-                if(isset($request->is_jahir_nivida)){
-                    if(isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0){
-                        for($i=0; $i < count($request->jahir_news_paper_type_id); $i++){
-                            if($request->jahir_news_paper_type_id[$i] != ""){
+                if (isset($request->is_jahir_nivida)) {
+                    if (isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0) {
+                        for ($i = 0; $i < count($request->jahir_news_paper_type_id); $i++) {
+                            if ($request->jahir_news_paper_type_id[$i] != "") {
                                 $advertiseNew = new AdvertiseNewsPaper;
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->jahir_news_paper_type_id[$i];
@@ -123,10 +131,10 @@ class AdvertiseController extends Controller
                             }
                         }
                     }
-                }else{
-                    if(isset($request->not_jahir_news_paper_id) && count($request->not_jahir_news_paper_id) > 0){
-                        for($i=0; $i < count($request->not_jahir_news_paper_id); $i++){
-                            if($request->not_jahir_news_paper_id[$i] != ""){
+                } else {
+                    if (isset($request->not_jahir_news_paper_id) && count($request->not_jahir_news_paper_id) > 0) {
+                        for ($i = 0; $i < count($request->not_jahir_news_paper_id); $i++) {
+                            if ($request->not_jahir_news_paper_id[$i] != "") {
                                 $advertiseNew = new AdvertiseNewsPaper;
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->not_jahir_news_paper_id[$i];
@@ -144,20 +152,19 @@ class AdvertiseController extends Controller
             DB::commit();
 
             return redirect()->route('send-mail.index', $advertise->id);
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
     }
 
-    public function edit($id){
-        $advertise = Advertise::with(['advertiseNewsPapers' => function($query){
+    public function edit($id)
+    {
+        $advertise = Advertise::with(['advertiseNewsPapers' => function ($query) {
             $query->with(['newsPaper.newsPaperType', 'newsPaper.language']);
         }])->where('id', $id)->first();
 
-        if($advertise->is_mail_send){
+        if ($advertise->is_mail_send) {
             return redirect()->route('advertise.index');
         }
         $publicationTypes = PublicationType::latest()->get();
@@ -176,34 +183,34 @@ class AdvertiseController extends Controller
 
         $jahorNividaNewsPaperTypeDatas = [];
         $notJahorNividaNewsPaperTypeDatas = [];
-        if($advertise->cost_id && $advertise->cost_id != ""){
-            $jahorNividaNewsPaperTypeDatas = NewsPaperType::withWhereHas('advertiseCost', function($q) use($advertise){
+        if ($advertise->cost_id && $advertise->cost_id != "") {
+            $jahorNividaNewsPaperTypeDatas = NewsPaperType::withWhereHas('advertiseCost', function ($q) use ($advertise) {
                 $q->where('cost_id', $advertise->cost_id)
-                  ->with('language', function($lang){
+                    ->with('language', function ($lang) {
                         $lang->select('id', 'name')
-                             ->with('newsPapers', function($newsPaper){
+                            ->with('newsPapers', function ($newsPaper) {
                                 $newsPaper->orderBy('selected_datetime', 'asc');
-                             });
-                  });
+                            });
+                    });
             })->latest()->get();
-        }else{
-            $languageIds = NewsPaper::whereHas('advertiseNewsPaper', function($q) use($advertise){
+        } else {
+            $languageIds = NewsPaper::whereHas('advertiseNewsPaper', function ($q) use ($advertise) {
                 $q->where('advertise_id', $advertise->id);
             })->pluck('language_id');
 
-            $newsPaperTypesIds = NewsPaper::whereHas('advertiseNewsPaper', function($q) use($advertise){
+            $newsPaperTypesIds = NewsPaper::whereHas('advertiseNewsPaper', function ($q) use ($advertise) {
                 $q->where('advertise_id', $advertise->id);
             })->pluck('news_paper_type_id');
             // return $advertise;
             $newsPaperTypesDatas = NewsPaperType::whereIn('id', $newsPaperTypesIds)->latest()->get();
 
             $notJahorNividaNewsPaperTypeDatas = [];
-            foreach( $newsPaperTypesDatas as $newsPaperType ){
+            foreach ($newsPaperTypesDatas as $newsPaperType) {
                 $id = $newsPaperType->id;
                 $notJahorNividaNewsPaperTypeDatas[] = [
                     'id' => $newsPaperType->id,
                     'name' => $newsPaperType->name,
-                    'language' => Language::withWhereHas('newsPapers', function($query) use($id){
+                    'language' => Language::withWhereHas('newsPapers', function ($query) use ($id) {
                         $query->where('news_paper_type_id', $id);
                     })->whereIn('id', $languageIds)->get()
                 ];
@@ -224,15 +231,15 @@ class AdvertiseController extends Controller
         ]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         DB::beginTransaction();
-        try
-        {
+        try {
             $advertise = Advertise::find($request->id);
             $advertise->publication_type_id = $request->publication_type_id;
-            if(isset($request->is_jahir_nivida)){
+            if (isset($request->is_jahir_nivida)) {
                 $advertise->cost_id = $request->cost_id ?? null;
-            }else{
+            } else {
                 $advertise->cost_id = null;
             }
             $advertise->department_id = $request->department_id;
@@ -242,20 +249,20 @@ class AdvertiseController extends Controller
             $advertise->context_date = date('Y-m-d', strtotime($request->context_date));
             $advertise->publication_date = date('Y-m-d', strtotime($request->publication_date));
             $advertise->work_order_number = $request->work_order_number;
-            if($request->hasFile('image')){
-                if (Storage::exists($advertise->image)){
+            if ($request->hasFile('image')) {
+                if (Storage::exists($advertise->image)) {
                     Storage::delete($advertise->image);
                 }
                 $advertise->image = $request->image->store('advertise');
             }
 
-            if($advertise->save()){
+            if ($advertise->save()) {
                 $newsPaperId = [];
                 DB::table('advertise_news_papers')->where('advertise_id', $advertise->id)->delete();
-                if(isset($request->is_jahir_nivida)){
-                    if(isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0){
-                        for($i=0; $i < count($request->jahir_news_paper_type_id); $i++){
-                            if($request->jahir_news_paper_type_id[$i] != ""){
+                if (isset($request->is_jahir_nivida)) {
+                    if (isset($request->jahir_news_paper_type_id) && count($request->jahir_news_paper_type_id) > 0) {
+                        for ($i = 0; $i < count($request->jahir_news_paper_type_id); $i++) {
+                            if ($request->jahir_news_paper_type_id[$i] != "") {
                                 $advertiseNew = new AdvertiseNewsPaper;
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->jahir_news_paper_type_id[$i];
@@ -265,10 +272,10 @@ class AdvertiseController extends Controller
                             }
                         }
                     }
-                }else{
-                    if(isset($request->not_jahir_news_paper_id) && count($request->not_jahir_news_paper_id) > 0){
-                        for($i=0; $i < count($request->not_jahir_news_paper_id); $i++){
-                            if($request->not_jahir_news_paper_id[$i] != ""){
+                } else {
+                    if (isset($request->not_jahir_news_paper_id) && count($request->not_jahir_news_paper_id) > 0) {
+                        for ($i = 0; $i < count($request->not_jahir_news_paper_id); $i++) {
+                            if ($request->not_jahir_news_paper_id[$i] != "") {
                                 $advertiseNew = new AdvertiseNewsPaper;
                                 $advertiseNew->advertise_id = $advertise->id;
                                 $advertiseNew->news_paper_id = $request->not_jahir_news_paper_id[$i];
@@ -279,7 +286,7 @@ class AdvertiseController extends Controller
                         }
                     }
                 }
-                if (Storage::exists($advertise->generate_pdf_url)){
+                if (Storage::exists($advertise->generate_pdf_url)) {
                     Storage::delete($advertise->generate_pdf_url);
                 }
 
@@ -290,39 +297,42 @@ class AdvertiseController extends Controller
             DB::commit();
 
             return redirect()->route('send-mail.index', $advertise->id);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Something Went Wrog !');
         }
     }
 
 
-    public function generatePdf($advertise){
+    public function generatePdf($advertise)
+    {
         $advertise = Advertise::with(['department', 'printType', 'publicationType', 'bannerSize', 'advertiseNewsPapers.newsPaper'])->where('id', $advertise->id)->first();
 
         $signature = Signature::value('name');
 
         $pdf = PDF::loadView('advertise.pdf', compact('advertise', 'signature'));
 
-        $name = 'pdf/'.'advertise-'.time().'.pdf';
+        $name = 'pdf/' . 'advertise-' . time() . '.pdf';
 
         Storage::put($name, $pdf->output());
 
         DB::table('advertises')->where('id', $advertise->id)->update(['generate_pdf_url' => $name]);
     }
 
-    public function updateNewsPaperSelectedtime($newsPaperId){
+    public function updateNewsPaperSelectedtime($newsPaperId)
+    {
         DB::table('news_papers')->whereIn('id', $newsPaperId)->update([
             'selected_datetime' => now()
         ]);
     }
 
-    public function preview(Request $request){
+    public function preview(Request $request)
+    {
         $advertise = Advertise::with(['department', 'publicationType', 'printType', 'bannerSize'])->find($request->id);
 
         $newsPaperId = AdvertiseNewsPaper::where('advertise_id', $request->id)->pluck('news_paper_id');
 
-        $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function($query) use($newsPaperId){
+        $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function ($query) use ($newsPaperId) {
             $query->whereIn('news_paper_id', $newsPaperId);
         })->get();
 
@@ -332,12 +342,13 @@ class AdvertiseController extends Controller
         ]);
     }
 
-    public function show(Request $req){
+    public function show(Request $req)
+    {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
         ])->when(request('from') && request('to'), function ($q) {
-            $from = date('Y-m-d', strtotime(request('from')))." 00:00:00";
-            $to = date('Y-m-d', strtotime(request('to')))." 23:59:59";
+            $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
             return $q->where('publication_date', '>=', $from)->where('publication_date', '<=', $to);
         })->latest()->get();
 
@@ -348,9 +359,12 @@ class AdvertiseController extends Controller
     {
         $advertises = Advertise::with([
             'publicationType', 'cost', 'department', 'printType', 'bannerSize'
-        ])->where('is_mail_send', $request->is_mail_send)->latest()->get();
+        ])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
+            return $q->where('publication_date', '>=', $from)->where('publication_date', '<=', $to);
+        })->where('is_mail_send', $request->is_mail_send)->latest()->get();
 
         return Excel::download(new AdvertiseExport($advertises), 'advertise.xlsx');
     }
-
 }

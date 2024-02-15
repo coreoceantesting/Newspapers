@@ -26,8 +26,8 @@
                                 <h5 class="text-white mt-1">List Advertise (जाहिरात यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('advertise.export', ['is_mail_send' => 0]) }}"><button class="btn btn-square btn-success-gradien" type="button">Export As Excel
-                                </button></a>
+                                {{-- <a href="{{ route('advertise.export', ['is_mail_send' => 0]) }}"><button class="btn btn-square btn-success-gradien" type="button">Export As Excel
+                                </button></a> --}}
 
                                 <a href="{{ route('advertise.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add Advertise (जाहिरात जोडा) <i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
@@ -36,6 +36,26 @@
                     </div>
 
                     <div class="card-body">
+                        <form class="mb-2" id="filterList">
+                            <div class="row">
+                                <input type="hidden" name="is_mail_send" value="0">
+                                <div class="col-lg-3 col-md-4 col-12">
+                                    <label class="form-label" for="selectWorkOrderNumber">Start Date (या तारखेपासून)</label>
+                                    <input type="date" value="@if(isset(Request()->from)){{ date('Y-m-d', strtotime(Request()->from)) }}@endif" name="from" class="form-control" id="from">
+                                </div>
+
+                                <div class="col-lg-3 col-md-4 col-12">
+                                    <label class="form-label" for="selectWorkOrderNumber">End Date (आजपर्यंत)</label>
+                                    <input type="date" value="@if(isset(Request()->to)){{ date('Y-m-d', strtotime(Request()->to)) }}@endif" name="to" class="form-control" id="to">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <div class="form-label">&nbsp;</div>
+                                    <button class="btn btn-success" type="button" id="exportAsExcel" style="font-size: 12px">Export As Excel</button>
+                                    <button class="btn btn-primary" style="font-size: 12px">Search (शोधा)</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
                         <div class="table-responsive table-bordered">
                             <table class="display" id="basic-1">
                                 <thead>
@@ -95,4 +115,14 @@
         </div>
     </div>
     <!-- Container-fluid Ends-->
+    @push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#exportAsExcel').click(function(){
+                let data = $('#filterList').serialize()
+                window.location.href = "{{ route('advertise.export') }}?"+data;
+            })
+        });
+    </script>
+    @endpush
 </x-layout>
