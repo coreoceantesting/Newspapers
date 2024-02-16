@@ -47,8 +47,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <div class="form-label">&nbsp;</div>
-                                    <button class="btn btn-success" type="button" id="exportAsExcel" style="font-size: 12px">Export As Excel</button>
                                     <button class="btn btn-primary" style="font-size: 12px">Search (शोधा)</button>
+                                    <button class="btn btn-success" type="button" id="exportAsExcel" style="font-size: 12px">Export As Excel</button>
                                 </div>
                             </div>
                         </form>
