@@ -78,7 +78,12 @@
                                         </thead>
                                         <tbody id="tableEmailTbody">
                                             <tr>
-                                                <td><input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल"></td>
+                                                <td>
+                                                    @error('email.*')
+                                                        <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                    <input @if ($errors->has('email')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" name="email[]" type="email" required placeholder="ईमेल">
+                                                </td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
@@ -95,7 +100,12 @@
                                         </thead>
                                         <tbody id="tableMobileTbody">
                                             <tr>
-                                                <td><input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" minlength="10" type="tel" required placeholder="मोबाईल"></td>
+                                                <td>
+                                                    @error('mobile.*')
+                                                        <span class="error">{{ $message }}</span>
+                                                    @enderror
+                                                    <input @if ($errors->has('mobile')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;" @endif class="form-control" name="mobile[]" onkeypress="return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57" maxlength="12" minlength="10" type="tel" required placeholder="मोबाईल">
+                                                </td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
