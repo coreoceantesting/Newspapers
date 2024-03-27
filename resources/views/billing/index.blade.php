@@ -68,6 +68,7 @@
                                         <th>बँक</th>
                                         <th>शाखा</th>
                                         <th>खाते क्रमांक</th>
+                                        <th>Gross Amount</th>
                                         <th>कृती</th>
                                     </tr>
                                 </thead>
@@ -82,6 +83,7 @@
                                         <td>{{ $bill?->accountDetails?->bank }}</td>
                                         <td>{{ $bill?->accountDetails?->branch }}</td>
                                         <td>{{ $bill?->accountDetails?->account_number }}</td>
+                                        <td>{{ $bill->gross_amount }}</td>
                                         <td>
                                             <ul class="action">
                                                 @if($bill->is_expandeture_created == "0")

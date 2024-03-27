@@ -91,7 +91,7 @@
                             </div>
                         </form>
 
-                        @if(isset(Request()->search))
+                        @if(isset(Request()->search) && count($billings) > 0)
                         <div class="table-responsive mt-5" id="printableArea">
                             @foreach($billings as $bill)
                             <table class="table table-bordered">

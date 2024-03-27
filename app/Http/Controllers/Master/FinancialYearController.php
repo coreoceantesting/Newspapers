@@ -17,14 +17,15 @@ class FinancialYearController extends Controller
     {
         $financialYears = FinancialYear::latest()->get();
 
-        return view('master.financial-year.index')->with(['financialYears'=> $financialYears]);
+        return view('master.financial-year.index')->with(['financialYears' => $financialYears]);
     }
 
     /**
      * Show the form for creating a new Language.
      */
 
-    public function create(){
+    public function create()
+    {
         return view('master.financial-year.create');
     }
 
@@ -33,11 +34,21 @@ class FinancialYearController extends Controller
      */
     public function store(FinancialYearRequest $request)
     {
-        try
-        {
+        try {
+            $fromDateCheck = FinancialYear::whereDate('from_date', '<=', date('Y-m-d', strtotime($request->from_date)))
+                ->whereDate('to_date', '>=', date('Y-m-d', strtotime($request->from_date)))
+                ->exists();
+
+            $toDateCheck = FinancialYear::whereDate('from_date', '<=', date('Y-m-d', strtotime($request->to_date)))
+                ->whereDate('to_date', '>=', date('Y-m-d', strtotime($request->to_date)))
+                ->exists();
+            if ($fromDateCheck || $toDateCheck) {
+                return redirect()->route('financial-year.index')->with('error', 'Financial Year Already Exists!');
+            }
+
             DB::beginTransaction();
 
-            if($request->status == "1"){
+            if ($request->status == "1") {
                 DB::table('financial_years')->update(['is_active' => 0]);
             }
             $financialYear = new FinancialYear;
@@ -50,14 +61,12 @@ class FinancialYearController extends Controller
             DB::commit();
 
             return redirect()->route('financial-year.index')->with('success', 'News Paper Financial Year Created Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('financial-year.index')->with('error', 'Something Went Wrog !');
         }
     }
 
-     /**
+    /**
      * Show the form for editing the specified language.
      */
     public function edit(FinancialYear $financialYear)
@@ -73,10 +82,25 @@ class FinancialYearController extends Controller
     public function update(FinancialYearRequest $request)
     {
         // dd($request);
-        try
-        {
+        try {
+
+            $fromDateCheck = FinancialYear::whereDate('from_date', '<=', date('Y-m-d', strtotime($request->from_date)))
+                ->whereDate('to_date', '>=', date('Y-m-d', strtotime($request->from_date)))
+                ->where('id', '!=', $request->id)
+                ->exists();
+
+            $toDateCheck = FinancialYear::whereDate('from_date', '<=', date('Y-m-d', strtotime($request->to_date)))
+                ->whereDate('to_date', '>=', date('Y-m-d', strtotime($request->to_date)))
+                ->where('id', '!=', $request->id)
+                ->exists();
+
+            if ($fromDateCheck || $toDateCheck) {
+                return redirect()->route('financial-year.index')->with('error', 'Financial Year Already Exists!');
+            }
+
+
             DB::beginTransaction();
-            if($request->status == "1"){
+            if ($request->status == "1") {
                 DB::table('financial_years')->update(['is_active' => 0]);
             }
             $financialYear = FinancialYear::find($request->id);
@@ -89,9 +113,7 @@ class FinancialYearController extends Controller
             DB::commit();
 
             return redirect()->route('financial-year.index')->with('success', 'News Paper Financial Year Update Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('financial-year.index')->with('error', 'Something Went Wrog !');
         }
     }
@@ -101,15 +123,12 @@ class FinancialYearController extends Controller
      */
     public function destroy(FinancialYear $financialYear)
     {
-        try
-        {
+        try {
             DB::beginTransaction();
             $financialYear->delete();
             DB::commit();
             return redirect()->route('financial-year.index')->with('success', 'News Paper Financial Year Delete Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('financial-year.index')->with('error', 'Something Went Wrog !');
         }
     }
