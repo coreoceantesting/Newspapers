@@ -14,20 +14,15 @@
         </style>
     @endpush
     <div class="container-fluid default-dash">
-        <form action="">
-            <div class="row d-flex justify-content-center">
-                <div class="col-3">
-                    <select name="financial_year" class="form-select p-2" id="">
-                        @foreach($financialYears as $financialYear)
-                        <option @if((isset(Request()->financial_year) && Request()->financial_year == $financialYear->id)) selected @elseif($financialYear->is_active == "1")selected @endif value="{{ $financialYear->id }}">{{ $financialYear->year }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-3">
-                    <button class="btn btn-primary">Search</button>
-                </div>
+        <div class="row d-flex justify-content-end">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-12">
+                <select name="financial_year" id="selectFinancialYear" class="form-select p-2" style="border-color: #3e5fce;">
+                    @foreach($financialYears as $financialYear)
+                    <option @if((isset(Request()->financial_year) && Request()->financial_year == $financialYear->id)) selected @elseif($financialYear->is_active == "1")selected @endif value="{{ $financialYear->id }}">{{ date('d-m-Y', strtotime($financialYear->from_date)).'  To  '.date('d-m-Y', strtotime($financialYear->to_date)) }}</option>
+                    @endforeach
+                </select>
             </div>
-        </form>
+        </div>
         <hr class="bg-primary">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
@@ -276,4 +271,17 @@
 
     </div>
     <!-- Container-fluid Ends-->
+
+    @push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#selectFinancialYear').change(function(){
+                var value = $(this).val();
+                var url = "{{ route('dashboard') }}?financial_year="+value;
+
+                window.location.href = url;
+            })
+        })
+    </script>
+    @endpush
 </x-layout>
