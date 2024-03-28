@@ -41,7 +41,7 @@ use App\Http\Controllers\ExpandetureController;
 
 Route::get('/', [LoginController::class, 'login'])->name('admin.login');
 
-Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
+Route::group(['middleware' => ['auth', 'prevent-back-history']], function () {
 
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function() {
     // end of route for advertise
 
     Route::get('billing/export', [BillingController::class, 'export'])->name('billing.export');
+    Route::get('billing/paid', [BillingController::class, 'paid'])->name('billing.paid');
+    Route::post('billing/paid', [BillingController::class, 'paidBill'])->name('billing.paid-bill');
     Route::resource('billing', BillingController::class);
 
     // ajax route

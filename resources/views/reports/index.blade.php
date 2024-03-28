@@ -50,43 +50,28 @@
                         <form action="" method="get">
                             <input type="hidden" name="search" value="search">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectDepartment">Select Department (विभाग निवडा)</label>
-                                    <select name="department" id="selectDepartment" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">Select Department (विभाग निवडा)</option>
-                                        @foreach ( $departments as $department )
-                                            <option @if(isset(Request()->department) && $department->id == Request()->department)selected @endif value="{{ $department->id }}">{{ $department->name }}</option>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label class="form-label" for="news_paper">Select Newspaper (वर्तमानपत्र निवडा)</label>
+                                    <select name="news_paper" id="news_paper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
+                                        <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>
+                                        @foreach ( $newsPapers as $newsPaper )
+                                            <option @if(isset(Request()->news_paper) && $newsPaper->id == Request()->news_paper)selected @endif value="{{ $newsPaper->id }}">{{ $newsPaper->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectWorkOrderNumber">Select Wrok Order No (वर्क ऑर्डर क्रमांक निवडा)</label>
-                                    <select name="work_order_number" id="selectWorkOrderNumber" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">Select Wrok Order No (वर्क ऑर्डर क्रमांक निवडा)</option>
-                                        @if($workOrderNumbers)
-                                            @foreach($workOrderNumbers as $workOrderNumber)
-                                            <option @if($workOrderNumber->id == Request()->work_order_number)selected @endif value="{{ $workOrderNumber->id }}">{{ $workOrderNumber->work_order_number }}</option>
-                                            @endforeach
-                                        @endif
-
-                                    </select>
+                                    <label class="form-label" for="selectWorkOrderNumber">Start Date (या तारखेपासून)</label>
+                                    <input type="date" value="@if(isset(Request()->from)){{ date('Y-m-d', strtotime(Request()->from)) }}@endif" name="from" class="form-control p-1" id="from">
                                 </div>
 
                                 <div class="col-lg-3 col-md-4 col-12">
-                                    <label class="form-label" for="selectNewsPaper">Select Newspaper (वर्तमानपत्र निवडा)</label>
-                                    <select name="news_paper" id="selectNewsPaper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
-                                        <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>
-                                        @if($newsPapers)
-                                            @foreach($newsPapers as $newsPaper)
-                                            <option @if($newsPaper?->newsPaper?->id == Request()->news_paper)selected @endif value="{{ $newsPaper?->newsPaper?->id }}">{{ $newsPaper?->newsPaper?->name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                                    <label class="form-label" for="selectWorkOrderNumber">End Date (आजपर्यंत)</label>
+                                    <input type="date" value="@if(isset(Request()->to)){{ date('Y-m-d', strtotime(Request()->to)) }}@endif" name="to" class="form-control p-1" id="to">
                                 </div>
-                                <div class="col-lg-3 col-md-4 col-12">
+                                <div class="col-lg-2 col-md-4 col-12">
                                     <div class="form-label">&nbsp;</div>
-                                    <button class="btn btn-primary">Search (शोधा)</button>
+                                    <button class="btn btn-primary p-1" style="font-size: 12px">Search (शोधा)</button>
                                 </div>
                             </div>
                         </form>
@@ -160,81 +145,6 @@
     @push('scripts')
         <script>
             $(document).ready(function(){
-                // ajax to check bill number is duplicate or not
-                $('body').on('change', '#selectDepartment', function(){
-                    let department = $(this).val();
-                    if(department != ""){
-                        getWorkOrderNumber(department)
-                    }
-                });
-                // let departmentId = "{{ Request()->department }}";
-                // if(departmentId != ""){
-                //     getWorkOrderNumber(departmentId)
-                // }
-                function getWorkOrderNumber(department){
-                    $.ajax({
-                        url: "{{ route('get-work-order-by-department') }}",
-                        type: "get",
-                        data: {department : department},
-                        beforeSend: function()
-                        {
-                            $('.ajax-loader').removeClass('d-none');
-                        },
-                        success: function(response){
-                            if(response.status === 200){
-                                let html = `<option value="">वर्क ऑर्डर क्रमांक निवडा</option>`;
-                                $.each(response.data, function(key, val){
-                                    html += `<option value="${val.id}">${val.work_order_number}</option>`;
-                                });
-                                $('#selectWorkOrderNumber').html(html)
-                            }else{
-                                alert('Something is wrong')
-                            }
-                        },
-                        error: function(xhr) {
-                            $('.ajax-loader').addClass('d-none');
-                        },
-                        complete: function() {
-                            $('.ajax-loader').addClass('d-none');
-                        },
-                    });
-                }
-
-                $('body').on('change', '#selectWorkOrderNumber', function(){
-                    let workOrderNumber = $(this).val();
-
-                    if(workOrderNumber != ""){
-                        $.ajax({
-                            url: "{{ route('get-news-papers-by-advertise') }}",
-                            type: "get",
-                            data: {workOrderNumber : workOrderNumber},
-                            beforeSend: function()
-                            {
-                                $('.ajax-loader').removeClass('d-none');
-                            },
-                            success: function(response){
-                                if(response.status === 200){
-                                    let html = `<option value="">वर्तमानपत्र निवडा</option>`;
-                                    console.log(response.data)
-                                    $.each(response.data, function(key, val){
-                                        html += `<option value="${val.news_paper.id}">${val.news_paper.name}</option>`;
-                                    });
-                                    $('#selectNewsPaper').html(html)
-                                }else{
-                                    alert('Something is wrong')
-                                }
-                            },
-                            error: function(xhr) {
-                                $('.ajax-loader').addClass('d-none');
-                            },
-                            complete: function() {
-                                $('.ajax-loader').addClass('d-none');
-                            },
-                        });
-                    }
-                })
-
-
                 $('#printButton').on('click', function() {
                     // Call printContent function
                     printDiv('printableArea');

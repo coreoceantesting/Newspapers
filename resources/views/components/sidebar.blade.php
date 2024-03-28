@@ -95,18 +95,36 @@
                                         <a @if((Request::is('advertise') || Request::is('advertise/*') && Request::path() != "advertise/send-mail" ))class="active" @endif href="{{ route('advertise.index') }}">Advertise List(जाहिरात यादी)</a>
                                     </li>
                                     <li>
-                                        <a @if(Request::is('advertise/send-mail'))class="active" @endif href="{{ route('advertise.sendMail') }}">Advertise Email List(जाहिरात मेल यादी)</a>
+                                        <a @if(Request::is('advertise/send-mail'))class="active" @endif href="{{ route('advertise.sendMail') }}">Sent Email List(पाठवले मेल यादी)</a>
                                     </li>
                                 </ul>
                             </li>
 
 
-                            <li class="sidebar-list">
+                            @php
+                            $active = "";
+                            if(Request::is('billing') || Request::is('billing/*')){
+                                $active = "active";
+                            }
+                            @endphp
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title {{ $active }}" href="javascript:void(0)"><i data-feather="feather"></i><span >Bill (बिल)</span></a>
+                                <ul class="sidebar-submenu" style="display: {{ ($active == "") ? 'none' : 'block' }}">
+                                    <li>
+                                        <a @if((Request::is('billing') || Request::is('billing/*')) && !Request::is('billing/paid')) class="active"@endif href="{{ route('billing.index') }}">Bill List (बिल यादी)</a>
+                                    </li>
+                                    <li>
+                                        <a @if(Request::is('billing/paid'))class="active" @endif href="{{ route('billing.paid') }}">Paid Bill (बिल दिले)</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            {{-- <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('billing') || Request::is('billing/*'))active @endif" href="{{ route('billing.index') }}">
                                     <i data-feather="file-text"> </i>
                                     <span>Bill (बिल)</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('expandeture') || Request::is('expandeture.*'))active @endif" href="{{ route('expandeture.index') }}">

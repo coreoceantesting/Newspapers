@@ -1,7 +1,13 @@
 <table>
     <thead>
         <tr>
-            <th colspan="16" style="font-size: 20px;font-weight:700;margin-top:3px;margin-bottom:3px" align="center">List Bill (बिलांची यादी)</th>
+            <th colspan="16" style="font-size: 20px;font-weight:700;margin-top:3px;margin-bottom:3px" align="center">
+                @if(Request()->is_paid == 0)
+                List Bill (बिलांची यादी)
+                @else
+                Paid Bill(बिल दिले)
+                @endif
+            </th>
         </tr>
         <tr>
             <th>विभाग</th>

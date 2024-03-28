@@ -14,7 +14,21 @@
         </style>
     @endpush
     <div class="container-fluid default-dash">
-
+        <form action="">
+            <div class="row d-flex justify-content-center">
+                <div class="col-3">
+                    <select name="financial_year" class="form-select p-2" id="">
+                        @foreach($financialYears as $financialYear)
+                        <option @if((isset(Request()->financial_year) && Request()->financial_year == $financialYear->id)) selected @elseif($financialYear->is_active == "1")selected @endif value="{{ $financialYear->id }}">{{ $financialYear->year }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+        <hr class="bg-primary">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="row" style="margin-bottom: -14px;">

@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <form class="mb-2" id="filterList">
                             <div class="row">
-                                <input type="hidden" name="is_paid" value="0">
+                                <input type="hidden" name="is_paid" value="1">
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="selectWorkOrderNumber">Start Date (या तारखेपासून)</label>
                                     <input type="date" value="@if(isset(Request()->from)){{ date('Y-m-d', strtotime(Request()->from)) }}@endif" name="from" class="form-control" id="from">
@@ -87,14 +87,6 @@
                                         <td>{{ $bill->gross_amount }}</td>
                                         <td>
                                             <ul class="action">
-                                                <li class="px-1">
-                                                    <form action="{{ route('billing.paid-bill') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="id" value="{{ $bill->id }}">
-                                                        <button class="btn btn-square btn-success" type="submit" onclick="return confirm('Are you sure you want to paid this bill')">Paid
-                                                        </button>
-                                                    </form>
-                                                </li>
                                                 @if($bill->is_expandeture_created == "0")
                                                 <li class="edit">
                                                     <a href="{{ route('billing.edit', $bill->id) }}"><button class="btn btn-square btn-primary" type="button"><i class="fa fa-pencil text-white" aria-hidden="true"></i>

@@ -24,9 +24,22 @@ class BillingController extends Controller
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
             return $q->where('bill_date', '>=', $from)->where('bill_date', '<=', $to);
-        })->latest()->get();
+        })->where('is_paid', 0)->latest()->get();
 
         return view('billing.index')->with([
+            'billing' => $billing
+        ]);
+    }
+
+    public function paid()
+    {
+        $billing = Billing::with(['department', 'newsPaper', 'accountDetails'])->when(request('from') && request('to'), function ($q) {
+            $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
+            $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
+            return $q->where('bill_date', '>=', $from)->where('bill_date', '<=', $to);
+        })->where('is_paid', 1)->latest()->get();
+
+        return view('billing.paid')->with([
             'billing' => $billing
         ]);
     }
@@ -194,8 +207,24 @@ class BillingController extends Controller
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
             return $q->where('bill_date', '>=', $from)->where('bill_date', '<=', $to);
-        })->latest()->get();
+        })->where('is_paid', $request->is_paid)->latest()->get();
 
         return Excel::download(new BillingExport($billing), 'billing.xlsx');
+    }
+
+    public function paidBill(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $billing = Billing::find($request->id);
+            $billing->is_paid = 1;
+            $billing->save();
+            DB::commit();
+            return redirect()->route('billing.paid')->with('success', 'Billi Paid Successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::info($e);
+            return redirect()->route('billing.paid')->with('error', 'Something Went Wrog !');
+        }
     }
 }

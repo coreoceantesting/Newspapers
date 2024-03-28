@@ -34,7 +34,7 @@
     <body>
         <div>
             <table>
-                <tbody>
+                <thead>
                     <tr>
                         <td align="left" class="smallFont" colspan="3">Name of Account head :- {{ $department }}<br>
                             (जाहिर निवीद्धा सुचाना प्रसिध्दी पत्र छपाई करणे)</td>
@@ -49,6 +49,7 @@
                         <td align="left" class="smallFont" colspan="3">Administrative Financial Approval Amount:- </td>
                         <td align="left" class="smallFont" colspan="4">Name of Work:- </td>
                     </tr>
+
 
                     <tr class="centerTd">
                         <td>Date</td>
@@ -66,6 +67,7 @@
                         <td>Approved By</td>
                         <td>Remark</td>
                     </tr>
+
                     <tr class="centerTd">
                         <td></td>
                         <td></td>
@@ -98,6 +100,8 @@
                         <td>13</td>
                         <td>14</td>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach($expendatures as $expendature)
                     <tr class="dataTd">
                         <td align="center">{{ $expendature->unique_no }}<br>{{ date('d-m-Y', strtotime($expendature->created_at)) }}</td>

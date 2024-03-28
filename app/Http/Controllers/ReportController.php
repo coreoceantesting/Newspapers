@@ -4,52 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\NewsPaper;
 use App\Models\FinancialYear;
 use App\Models\Expandeture;
 use App\Models\AccountDetail;
-use App\Models\Advertise;
-use App\Models\AdvertiseNewsPaper;
 use PDF;
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        $departments = Department::latest()->get();
+        $newsPapers = NewsPaper::latest()->get();
 
         $billing = [];
-        $workOrderNumbers = null;
-        $newsPapers = null;
 
-        if (isset($request->department) && $request->department != "") {
-            $workOrderNumbers = Advertise::whereHas('billing')->where('department_id', $request->department)->get();
-        }
-
-        if (isset($request->work_order_number) && $request->work_order_number != "") {
-            $newsPapers = AdvertiseNewsPaper::with('newsPaper')->where('advertise_id', $request->work_order_number)->get();
-        }
-        // return $workOrderNumbers;
         if (isset($request->search)) {
             $billing = AccountDetail::withWhereHas('billing', function ($query) use ($request) {
-                if (isset($request->work_order_number) && $request->work_order_number != "") {
-                    $query->where('advertise_id', $request->work_order_number);
+                if (isset($request->from) && $request->from != "") {
+                    $query->whereDate('bill_date', '<=', date('Y-m-d', strtotime($request->from)));
                 }
 
                 if (isset($request->news_paper) && $request->news_paper != "") {
                     $query->where('news_paper_id', $request->news_paper);
                 }
 
-                if (isset($request->department) && $request->department != "") {
-                    $query->where('department_id', $request->department)->with(['department', 'advertise.publicationType']);
+                if (isset($request->to) && $request->to != "") {
+                    $query->whereDate('bill_date', '>=', date('Y-m-d', strtotime($request->to)));
                 }
             })->get();
         }
         // return $billing;
         return view('reports.index')->with([
-            'departments' => $departments,
-            'billings' => $billing,
-            'workOrderNumbers' => $workOrderNumbers,
-            'newsPapers' => $newsPapers
+            'newsPapers' => $newsPapers,
+            'billings' => $billing
         ]);
     }
 
