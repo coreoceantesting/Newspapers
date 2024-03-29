@@ -50,7 +50,7 @@
                         <form action="" method="get">
                             <input type="hidden" name="search" value="search">
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
+                                <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="news_paper">Select Newspaper (वर्तमानपत्र निवडा)</label>
                                     <select name="news_paper" id="news_paper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
                                         <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>
@@ -69,7 +69,16 @@
                                     <label class="form-label" for="selectWorkOrderNumber">End Date (आजपर्यंत)</label>
                                     <input type="date" value="@if(isset(Request()->to)){{ date('Y-m-d', strtotime(Request()->to)) }}@endif" name="to" class="form-control p-1" id="to">
                                 </div>
-                                <div class="col-lg-2 col-md-4 col-12">
+                                <div class="col-lg-3 col-md-4 col-12">
+                                    <label class="form-label" for="status">Select Bill Status (बिल स्थिती निवडा)</label>
+                                    <select name="status" id="status" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
+                                        <option value="">Select Bill Status</option>
+                                        <option @if(isset(Request()->status) && "1" == Request()->status)selected @endif value="1">Paid</option>
+                                        <option @if(isset(Request()->status) && "0" == Request()->status)selected @endif value="0">Unpaid</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-12 d-flex justify-content-center">
                                     <div class="form-label">&nbsp;</div>
                                     <button class="btn btn-primary p-1" style="font-size: 12px">Search (शोधा)</button>
                                 </div>

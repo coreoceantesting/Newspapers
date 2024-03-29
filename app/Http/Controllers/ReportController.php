@@ -31,6 +31,10 @@ class ReportController extends Controller
                 if (isset($request->to) && $request->to != "") {
                     $query->whereDate('bill_date', '>=', date('Y-m-d', strtotime($request->to)));
                 }
+
+                if (isset($request->status) && $request->status != "") {
+                    $query->where('is_paid', $request->status);
+                }
             })->get();
         }
         // return $billing;
