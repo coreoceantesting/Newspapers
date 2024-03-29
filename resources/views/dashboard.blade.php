@@ -15,10 +15,10 @@
     @endpush
     <div class="container-fluid default-dash">
         <div class="row d-flex justify-content-end">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-12">
-                <select name="financial_year" id="selectFinancialYear" class="form-select p-2" style="border-color: #3e5fce;">
+            <div class="col-lg-2 col-md-4 col-sm-3 col-6">
+                <select name="financial_year" id="selectFinancialYear" class="form-select p-2" style="border-color: #3e5fce;width:75%">
                     @foreach($financialYears as $financialYear)
-                    <option @if((isset(Request()->financial_year) && Request()->financial_year == $financialYear->id)) selected @elseif($financialYear->is_active == "1")selected @endif value="{{ $financialYear->id }}">{{ date('d-m-Y', strtotime($financialYear->from_date)).'  To  '.date('d-m-Y', strtotime($financialYear->to_date)) }}</option>
+                    <option @if((isset(Request()->financial_year) && Request()->financial_year == $financialYear->id)) selected @elseif($financialYear->is_active == "1")selected @endif value="{{ $financialYear->id }}">{{ $financialYear->year }}</option>
                     @endforeach
                 </select>
             </div>
