@@ -78,8 +78,7 @@
 
                                     </select>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-12 d-flex justify-content-center">
-                                    <div class="form-label">&nbsp;</div>
+                                <div class="col-lg-12 col-md-12 col-12 d-flex justify-content-center mt-3">
                                     <button class="btn btn-primary p-1" style="font-size: 12px">Search (शोधा)</button>
                                 </div>
                             </div>
