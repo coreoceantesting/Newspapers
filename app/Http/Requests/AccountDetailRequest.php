@@ -21,7 +21,7 @@ class AccountDetailRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->id){
+        if ($this->id) {
             return [
                 'news_paper_id' => 'required',
                 'bank' => 'required',
@@ -29,9 +29,10 @@ class AccountDetailRequest extends FormRequest
                 'account_number' => "required|unique:account_details,account_number,$this->id",
                 'ifsc_code' => 'required',
                 'pan_card' => 'required',
-                'gst_no' => 'nullable'
+                'gst_no' => 'nullable',
+                'document' => 'nullable'
             ];
-        }else{
+        } else {
             return [
                 'news_paper_id' => 'required',
                 'bank' => 'required',
@@ -39,7 +40,8 @@ class AccountDetailRequest extends FormRequest
                 'account_number' => 'required|unique:account_details',
                 'ifsc_code' => 'required',
                 'pan_card' => 'required',
-                'gst_no' => 'nullable'
+                'gst_no' => 'nullable',
+                'document' => 'nullable'
             ];
         }
     }

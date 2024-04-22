@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <form action="{{ route('account-details.store') }}" method="post">
+                <form action="{{ route('account-details.store') }}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="card">
                         <div class="card-header border-bottom pb-2 bg-primary">
@@ -74,6 +74,13 @@
                                     <label class="form-label" for="pan_card">Pan Card (पॅन कार्ड) <span class="error">*</span></label>
                                     <input maxlength="10" @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" required  name="pan_card" id="pan_card" type="text" placeholder="पॅन कार्ड" value="{{ old('pan_card') }}">
                                     @error('pan_card')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-12">
+                                    <label class="form-label" for="document">Upload File</label>
+                                    <input class="form-control"  name="document" id="document" type="file">
+                                    @error('document')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                 </div>

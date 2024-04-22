@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\AccountDetail;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AccountDetailRequest;
 use App\Models\NewsPaper;
 
@@ -19,14 +20,15 @@ class AccountDetailController extends Controller
     {
         $accountDetails = AccountDetail::with(['newsPaper'])->latest()->get();
 
-        return view('master.account-detail.index')->with(['accountDetails'=> $accountDetails]);
+        return view('master.account-detail.index')->with(['accountDetails' => $accountDetails]);
     }
 
     /**
      * Show the form for creating a new Language.
      */
 
-    public function create(){
+    public function create()
+    {
         $newsPapers = NewsPaper::latest()->get();
 
         return view('master.account-detail.create')->with([
@@ -39,22 +41,23 @@ class AccountDetailController extends Controller
      */
     public function store(AccountDetailRequest $request)
     {
-        try
-        {
+        try {
             DB::beginTransaction();
             $input = $request->validated();
-            AccountDetail::create( Arr::only( $input, AccountDetail::getFillables() ) );
+            if ($request->hasFile('document')) {
+                $document = $request->document->store('accountDetails');
+                $input['document'] = $document;
+            }
+            AccountDetail::create(Arr::only($input, AccountDetail::getFillables()));
             DB::commit();
 
             return redirect()->route('account-details.index')->with('success', 'News Paper Account Details Created Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('account-details.index')->with('error', 'Something Went Wrog !');
         }
     }
 
-     /**
+    /**
      * Show the form for editing the specified language.
      */
     public function edit(AccountDetail $accountDetail)
@@ -74,17 +77,21 @@ class AccountDetailController extends Controller
      */
     public function update(AccountDetailRequest $request, AccountDetail $accountDetail)
     {
-        try
-        {
+        try {
             DB::beginTransaction();
             $input = $request->validated();
-            $accountDetail->update( Arr::only( $input, AccountDetail::getFillables() ) );
+            if ($request->hasFile('document')) {
+                if (Storage::exists($accountDetail->document)) {
+                    Storage::delete($accountDetail->document);
+                }
+                $document = $request->document->store('accountDetails');
+                $input['document'] = $document;
+            }
+            $accountDetail->update(Arr::only($input, AccountDetail::getFillables()));
             DB::commit();
 
             return redirect()->route('account-details.index')->with('success', 'News Paper Account Details Update Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('account-details.index')->with('error', 'Something Went Wrog !');
         }
     }
@@ -94,15 +101,15 @@ class AccountDetailController extends Controller
      */
     public function destroy(AccountDetail $accountDetail)
     {
-        try
-        {
+        try {
             DB::beginTransaction();
+            if (Storage::exists($accountDetail->document)) {
+                Storage::delete($accountDetail->document);
+            }
             $accountDetail->delete();
             DB::commit();
             return redirect()->route('account-details.index')->with('success', 'News Paper Account Details Delete Successfully');
-        }
-        catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return redirect()->route('account-details.index')->with('error', 'Something Went Wrog !');
         }
     }

@@ -170,7 +170,7 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td align="center" colspan="5" style="font-size: 12px;">Data Not Found</td>
+                                            <td align="center" colspan="6" style="font-size: 12px;">Data Not Found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -216,7 +216,7 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td align="center" colspan="5" style="font-size: 12px;">Data Not Found</td>
+                                            <td align="center" colspan="6" style="font-size: 12px;">Data Not Found</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

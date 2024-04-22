@@ -43,6 +43,9 @@
                                         <th>शाखा</th>
                                         <th>खाते क्रमांक</th>
                                         <th>IFSC कोड</th>
+                                        <th>पॅन कार्ड</th>
+                                        <th>GST No</th>
+                                        <th>File</th>
                                         <th>कृती</th>
                                     </tr>
                                 </thead>
@@ -55,6 +58,9 @@
                                         <td>{{ $accountDetail->branch }}</td>
                                         <td>{{ $accountDetail->account_number }}</td>
                                         <td>{{ $accountDetail->ifsc_code }}</td>
+                                        <td>{{ $accountDetail->pan_card }}</td>
+                                        <td>{{ $accountDetail->gst_no }}</td>
+                                        <td>@if($accountDetail->document)<a href="{{ asset('storage/'. $accountDetail->document) }}" target="_blank" class="btn btn-primary btn-sm">document</a> @else - @endif</td>
                                         <td>
                                             <ul class="action">
                                                 {{-- <li class="edit">

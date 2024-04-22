@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </form>
-
+                        @php $billReportTotalAmount = 0; @endphp
                         @if(isset(Request()->search) && count($billings) > 0)
                         <div class="table-responsive mt-5" id="printableArea">
                             @foreach($billings as $bill)
@@ -134,11 +134,24 @@
                                         <td>{{ $bills?->it }}</td>
                                         <td>{{ $bills?->net_amount }}</td>
                                     </tr>
+                                    @php
+                                        $billReportTotalAmount = $billReportTotalAmount + $bills?->net_amount;
+                                    @endphp
                                     @endforeach
                                 </tbody>
                             </table>
                             <br>
                             @endforeach
+
+                            <div>
+                                <table class="table">
+                                    <thead>
+                                        <tr align="right">
+                                            <td style="font-size: 18px"><b>Total Amount :- </b>{{ $billReportTotalAmount }}</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary" id="printButton">Print</button>

@@ -13,42 +13,38 @@ class AccountDetail extends BaseModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['news_paper_id', 'bank', 'branch', 'account_number', 'ifsc_code', 'pan_card', 'gst_no'];
+    protected $fillable = ['news_paper_id', 'bank', 'branch', 'account_number', 'ifsc_code', 'pan_card', 'gst_no', 'document'];
 
-    public function newsPaper(){
+    public function newsPaper()
+    {
         return $this->belongsTo(NewsPaper::class, 'news_paper_id', 'id');
     }
 
-    public function billing(){
+    public function billing()
+    {
         return $this->hasMany(Billing::class, 'account_detail_id', 'id');
     }
 
     public static function booted()
     {
-        static::created(function (AccountDetail $accountDetail)
-        {
-            if(Auth::check())
-            {
+        static::created(function (AccountDetail $accountDetail) {
+            if (Auth::check()) {
                 self::where('id', $accountDetail->id)->update([
-                    'created_by'=> Auth::user()->id,
+                    'created_by' => Auth::user()->id,
                 ]);
             }
         });
-        static::updated(function (AccountDetail $accountDetail)
-        {
-            if(Auth::check())
-            {
+        static::updated(function (AccountDetail $accountDetail) {
+            if (Auth::check()) {
                 self::where('id', $accountDetail->id)->update([
-                    'updated_by'=> Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
                 ]);
             }
         });
-        static::deleting(function (AccountDetail $accountDetail)
-        {
-            if(Auth::check())
-            {
+        static::deleting(function (AccountDetail $accountDetail) {
+            if (Auth::check()) {
                 self::where('id', $accountDetail->id)->update([
-                    'deleted_by'=> Auth::user()->id,
+                    'deleted_by' => Auth::user()->id,
                 ]);
             }
         });
