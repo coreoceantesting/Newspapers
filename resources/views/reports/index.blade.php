@@ -83,7 +83,14 @@
                                 </div>
                             </div>
                         </form>
-                        @php $billReportTotalAmount = 0; @endphp
+                        @php
+                            $totalBasicAmount = 0;
+                            $totalGST = 0;
+                            $totalGrossAmount = 0;
+                            $totalTds = 0;
+                            $totalIt = 0;
+                            $totalNetAmount = 0;
+                        @endphp
                         @if(isset(Request()->search) && count($billings) > 0)
                         <div class="table-responsive mt-5" id="printableArea">
                             @foreach($billings as $bill)
@@ -135,15 +142,31 @@
                                         <td>{{ $bills?->net_amount }}</td>
                                     </tr>
                                     @php
-                                        $billReportTotalAmount = $billReportTotalAmount + $bills?->net_amount;
+                                        $totalBasicAmount = $totalBasicAmount + $bills?->basic_amount;
+                                        $totalGST = $totalGST + $bills?->gst;
+                                        $totalGrossAmount = $totalGrossAmount + $bills?->gross_amount;
+                                        $totalTds = $totalTds + $bills?->tds;
+                                        $totalIt = $totalIt + $bills?->it;
+                                        $totalNetAmount = $totalNetAmount + $bills?->net_amount;
                                     @endphp
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th style="text-align:right; font-size:15px;" colspan="5">Total Amount</th>
+                                        <th align="center">{{ $totalBasicAmount }}</th>
+                                        <td align="center">{{ $totalGST }}</td>
+                                        <td align="center">{{ $totalGrossAmount }}</td>
+                                        <td align="center">{{ $totalTds }}</td>
+                                        <td align="center">{{ $totalIt }}</td>
+                                        <td align="center">{{ $totalNetAmount }}</td>
+                                    </tr>
+                                </tfoot>
                             </table>
                             <br>
                             @endforeach
 
-                            <div>
+                            {{-- <div>
                                 <table class="table">
                                     <thead>
                                         <tr align="right">
@@ -151,7 +174,7 @@
                                         </tr>
                                     </thead>
                                 </table>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary" id="printButton">Print</button>
