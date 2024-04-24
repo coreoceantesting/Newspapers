@@ -76,7 +76,7 @@
                                     </li>
                                     <li>
                                         <a @if(Request::is('user') || Request::is('user/*'))class="active" @endif href="{{ route('user.index') }}">
-                                        User</a>
+                                        User (वापरकर्ता)</a>
                                     </li>
                                 </ul>
                             </li>

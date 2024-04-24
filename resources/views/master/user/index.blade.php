@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"> <i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item active">List user</li>
+                        <li class="breadcrumb-item active">List user (वापरकर्ता यादी)</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                     <div class="card-header border-bottom bg-primary pt-3 pb-1">
                         <div class="row">
                             <div class="col-6">
-                                <h5 class="text-white mt-1">List user</h5>
+                                <h5 class="text-white mt-1">List user (वापरकर्ता यादी)</h5>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="{{ route('user.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add user <i class="fa fa-plus" aria-hidden="true"></i>
+                                <a href="{{ route('user.create') }}"><button class="btn btn-square btn-warning-gradien" type="button">Add user (वापरकर्ता जोडा)<i class="fa fa-plus" aria-hidden="true"></i>
                                 </button></a>
                             </div>
                         </div>
@@ -37,12 +37,12 @@
                             <table class="display" id="basic-1">
                                 <thead>
                                     <tr>
-                                        <th>Sr No.</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>User Type</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>अ.क्र.</th>
+                                        <th>नाव</th>
+                                        <th>ईमेल</th>
+                                        <th>वापरकर्ता प्रकार</th>
+                                        <th>स्थिती</th>
+                                        <th>कृती</th>
                                     </tr>
                                 </thead>
                                 <tbody>
