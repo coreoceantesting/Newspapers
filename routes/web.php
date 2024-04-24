@@ -16,6 +16,7 @@ use App\Http\Controllers\Master\PrintTypeController;
 use App\Http\Controllers\Master\PublicationTypeController;
 use App\Http\Controllers\Master\SignatureController;
 use App\Http\Controllers\Master\CostController;
+use App\Http\Controllers\Master\UserController;
 use App\Http\Controllers\AdvertiseController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\SendMailController;
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['auth', 'prevent-back-history']], function () {
     Route::resource('signature', SignatureController::class);
     Route::resource('cost', CostController::class);
     Route::resource('account-details', AccountDetailController::class);
+    Route::resource('user', UserController::class);
     // end of master route
 
 

@@ -29,6 +29,7 @@
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
     <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
@@ -110,9 +111,15 @@
         <!-- Plugins JS start-->
         <!-- Plugins JS Ends-->
         <!-- Theme js-->
+
+        <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
         <script src="{{ asset('assets/js/script.js') }}"></script>
         <!-- login js-->
         <!-- Plugin used-->
+
+        <script>
+            @include('message.message')
+        </script>
     </div>
 </body>
 

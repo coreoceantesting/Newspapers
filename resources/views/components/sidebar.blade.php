@@ -25,9 +25,10 @@
                                 </a>
                             </li>
 
+                            @if(Auth::user()->user_type == "1")
                             @php
                             $active = "";
-                            if(Request::is('department') || Request::is('language') || Request::is('news-paper-type') || Request::is('cost') || Request::is('advertise-cost') || Request::is('publication-type') || Request::is('financial-year') || Request::is('banner-size') || Request::is('print-type') || Request::is('budget-provision') || Request::is('news-paper') || Request::is('signature') || Request::is('account-details') || Request::is('department/*') || Request::is('language/*') || Request::is('news-paper-type/*') || Request::is('cost/*') || Request::is('advertise-cost/*') || Request::is('publication-type/*') || Request::is('financial-year/*') || Request::is('banner-size/*') || Request::is('print-type/*') || Request::is('budget-provision/*') || Request::is('news-paper/*') || Request::is('signature/*') || Request::is('account-details/*')){
+                            if(Request::is('department') || Request::is('language') || Request::is('news-paper-type') || Request::is('cost') || Request::is('advertise-cost') || Request::is('publication-type') || Request::is('financial-year') || Request::is('banner-size') || Request::is('print-type') || Request::is('budget-provision') || Request::is('news-paper') || Request::is('signature') || Request::is('account-details') || Request::is('department/*') || Request::is('language/*') || Request::is('news-paper-type/*') || Request::is('cost/*') || Request::is('advertise-cost/*') || Request::is('publication-type/*') || Request::is('financial-year/*') || Request::is('banner-size/*') || Request::is('print-type/*') || Request::is('budget-provision/*') || Request::is('news-paper/*') || Request::is('signature/*') || Request::is('account-details/*') || Request::is('user') || Request::is('user/*')){
                                 $active = "active";
                             }
                             @endphp
@@ -73,8 +74,13 @@
                                         <a @if(Request::is('account-details') || Request::is('account-details/*'))class="active" @endif href="{{ route('account-details.index') }}">
                                         Account Details (खाते तपशील)</a>
                                     </li>
+                                    <li>
+                                        <a @if(Request::is('user') || Request::is('user/*'))class="active" @endif href="{{ route('user.index') }}">
+                                        User</a>
+                                    </li>
                                 </ul>
                             </li>
+                            @endif
                             {{-- <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav @if(Request::is('advertise') || Request::is('advertise/*'))active @endif" href="{{ route('advertise.index') }}">
                                     <i data-feather="feather"> </i>
