@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\DB;
 
 class SendMailController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $advertise = Advertise::find($request->id);
 
-        if($advertise && $advertise->is_mail_send == "1"){
+        if ($advertise && $advertise->is_mail_send == "1") {
             return redirect()->route('advertise.index');
         }
 
         $newsPaperId = AdvertiseNewsPaper::where('advertise_id', $request->id)->pluck('news_paper_id');
 
-        $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function($query) use($newsPaperId){
+        $newsPapers = NewsPaper::whereHas('advertiseNewsPaper', function ($query) use ($newsPaperId) {
             $query->whereIn('news_paper_id', $newsPaperId);
         })->get();
 
@@ -33,16 +34,17 @@ class SendMailController extends Controller
         ]);
     }
 
-    public function sendEmail(Request $request){
+    public function sendEmail(Request $request)
+    {
         set_time_limit(0);
         DB::beginTransaction();
-        try{
-            $signature = Signature::value('name');
+        try {
+            $signature = Advertise::where('id', $request->id)->value('image');
 
             $pdf = Advertise::where('id', $request->id)->value('generate_pdf_url');
 
-            if(isset($request->email)){
-                for($i=0; $i < count($request->email); $i++){
+            if (isset($request->email)) {
+                for ($i = 0; $i < count($request->email); $i++) {
                     Mail::to($request->email[$i])->send(new SendMail($signature, $pdf, $request));
                 }
             }
@@ -55,12 +57,10 @@ class SendMailController extends Controller
 
             DB::commit();
             return redirect()->route('advertise.sendMail')->with('success', 'Mail send successfully');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             Log::info($e);
             return redirect()->route('advertise.sendMail')->with('error', 'Something Went Wrog !');
         }
-
-
     }
 }
