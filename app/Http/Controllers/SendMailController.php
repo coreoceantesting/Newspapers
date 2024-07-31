@@ -45,7 +45,7 @@ class SendMailController extends Controller
 
             if (isset($request->email)) {
                 for ($i = 0; $i < count($request->email); $i++) {
-                    Mail::to($request->email[$i])->send(new SendMail($signature, $pdf, $request));
+                    Mail::to($request->email[$i])->cc(['pmcsapra03gmail.com'])->send(new SendMail($signature, $pdf, $request));
                 }
             }
 
