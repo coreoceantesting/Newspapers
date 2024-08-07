@@ -52,10 +52,12 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-12">
                                     <label class="form-label" for="news_paper">Select Newspaper (वर्तमानपत्र निवडा)</label>
-                                    <select name="news_paper" id="news_paper" class="js-example-basic-single col-sm-12 select2-hidden-accessible">
+                                    <select name="news_paper[]" id="news_paper" class="js-example-basic-multiple col-sm-12 select2-hidden-accessible" multiple>
                                         <option value="">Select Newspaper (वर्तमानपत्र निवडा)</option>
                                         @foreach ( $newsPapers as $newsPaper )
-                                            <option @if(isset(Request()->news_paper) && $newsPaper->id == Request()->news_paper)selected @endif value="{{ $newsPaper->id }}">{{ $newsPaper->name }}</option>
+
+
+                                            <option @if(isset(Request()->news_paper) && in_array($newsPaper->id, Request()->news_paper))selected @endif value="{{ $newsPaper->id }}">{{ $newsPaper->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

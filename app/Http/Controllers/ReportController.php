@@ -25,7 +25,7 @@ class ReportController extends Controller
                 }
 
                 if (isset($request->news_paper) && $request->news_paper != "") {
-                    $query->where('news_paper_id', $request->news_paper);
+                    $query->whereIn('news_paper_id', $request->news_paper);
                 }
 
                 if (isset($request->to) && $request->to != "") {
@@ -37,7 +37,7 @@ class ReportController extends Controller
                 }
             })->get();
         }
-        // return $billing;
+
         return view('reports.index')->with([
             'newsPapers' => $newsPapers,
             'billings' => $billing

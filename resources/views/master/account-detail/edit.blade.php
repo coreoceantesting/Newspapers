@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <form action="{{ route('account-details.update', $accountDetail->id) }}" method="post">
+                <form action="{{ route('account-details.update', $accountDetail->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <input type="hidden" name="id" value="{{ $accountDetail->id }}">
@@ -58,7 +58,7 @@
 
                                 <div class="col-md-6 col-lg-6 col-12">
                                     <label class="form-label" for="account_number">Account Number (खाते क्रमांक) <span class="error">*</span></label>
-                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="account_number" id="account_number" type="text" maxlength="50" placeholder="खाते क्रमांक" required value="{{ $accountDetail->account_number }}">
+                                    <input @if ($errors->has('account_number')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control" id="account_number" type="text" readonly maxlength="50" placeholder="खाते क्रमांक" value="{{ $accountDetail->account_number }}">
                                     @error('account_number')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -76,6 +76,14 @@
                                     <label class="form-label" for="pan_card">Pan Card (पॅन कार्ड) <span class="error">*</span></label>
                                     <input maxlength="10" @if ($errors->has('pan_card')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="pan_card" id="pan_card" type="text" placeholder="पॅन कार्ड" required value="{{ $accountDetail->pan_card }}">
                                     @error('pan_card')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-12">
+                                    <label class="form-label" for="document">Upload File</label>
+                                    <a href="{{ asset('storage/'.$accountDetail->document) }}" target="_blank" class="btn btn-primary btn-sm mb-2">View File</a>
+                                    <input class="form-control"  name="documents" id="document" type="file">
+                                    @error('document')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
                                 </div>

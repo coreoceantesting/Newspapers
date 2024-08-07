@@ -26,7 +26,7 @@ class AccountDetailRequest extends FormRequest
                 'news_paper_id' => 'required',
                 'bank' => 'required',
                 'branch' => 'required',
-                'account_number' => "required",
+                'account_number' => "nullable",
                 'ifsc_code' => 'required',
                 'pan_card' => 'required',
                 'gst_no' => 'nullable',

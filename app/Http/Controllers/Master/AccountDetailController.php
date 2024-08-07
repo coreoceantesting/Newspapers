@@ -62,7 +62,7 @@ class AccountDetailController extends Controller
      */
     public function edit(AccountDetail $accountDetail)
     {
-        return redirect()->route('account-details.index')->with('error', 'Something Went Wrog !');
+        // return redirect()->route('account-details.index')->with('error', 'Something Went Wrog !');
 
         $newsPapers = NewsPaper::latest()->get();
 
@@ -79,15 +79,15 @@ class AccountDetailController extends Controller
     {
         try {
             DB::beginTransaction();
-            $input = $request->validated();
-            if ($request->hasFile('document')) {
+            if ($request->hasFile('documents')) {
                 if (Storage::exists($accountDetail->document)) {
                     Storage::delete($accountDetail->document);
                 }
-                $document = $request->document->store('accountDetails');
-                $input['document'] = $document;
+                $document = $request->documents->store('accountDetails');
+                $request['document'] = $document;
             }
-            $accountDetail->update(Arr::only($input, AccountDetail::getFillables()));
+
+            $accountDetail->update($request->all());
             DB::commit();
 
             return redirect()->route('account-details.index')->with('success', 'News Paper Account Details Update Successfully');

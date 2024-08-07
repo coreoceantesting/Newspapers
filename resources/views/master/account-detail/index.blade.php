@@ -63,10 +63,10 @@
                                         <td>@if($accountDetail->document)<a href="{{ asset('storage/'. $accountDetail->document) }}" target="_blank" class="btn btn-primary btn-sm">document</a> @else - @endif</td>
                                         <td>
                                             <ul class="action">
-                                                {{-- <li class="edit">
+                                                <li class="edit">
                                                     <a href="{{ route('account-details.edit', $accountDetail->id) }}"><button class="btn btn-square btn-primary" type="button">Edit &nbsp;<i class="fa fa-pencil text-white" aria-hidden="true"></i>
                                                     </button></a>
-                                                </li> --}}
+                                                </li>
                                                 <li class="delete">
 
                                                     <form action="{{ route('account-details.destroy', $accountDetail->id) }}" method="POST">
