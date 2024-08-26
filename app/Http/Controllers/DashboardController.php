@@ -38,7 +38,7 @@ class DashboardController extends Controller
 
             $totalAdvertiseCost = Billing::whereDate('bill_date', '>=', $financialYear->from_date)->whereDate('bill_date', '<=', $financialYear->to_date)->sum('net_amount');
 
-            $advertises = Advertise::with(['publicationType', 'printType', 'bannerSize'])->whereDate('publication_date', '>=', $financialYear->from_date)->whereDate('publication_date', '<=', $financialYear->to_date)->limit(5)->latest()->get();
+            $advertises = Advertise::with(['publicationType', 'printType', 'bannerSize', 'department'])->whereDate('publication_date', '>=', $financialYear->from_date)->whereDate('publication_date', '<=', $financialYear->to_date)->limit(5)->latest()->get();
 
             $billing = Billing::with(['accountDetails'])->whereDate('bill_date', '>=', $financialYear->from_date)->whereDate('bill_date', '<=', $financialYear->to_date)->limit(5)->latest()->get();
 
