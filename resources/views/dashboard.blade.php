@@ -150,13 +150,12 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="font-size: 12px;">Sr.No</th>
-                                        <th style="font-size: 12px;">Unique No</th>
-                                        <th style="font-size: 12px;">Department</th>
-                                        <th style="font-size: 12px;">Publication Type</th>
-                                        <th style="font-size: 12px;">Publication Date</th>
-                                        <th style="font-size: 12px;">Print Type</th>
-                                        <th style="font-size: 12px;">Banner Size</th>
+                                        <th style="font-size: 12px;">Sr.No (क्र.)</th>
+                                        <th style="font-size: 12px;">Unique No (युनिक क्र)</th>
+                                        <th style="font-size: 12px;">Department (विभाग)</th>
+                                        <th style="font-size: 12px;">Publication Type (पब्लिकेशन प्रकार)</th>
+                                        <th style="font-size: 12px;">Publication Date (पब्लिकेशन तारीख)</th>
+                                        <th style="font-size: 12px;">Print Type (प्रिंटचा प्रकार)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -168,7 +167,6 @@
                                         <td style="font-size: 12px;">{{ $advertise->publicationType?->name }}</td>
                                         <td style="font-size: 12px;">{{ date('d-m-Y', strtotime($advertise->publication_date)) }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->printType?->name }}</td>
-                                        <td style="font-size: 12px;">{{ $advertise->bannerSize?->size }}</td>
                                     </tr>
                                     @empty
                                         <tr>
@@ -198,12 +196,12 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="font-size: 12px;">Sr.No</th>
-                                        <th style="font-size: 12px;">Bill No</th>
-                                        <th style="font-size: 12px;">Bill Date</th>
-                                        <th style="font-size: 12px;">Bank</th>
-                                        <th style="font-size: 12px;">Branch</th>
-                                        <th style="font-size: 12px;">Account Number</th>
+                                        <th style="font-size: 12px;">Sr.No (क्र.)</th>
+                                        <th style="font-size: 12px;">Bill No (बिल क्र)</th>
+                                        <th style="font-size: 12px;">Bill Date (बिल तारीख)</th>
+                                        <th style="font-size: 12px;">Bank (बँक)</th>
+                                        <th style="font-size: 12px;">Branch (शाखा)</th>
+                                        <th style="font-size: 12px;">Account Number (खाते क्रमांक)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -241,11 +239,11 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="font-size: 12px;">Sr.No</th>
-                                        <th style="font-size: 12px;">Unique No</th>
-                                        <th style="font-size: 12px;">Net Amount</th>
-                                        <th style="font-size: 12px;">Prograssive Expandetures</th>
-                                        <th style="font-size: 12px;">Balance</th>
+                                        <th style="font-size: 12px;">Sr.No (क्र.)</th>
+                                        <th style="font-size: 12px;">Unique No (युनिक क्र)</th>
+                                        <th style="font-size: 12px;">Net Amount (निव्वळ रक्कम)</th>
+                                        <th style="font-size: 12px;">Prograssive Expandetures (प्रगतीशील खर्च)</th>
+                                        <th style="font-size: 12px;">Balance (शिल्लक)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
