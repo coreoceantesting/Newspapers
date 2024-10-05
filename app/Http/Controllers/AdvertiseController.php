@@ -29,7 +29,11 @@ class AdvertiseController extends Controller
     public function index()
     {
         $advertises = Advertise::with([
-            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+            'publicationType',
+            'cost',
+            'department',
+            'printType',
+            'bannerSize'
         ])->when(request('from') && request('to'), function ($q) {
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
@@ -44,7 +48,11 @@ class AdvertiseController extends Controller
     public function sendMail()
     {
         $advertises = Advertise::with([
-            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+            'publicationType',
+            'cost',
+            'department',
+            'printType',
+            'bannerSize'
         ])->when(request('from') && request('to'), function ($q) {
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
@@ -154,7 +162,7 @@ class AdvertiseController extends Controller
             return redirect()->route('send-mail.index', $advertise->id);
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Something Went Wrog !');
+            return redirect()->back()->with('error', 'Something Went Wrog!');
         }
     }
 
@@ -299,7 +307,18 @@ class AdvertiseController extends Controller
             return redirect()->route('send-mail.index', $advertise->id);
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Something Went Wrog !');
+            return redirect()->back()->with('error', 'Something Went Wrog!');
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $advartise = Advertise::find($request->id);
+            $advartise->delete();
+            return redirect()->route('advertise.index')->with('success', 'Advertise removed successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something Went Wrog!');
         }
     }
 
@@ -345,7 +364,11 @@ class AdvertiseController extends Controller
     public function show(Request $req)
     {
         $advertises = Advertise::with([
-            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+            'publicationType',
+            'cost',
+            'department',
+            'printType',
+            'bannerSize'
         ])->when(request('from') && request('to'), function ($q) {
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";
@@ -358,7 +381,11 @@ class AdvertiseController extends Controller
     public function export(Request $request)
     {
         $advertises = Advertise::with([
-            'publicationType', 'cost', 'department', 'printType', 'bannerSize'
+            'publicationType',
+            'cost',
+            'department',
+            'printType',
+            'bannerSize'
         ])->when(request('from') && request('to'), function ($q) {
             $from = date('Y-m-d', strtotime(request('from'))) . " 00:00:00";
             $to = date('Y-m-d', strtotime(request('to'))) . " 23:59:59";

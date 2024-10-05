@@ -100,6 +100,19 @@
                                                     <a href="{{ route('advertise.preview', $advertise->id) }}"><button class="btn btn-square btn-primary" type="button">पहा
                                                     </button></a>
                                                 </li>
+
+                                                <li class="delete">
+                                                    {{-- <a href="{{ route('advertise.delete', $advertise->id) }}"><button class="btn btn-square btn-danger" type="button">हटवा
+                                                    </button></a> --}}
+
+
+                                                    <form action="{{ route('advertise.delete', $advertise->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $advertise->id }}">
+                                                        <button class="btn btn-square btn-danger" type="submit" onclick="return confirm('Are you sure you want to remove this advertise')">हटवा
+                                                        </button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr>

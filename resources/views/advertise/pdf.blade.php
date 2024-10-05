@@ -40,7 +40,7 @@
         Email: panvelcorporation@gmail.com
 
         <hr>
-        <span>जा.क्र. पमपा/ जनसंपर्क./3123/प्र.क्र.436/494/{{ date('Y') }} </span>
+        <span>{{ $advertise->work_order_number }} </span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>दिनांक:- {{ date('d-m-Y') }}</span>
     </p>
