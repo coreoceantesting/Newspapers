@@ -101,11 +101,8 @@
                                                     </button></a>
                                                 </li>
 
+                                                @if(Auth::user()->user_type == "1")
                                                 <li class="delete">
-                                                    {{-- <a href="{{ route('advertise.delete', $advertise->id) }}"><button class="btn btn-square btn-danger" type="button">हटवा
-                                                    </button></a> --}}
-
-
                                                     <form action="{{ route('advertise.delete', $advertise->id) }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $advertise->id }}">
@@ -113,6 +110,7 @@
                                                         </button>
                                                     </form>
                                                 </li>
+                                                @endif
                                             </ul>
                                         </td>
                                     </tr>
