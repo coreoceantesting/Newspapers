@@ -67,11 +67,11 @@
     
         <table>
             <tr>
-                <td style="width: 20%;text-align: right;margin-top:0">विषय :-</td>
+                <td style="width: 20%;text-align: right; vertical-align: top;">विषय :-</td>
                 <td>पनवेल महानगरपालिकेची {{ $advertise?->department?->name }} विभागाकडील {{ $advertise?->publicationType?->name }} ({{ $advertise?->printType?->name }}) वृत्तपत्रात प्रसिध्दी करणेबाबत.</td>
             </tr>
             <tr>
-                <td style="width: 20%;text-align: right;">संदर्भ :-</td>
+                <td style="width: 20%;text-align: right; vertical-align: top;">संदर्भ :-</td>
                 <td>{{ $advertise->context }} दिनांक : {{ convertToMarathiNumerals(date('d-m-Y', strtotime($advertise->context_date))) }} रोजीचे पत्रान्वये.</td>
             </tr>
         </table>
