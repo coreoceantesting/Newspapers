@@ -394,4 +394,15 @@ class AdvertiseController extends Controller
 
         return Excel::download(new AdvertiseExport($advertises), 'advertise.xlsx');
     }
+
+    // public function generatePdfs()
+    // {
+    //     $advertise = Advertise::with(['department', 'printType', 'publicationType', 'bannerSize', 'advertiseNewsPapers.newsPaper'])->where('id', 1)->first();
+
+    //     $signature = Signature::value('name');
+
+    //     $pdf = PDF::loadView('advertise.pdf', compact('advertise', 'signature'));
+
+    //     return $pdf->stream('document.pdf');
+    // }
 }
