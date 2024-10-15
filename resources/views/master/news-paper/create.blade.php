@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-lg-6 col-12">
-                                    <label class="form-label" for="name">Newspaper Name (वर्तमानपत्राचे नाव) <span class="error">*</span></label>
+                                    <label class="form-label" for="name">Newspaper Name (वर्तमानपत्राचे नाव) <span class="error">*</span> (For New Line use "&lt;br&gt;")</label>
                                     <input @if ($errors->has('name')) class="form-control is-invalid" @else style="border: 1px solid #475ecc6b;"  @endif class="form-control"  name="name" id="name" type="text" placeholder="वर्तमानपत्राचे नाव" value="{{ old('name') }}" required>
                                     @error('name')
                                         <span class="error">{{ $message }}</span>

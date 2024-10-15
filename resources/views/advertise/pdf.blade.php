@@ -37,24 +37,27 @@
 </head>
 <body>
     <img src="{{ public_path('image/header.png') }}" alt="">
-    <p style="font-size: 13px;margin: 0px;margin-top: 10px;">
+    <p style="font-size: 13px;margin: 0px;margin-top: 10px;border-bottom:1px solid;">
        कार्यालय: २७४५८०४०/४१/४२
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         पीक्स नं.: ०२२-२७४५२२३३
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Email: panvelcorporation@gmail.com
 
-        <hr>
-        <span>{{ $advertise->work_order_number }} </span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>दिनांक:- {{ convertToMarathiNumerals(date('d-m-Y')) }}</span>
+        
     </p>
+    <table style=" width: 100%;">
+    <tr>
+        <td><span>{{ $advertise->work_order_number }} </span></td>
+        <td style="text-align: right;"><span>दिनांक:- {{ convertToMarathiNumerals(date('d-m-Y')) }}</span></td>
+    </tr>
+    </table>
     <p>
         प्रति,<br>
         जाहिरात व्यवस्थापक,<br>
         @php $count = count($advertise->advertiseNewsPapers); @endphp
         @foreach($advertise->advertiseNewsPapers as $newsPaper)
-        {{ $newsPaper->newsPaper->name }}@if($loop->iteration != $count), @endif
+        {!! $newsPaper->newsPaper->name !!}@if($loop->iteration != $count), @endif
         @if($count > 4)
             @if(($loop->iteration) % 2 == 0)
             <br>
