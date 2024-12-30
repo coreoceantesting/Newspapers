@@ -163,7 +163,7 @@
                                     <tr>
                                         <td style="font-size: 12px;">{{ $loop->iteration }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->unique_number }}</td>
-                                        <td style="font-size: 12px;">{{ $advertise?->department->name }}</td>
+                                        <td style="font-size: 12px;">{{ $advertise?->department?->name }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->publicationType?->name }}</td>
                                         <td style="font-size: 12px;">{{ date('d-m-Y', strtotime($advertise->publication_date)) }}</td>
                                         <td style="font-size: 12px;">{{ $advertise->printType?->name }}</td>
